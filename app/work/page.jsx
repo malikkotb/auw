@@ -76,7 +76,7 @@ export default function Work() {
         <div className='flex flex-col gap-12'>
           <div className='flex flex-col gap-8'>
             {projects.map((project) => (
-              <div key={project.id} className='borderr'>
+              <div key={project.id} className=''>
                 <div className='w-full h-full pb-1'>
                   <img
                     src={project.image}

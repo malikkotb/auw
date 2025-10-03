@@ -82,6 +82,7 @@ const HoverList = ({ projects }) => {
         <div className='directional-list__list'>
           {projects.map((project) => (
             <a
+              key={project.id}
               data-directional-hover-item
               href={project.url}
               target='_blank'
@@ -102,105 +103,12 @@ const HoverList = ({ projects }) => {
                 </p>
               </div>
               <div className='directional-list__col-year'>
-                <p className='direcitonal-list__p'>{project.year}</p>
+                <p className='direcitonal-list__p'>
+                  ({project.year})
+                </p>
               </div>
             </a>
           ))}
-          {/* Item 1 */}
-          <a
-            data-directional-hover-item
-            href='https://www.flowfest.co.uk/'
-            target='_blank'
-            rel='noreferrer'
-            className='directional-list__item'
-          >
-            <div
-              data-directional-hover-tile
-              className='directional-list__hover-tile'
-            ></div>
-            <div className='directional-list__border is--item'></div>
-            <div className='directional-list__col-award'>
-              <p className='direcitonal-list__p'>Site of the Day</p>
-            </div>
-            <div className='directional-list__col-client'>
-              <p className='direcitonal-list__p'>FlowFest</p>
-            </div>
-            <div className='directional-list__col-year'>
-              <p className='direcitonal-list__p'>2025</p>
-            </div>
-          </a>
-
-          {/* Item 2 */}
-          <a
-            data-directional-hover-item
-            href='https://www.osmo.supply/'
-            target='_blank'
-            rel='noreferrer'
-            className='directional-list__item'
-          >
-            <div
-              data-directional-hover-tile
-              className='directional-list__hover-tile'
-            ></div>
-            <div className='directional-list__border is--item'></div>
-            <div className='directional-list__col-award'>
-              <p className='direcitonal-list__p'>Product Honors</p>
-            </div>
-            <div className='directional-list__col-client'>
-              <p className='direcitonal-list__p'>Osmo</p>
-            </div>
-            <div className='directional-list__col-year'>
-              <p className='direcitonal-list__p'>2025</p>
-            </div>
-          </a>
-
-          {/* Item 3 */}
-          <a
-            data-directional-hover-item
-            href='https://brand.docusign.com/'
-            target='_blank'
-            rel='noreferrer'
-            className='directional-list__item'
-          >
-            <div
-              data-directional-hover-tile
-              className='directional-list__hover-tile'
-            ></div>
-            <div className='directional-list__border is--item'></div>
-            <div className='directional-list__col-award'>
-              <p className='direcitonal-list__p'>Site of the Day</p>
-            </div>
-            <div className='directional-list__col-client'>
-              <p className='direcitonal-list__p'>Docusign Brand</p>
-            </div>
-            <div className='directional-list__col-year'>
-              <p className='direcitonal-list__p'>2024</p>
-            </div>
-          </a>
-
-          {/* Item 4 */}
-          <a
-            data-directional-hover-item
-            href='https://aanstekelijk.nl/'
-            target='_blank'
-            rel='noreferrer'
-            className='directional-list__item'
-          >
-            <div
-              data-directional-hover-tile
-              className='directional-list__hover-tile'
-            ></div>
-            <div className='directional-list__border is--item'></div>
-            <div className='directional-list__col-award'>
-              <p className='direcitonal-list__p'>Site of the Day</p>
-            </div>
-            <div className='directional-list__col-client'>
-              <p className='direcitonal-list__p'>Aanstekelijk</p>
-            </div>
-            <div className='directional-list__col-year'>
-              <p className='direcitonal-list__p'>2023</p>
-            </div>
-          </a>
         </div>
       </div>
 

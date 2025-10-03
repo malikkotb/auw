@@ -1,7 +1,18 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'SharpGrotesk';
+  src: url('/SharpGrotesk SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 body {
   margin: 14px;
+  font-family: 'SharpGrotesk', sans-serif;
+  line-height: 1.2;
 }
 
 .borderr {
