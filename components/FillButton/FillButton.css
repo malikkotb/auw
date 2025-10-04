@@ -1,0 +1,43 @@
+.push-fill-btn {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  background: white;
+  padding: 6px 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 1px;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.push-fill-btn:hover {
+  text-decoration: none;
+}
+
+.push-fill-btn-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 102%;
+  height: 100%;
+  background: white;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform 0.4s ease;
+  mix-blend-mode: difference;
+  z-index: 10;
+}
+
+.btn-text {
+  position: relative;
+  z-index: 5;
+  letter-spacing: 0.02em;
+  color: black;
+}
+
+.push-fill-btn:hover .push-fill-btn-bg {
+  transform: scaleY(1);
+}

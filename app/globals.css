@@ -1,17 +1,36 @@
 @import "tailwindcss";
 
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+
+.margin-top {
+  margin-top: 80px;
+}
+
 @font-face {
-  font-family: 'SharpGrotesk';
-  src: url('/SharpGrotesk SemiBold.otf') format('opentype');
+  font-family: "SharpGrotesk";
+  src: url("/SharpGrotesk SemiBold.otf") format("opentype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
+.margin-top {
+  margin-top: 80px;
+}
+
+.margin-bottom {
+  margin-bottom: 80px;
+}
+
+.h1 {
+  font-size: 28px;
+  text-transform: uppercase;
+}
 
 body {
   margin: 14px;
-  font-family: 'SharpGrotesk', sans-serif;
+  font-family: "SharpGrotesk", sans-serif;
   line-height: 1.2;
 }
 

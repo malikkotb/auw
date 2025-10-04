@@ -43,7 +43,7 @@ export default function Work() {
 
   return (
     <div className='font-bold w-full h-full work-wrapper'>
-      <div className='work-header my-20 flex items-center justify-between'>
+      <div className='work-header margin-top mb-20 flex items-center justify-between'>
         <div>
           ALL PROJECTS <span>(18)</span>
         </div>
@@ -54,7 +54,7 @@ export default function Work() {
               cursor: "pointer",
             }}
             className={
-              view === "grid" ? "text-black italic" : "text-gray-500"
+              view === "grid" ? "text-black italic" : "text-[#626262]"
             }
           >
             GRID
@@ -65,7 +65,7 @@ export default function Work() {
               cursor: "pointer",
             }}
             className={
-              view === "list" ? "text-black italic" : "text-gray-500"
+              view === "list" ? "text-black italic" : "text-[#626262]"
             }
           >
             LIST
@@ -86,7 +86,7 @@ export default function Work() {
                 </div>
                 <div className='flex flex-col'>
                   <h3 className='uppercase'>{project.title}</h3>
-                  <p className='text-gray-500 uppercase'>
+                  <p className='text-[#626262] uppercase'>
                     {project.description}
                   </p>
                 </div>
