@@ -43,7 +43,7 @@ export default function Work() {
 
   return (
     <div className='font-bold w-full h-full work-wrapper'>
-      <div className='work-header margin-top mb-20 flex items-center justify-between'>
+      <div className='work-header margin-top flex items-center justify-between'>
         <div>
           ALL PROJECTS <span>(18)</span>
         </div>

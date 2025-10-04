@@ -29,15 +29,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      {/* <Header /> */}
       <body className={`antialiased`}>
-        <div style={gridStyles}>
+        <Header />
+        {/* <div style={gridStyles}>
           {Array(12)
             .fill()
             .map((_, i) => (
               <div key={i} style={columnStyles} />
             ))}
-        </div>
+        </div> */}
         {children}
       </body>
     </html>

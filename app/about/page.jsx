@@ -3,6 +3,7 @@
 import FillButton from "@/components/FillButton/FillButton";
 import Link from "next/link";
 import React from "react";
+import Footer from "@/components/Footer/Footer";
 
 export default function About() {
   const [activeService, setActiveService] = React.useState("Skill");
@@ -18,7 +19,7 @@ export default function About() {
       "Bridging digital and physical realms to create tangible brand experiences that leave lasting impressions in the real world.",
   };
   return (
-    <div className='h-full w-full margin-top mb-20'>
+    <div className='h-full w-full margin-top'>
       <div className='h1 margin-bottom'>
         We turn ideas into brands people instantly understand.
       </div>
@@ -107,7 +108,6 @@ export default function About() {
             </h2>
           ))}
         </div>
-        {/* fade out text like bodyarmor text */}
         <div className='col-span-7 col-start-6 w-full h-full'>
           <p className='eyebrow italic pb-2'>Technical Skillset</p>
           <div className='h1 transition-all duration-300'>
@@ -115,6 +115,7 @@ export default function About() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
