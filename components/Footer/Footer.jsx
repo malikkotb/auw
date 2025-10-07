@@ -124,8 +124,8 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className='col-span-2 justify-end flex items-end'>
-          <div className='uppercase'>Privcacy Policy</div>
+        <div className='col-span-2 uppercase justify-end flex items-end'>
+          <Link href='/privacy'>Privacy Policy</Link>
         </div>
       </div>
       <div

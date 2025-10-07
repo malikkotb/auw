@@ -1,42 +1,9 @@
 "use client";
 
+import Footer from "@/components/Footer/Footer";
 import HoverList from "@/components/HoverList/HoverList";
 import { useState } from "react";
-
-const projects = [
-  {
-    id: 1,
-    title: "From the Farm",
-    image: "/images/ftf.png",
-    description: "A2 DAIRY-FREE ICE CREAM",
-    url: "https://www.fromthefarmco.com/",
-    year: "2025",
-  },
-  {
-    id: 2,
-    title: "Paranano",
-    image: "/images/paranano.png",
-    description: "A bio-technology company",
-    url: "https://www.paranano.com/",
-    year: "2025",
-  },
-  {
-    id: 3,
-    title: "Good Gummies",
-    image: "/images/oggg.png",
-    description: "Protein, fiver, fun",
-    url: "https://www.goodgummies.com/",
-    year: "2025",
-  },
-  {
-    id: 4,
-    title: "Free range",
-    image: "/images/free.png",
-    description: "Beef tallow & botanicals in perfect harmony",
-    url: "https://www.freerange.com/",
-    year: "2025",
-  },
-];
+import { projects } from "../projects";
 
 export default function Work() {
   const [view, setView] = useState("grid");
@@ -79,7 +46,7 @@ export default function Work() {
               <div key={project.id} className=''>
                 <div className='w-full h-full pb-1'>
                   <img
-                    src={project.image}
+                    src={project.mainImgOrVideo}
                     alt={project.title}
                     className='w-full h-full object-cover'
                   />
@@ -96,6 +63,7 @@ export default function Work() {
         </div>
       )}
       {view === "list" && <HoverList projects={projects} />}
+      <Footer />
     </div>
   );
 }

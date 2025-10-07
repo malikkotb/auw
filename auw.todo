@@ -1,10 +1,13 @@
-☐ get data from sanity
+☐ get data from sanity cms
 ✔ add correct font @started(25-10-04 11:00) @done(25-10-04 11:00) @lasted(3s)
 ☐ static layout for work page
 ☐ static layout for home page
 ☐ static layout for about page
-☐ contact page
-☐ Header @started(25-10-04 12:41)
+☐ add lenis scroll
+✔ contact page @done(25-10-04 13:33)
+✔ Header @started(25-10-04 12:41) @done(25-10-04 13:33) @lasted(52m22s)
 ✔ footer design @started(25-10-04 11:41) @done(25-10-04 12:40) @lasted(59m43s)
 ☐ add Footer to each page individually
 ☐ fade out text (on about/techincal skillset section) like bodyarmor text
+☐ page transitions
+☐ micro interactions for desktop and mobile

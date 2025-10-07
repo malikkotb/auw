@@ -1,0 +1,54 @@
+"use client";
+
+export default function InstaDim({ colSpan, imgLink, videoLink }) {
+  // Add functionaltiy, if both imgLink and videoLink are provided, show the video
+  if (imgLink && videoLink) {
+    return (
+      <div
+        className={`col-span-${colSpan} aspect-[4/5] w-full h-full`}
+      >
+        <video
+          src={videoLink}
+          muted
+          playsInline
+          autoPlay
+          loop
+          className='w-full object-cover'
+        ></video>
+      </div>
+    );
+  }
+  // if only imgLink is provided, show the img
+  if (imgLink) {
+    return (
+      <div
+        className={`col-span-${colSpan} aspect-[4/5] w-full`}
+      >
+        <img
+          src={imgLink}
+          alt='about'
+          className='w-full object-cover'
+        />
+      </div>
+    );
+  }
+  // if only videoLink is provided, show the video
+  if (videoLink) {
+    return (
+      <div
+        className={`col-span-${colSpan} aspect-[4/5] w-full h-full`}
+      >
+        <video
+          src={videoLink}
+          muted
+          playsInline
+          autoPlay
+          loop
+          className='w-full object-cover'
+        ></video>
+      </div>
+    );
+  }
+  // if neither imgLink nor videoLink are provided, show nothing
+  return null;
+}

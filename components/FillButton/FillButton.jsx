@@ -9,16 +9,22 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export default function FillButton({
   text,
+  link,
+  targetBlank = false,
   onClick,
   className = "",
 }) {
+  // TODO: maybe transform this into being either anchor tag
+  // or button to have both options in terms of functionality
+
   return (
-    <button
-      onClick={onClick}
-      className={`push-fill-btn font-medium ${ibmPlexMono.className} ${className}`}
+    <a
+      href={link}
+      target={targetBlank ? "_blank" : "_self"}
+      className={`push-fill-btn cursor-pointer font-medium ${ibmPlexMono.className} ${className}`}
     >
       <div className='push-fill-btn-bg' />
       <span className='btn-text'>{text}</span>
-    </button>
+    </a>
   );
 }

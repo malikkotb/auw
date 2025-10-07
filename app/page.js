@@ -1,25 +1,38 @@
-"use client";
 import Link from "next/link";
-import Lenis from "lenis";
-import { useEffect } from "react";
 
-export default function Home() {
-  useEffect(() => {
-    // Initialize Lenis
-    const lenis = new Lenis();
+import { client } from "@/sanity/config";
 
-    // Use requestAnimationFrame to continuously update the scroll
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+const PROJECTS_QUERY = `*[
+  _type == "project"
+  && defined(title)
+]|order(publishedAt desc)[0...12]{_id, title, publishedAt}`;
 
-    requestAnimationFrame(raf);
-  }, []);
+const options = { next: { revalidate: 30 } };
+
+export default async function IndexPage() {
+  const projects = await client.fetch(PROJECTS_QUERY, {}, options);
 
   return (
-    <main>
-      <h1>AUW Frontend</h1>
+    <main className='container mx-auto max-w-3xl p-8'>
+      <h1 className='text-4xl font-bold mb-8'>Projects</h1>
+      <ul className='flex flex-col gap-y-4'>
+        {projects.map((project) => (
+          <li className='hover:underline' key={project._id}>
+            <Link
+              href={`/work/${project.title
+                .toLowerCase()
+                .replace(/\s+/g, "-")}`}
+            >
+              <h2 className='text-xl font-semibold'>
+                {project.title}
+              </h2>
+              <p>
+                {new Date(project.publishedAt).toLocaleDateString()}
+              </p>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }

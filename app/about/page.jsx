@@ -32,11 +32,13 @@ export default function About() {
       </div>
       <div className='pt-[34px] flex flex-col gap-2'>
         <p className='eyebrow'>Who We Are</p>
-        <div className='h1'>
-          A design studio crafting intentional, cohesive work across
-          brand, digital, and physical mediums. We bring every element
-          together with clarity, structure, and purpose so your brand
-          feels unified and built to last.
+        <div className='grid grid-cols-12'>
+          <div className='h1 col-span-9'>
+            A design studio crafting intentional, cohesive work across
+            brand, digital, and physical mediums. We bring every
+            element together with clarity, structure, and purpose so
+            your brand feels unified and built to last.
+          </div>
         </div>
         <div className='w-fit'>
           <FillButton text='Book a call' />
@@ -57,6 +59,7 @@ export default function About() {
       </div>
 
       {/* Hover Animation section */}
+      
 
       {/* Details section */}
       <div className='grid grid-cols-12 gap-[14px] relative'>
