@@ -13,7 +13,8 @@ export default function LostInSpace() {
   const project = projects[0]; // lost in space project
 
   const isVideo = (link) => {
-    return link.includes(".mp4") || link.includes(".webm");
+    
+    return link.includes(".mp4") || link.includes(".webm") || link.includes(".mov");
   };
 
   return (

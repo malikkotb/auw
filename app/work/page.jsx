@@ -1,7 +1,7 @@
 "use client";
 
 import Footer from "@/components/Footer/Footer";
-import HoverList from "@/components/HoverList/HoverList";
+import OpacityHoverList from "@/components/OpacityHoverList/OpacityHoverList";
 import { useState } from "react";
 import { projects } from "../projects";
 
@@ -62,7 +62,7 @@ export default function Work() {
           </div>
         </div>
       )}
-      {view === "list" && <HoverList projects={projects} />}
+      {view === "list" && <OpacityHoverList projects={projects} />}
       <Footer />
     </div>
   );

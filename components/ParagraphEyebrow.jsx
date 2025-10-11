@@ -9,9 +9,10 @@ export default function ParagraphEyebrow({
   buttonText,
   buttonLink,
   targetBlank,
+  className,
 }) {
   return (
-    <div className='flex flex-col gap-2'>
+    <div className={`flex flex-col gap-2 ${className}`}>
       <p className='eyebrow italic'>{eyebrowText}</p>
       <div className='grid grid-cols-12'>
         <div className='h1 col-span-9'>{mainText}</div>

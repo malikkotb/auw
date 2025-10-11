@@ -5,7 +5,7 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
   if (imgLink && videoLink) {
     return (
       <div
-        className={`col-span-${colSpan} aspect-[4/5] w-full h-full`}
+        className={`col-span-${colSpan} aspect-[4/5] w-full`}
       >
         <video
           src={videoLink}
@@ -13,7 +13,7 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
           playsInline
           autoPlay
           loop
-          className='w-full object-cover'
+          className='w-full h-full object-cover'
         ></video>
       </div>
     );
@@ -27,7 +27,7 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
         <img
           src={imgLink}
           alt='about'
-          className='w-full object-cover'
+          className='w-full h-full object-cover'
         />
       </div>
     );
@@ -36,7 +36,7 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
   if (videoLink) {
     return (
       <div
-        className={`col-span-${colSpan} aspect-[4/5] w-full h-full`}
+        className={`col-span-${colSpan} aspect-[4/5] w-full`}
       >
         <video
           src={videoLink}
@@ -44,7 +44,7 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
           playsInline
           autoPlay
           loop
-          className='w-full object-cover'
+          className='w-full h-full object-cover'
         ></video>
       </div>
     );
