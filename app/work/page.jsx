@@ -10,7 +10,7 @@ export default function Work() {
 
   return (
     <div className='font-bold w-full h-full work-wrapper'>
-      <div className='work-header margin-top flex items-center justify-between'>
+      <div className='work-header h1 margin-top margin-bottom flex items-center justify-between'>
         <div>
           ALL PROJECTS <span>(18)</span>
         </div>
@@ -52,8 +52,8 @@ export default function Work() {
                   />
                 </div>
                 <div className='flex flex-col'>
-                  <h3 className='uppercase'>{project.title}</h3>
-                  <p className='text-[#626262] uppercase'>
+                  <h3 className='uppercase h1'>{project.title}</h3>
+                  <p className='text-[#626262] h1 uppercase'>
                     {project.description}
                   </p>
                 </div>

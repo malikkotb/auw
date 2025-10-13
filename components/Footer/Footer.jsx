@@ -95,7 +95,7 @@ export default function Footer() {
         </div>
         <div className='h-[1px] w-full bg-[#DEDEDE]'></div>
       </div>
-      <div className='grid grid-cols-12 my-3 gap-[14px]'>
+      <div className='hidden lg:grid grid-cols-12 my-3 gap-[14px]'>
         <div className='col-span-4 flex flex-col'>
           <div className=''>A Unified Whole®</div>
           <div className='uppercase text-[#626262]'>
@@ -119,12 +119,56 @@ export default function Footer() {
             <Link href='/work'>Work</Link>
             <Link href='/about'>About</Link>
             <Link href='/contact'>Contact</Link>
-            <Link href='/listening-experience'>
+            <Link
+              href='/listening-experience'
+              className='whitespace-nowrap'
+            >
               Listening Experience
             </Link>
           </div>
         </div>
         <div className='col-span-2 uppercase justify-end flex items-end'>
+          <Link href='/privacy'>Privacy Policy</Link>
+        </div>
+      </div>
+
+      {/* mobile footer nav: */}
+      <div className='lg:hidden flex flex-col my-3 gap-[14px]'>
+        <div className='col-span-4 flex flex-col'>
+          <div className=''>A Unified Whole®</div>
+          <div className='uppercase text-[#626262]'>
+            A Multipurpose Design Studio
+          </div>
+        </div>
+        <div className='col-span-3 flex flex-col'>
+          <div className='uppercase text-[#626262]'>Follow Us</div>
+          <div className='uppercase flex gap-2'>
+            <a
+              target='_blank'
+              href='https://www.instagram.com/aunifiedwhole/'
+            >
+              Instagram
+            </a>
+            <a
+              target='_blank'
+              href='https://www.linkedin.com/company/aunifiedwhole/'
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <div className='col-span-3 flex flex-col'>
+          <div className='uppercase text-[#626262]'>Navigation</div>
+          <div className='uppercase flex gap-2'>
+            <Link href='/work'>Work</Link>
+            <Link href='/about'>About</Link>
+            <Link href='/contact'>Contact</Link>
+            <Link href='/listening-experience'>
+              Listening Experience
+            </Link>
+          </div>
+        </div>
+        <div className='col-span-2 uppercase'>
           <Link href='/privacy'>Privacy Policy</Link>
         </div>
       </div>

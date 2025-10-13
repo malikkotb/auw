@@ -7,7 +7,7 @@ export default function ListeningExperience() {
       style={{
         position: "relative",
         width: "100%",
-        height: "calc(100vh - 28px)",
+        height: "calc(100vh - 14px - 18px - 14px)",
         overflow: "hidden",
       }}
     >

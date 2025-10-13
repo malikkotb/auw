@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function OpacityHoverList({ projects }) {
   const [hoveredId, setHoveredId] = useState(null);
@@ -12,31 +12,41 @@ export default function OpacityHoverList({ projects }) {
           onMouseLeave={() => setHoveredId(null)}
           className='flex h1 cursor-pointer w-full justify-between border-b pt-2 pb-1 border-black'
           style={{
-            backgroundColor: hoveredId === project.id ? 'black' : 'transparent',
-            transition: hoveredId === project.id ? 'none' : 'background-color 0.5s ease-out'
+            backgroundColor:
+              hoveredId === project.id ? "black" : "transparent",
+            transition:
+              hoveredId === project.id
+                ? "none"
+                : "background-color 1s ease-out",
           }}
         >
-          <div 
+          <div
             className='uppercase'
             style={{
-              color: hoveredId === project.id ? 'white' : 'black',
-              transition: 'none'
+              color: hoveredId === project.id ? "white" : "black",
+              transition: "none",
             }}
-          >{project.title}</div>
-          <div 
+          >
+            {project.title}
+          </div>
+          <div
             className='uppercase'
             style={{
-              color: hoveredId === project.id ? 'white' : 'black',
-              transition: 'none'
+              color: hoveredId === project.id ? "white" : "black",
+              transition: "none",
             }}
-          >{project.description}</div>
-          <div 
+          >
+            {project.description}
+          </div>
+          <div
             className='uppercase'
             style={{
-              color: hoveredId === project.id ? 'white' : 'black',
-              transition: 'none'
+              color: hoveredId === project.id ? "white" : "black",
+              transition: "none",
             }}
-          >({project.year})</div>
+          >
+            ({project.year})
+          </div>
         </div>
       ))}
     </div>

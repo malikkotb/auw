@@ -19,7 +19,7 @@ export default async function IndexPage() {
         {projects.map((project) => (
           <li className='hover:underline' key={project._id}>
             <Link
-              href={`/work/${project.title
+              href={`/${project.title
                 .toLowerCase()
                 .replace(/\s+/g, "-")}`}
             >

@@ -123,6 +123,54 @@ export default function Contact() {
       >
         <FillButton text={isLoading ? "Sending..." : "Submit"} />
       </div>
+
+      <div className='mt-20 lg:mt-28 grid grid-cols-12 gap-[14px]'>
+        <div className='col-start-7 col-span-3 w-full h-full aspect-[4/5]'>
+          {/* TODO: get correct image here from figma */}
+          <img
+            src='images/3.png'
+            className='object-cover w-full h-full'
+            alt=''
+          />
+        </div>
+        <div className='col-start-10 col-span-3'>
+          <div className='flex flex-col gap-2'>
+            <div>
+              <p className='eyebrow'>General Inquiries</p>
+              <a href='mailto:info@auw.studio' className='h1'>
+                info@auw.studio
+              </a>
+            </div>
+            <div>
+              <p className='eyebrow'>Follow Us</p>
+              <div className='flex flex-col'>
+                <a
+                  target='_blank'
+                  className='h1'
+                  href='https://www.instagram.com/aunifiedwhole/'
+                >
+                  Instagram
+                </a>
+                <a
+                  target='_blank'
+                  className='h1'
+                  href='https://www.linkedin.com/company/aunifiedwhole/'
+                >
+                  LinkedIn
+                </a>
+                <a href='' target='_blank' className='h1'>
+                  Substack
+                </a>
+              </div>
+            </div>
+            <div>
+              <p className='eyebrow'>Founded by</p>
+              <div className='h1'>Jeff Visoky</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <Footer />
     </div>
   );
