@@ -1,5 +1,3 @@
-☐ get data from sanity cms
-☐ setup correct env file when deploying to vercel
 ✔ add correct font @started(25-10-04 11:00) @done(25-10-04 11:00) @lasted(3s)
 ✔ static layout for work page @started(25-10-13 09:14) @done(25-10-13 09:14) @lasted(41s)
 ✔ static layout for home page @started(25-10-13 09:14) @done(25-10-13 09:14) @lasted(41s)
@@ -9,9 +7,8 @@
 ✔ Header @started(25-10-04 12:41) @done(25-10-04 13:33) @lasted(52m22s)
 ✔ footer design @started(25-10-04 11:41) @done(25-10-04 12:40) @lasted(59m43s)
 ✔ make sound page full screen and not scrollable @started(25-10-13 09:14) @done(25-10-13 09:14) @lasted(27s)
-☐ all TODOs in page
+☐ all TODOs in webstie
+☐ add lazy blur or pixel loading to images
 ☐ fade out text (on about/techincal skillset section) like bodyarmor text
 ☐ page transitions
-☐ either stagger text or opacity animation for links in Header and footer
-☐ add cal.com links to "Book A Call" button
-☐ micro interactions for desktop and mobile
+☐ fix menu on mobile

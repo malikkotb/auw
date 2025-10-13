@@ -28,12 +28,11 @@ export default function Header() {
       style={{ zIndex: 1000 }}
       className='w-full text-[15px] uppercase'
     >
-      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      {/* <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} /> */}
       <div className='grid grid-cols-12 gap-[14px]'>
         <div className='col-span-2 lg:col-span-1'>
           <Link href='/'>
             {/* TODO: get correct video that has transparent background */}
-            {/* TODO: play once on hover */}
             <video
               src='auw_logo.mov'
               className='w-full lg:w-[50%]'
@@ -56,17 +55,17 @@ export default function Header() {
           </button>
         </div>
         <div className='hidden lg:flex col-span-2 col-start-11 justify-end gap-4'>
-          <Link href='/about'>
+          <Link href='/about' className='header-link'>
             <div className={pathname === "/about" ? "italic" : ""}>
               About
             </div>
           </Link>
-          <Link href='/work'>
+          <Link href='/work' className='header-link'>
             <div className={pathname === "/work" ? "italic" : ""}>
               Work
             </div>
           </Link>
-          <Link href='/listening-experience'>
+          <Link href='/listening-experience' className='header-link'>
             <div
               className={
                 pathname === "/listening-experience" ? "italic" : ""
@@ -75,7 +74,7 @@ export default function Header() {
               Sound
             </div>
           </Link>
-          <Link href='/contact'>
+          <Link href='/contact' className='header-link'>
             <div className={pathname === "/contact" ? "italic" : ""}>
               Contact
             </div>

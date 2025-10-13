@@ -14,6 +14,7 @@ const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0]{
   publishedAt,
   overview,
   year,
+  projectUrl,
   featuredMedia{
     dimension,
     type,
@@ -92,6 +93,8 @@ export default async function PostPage({ params }) {
     ? project.mediaGallery.map((media) => getFeaturedMediaUrl(media))
     : null;
 
+  console.log("project", project);
+
   return (
     <main className='h-full w-full margin-top'>
       <div className='margin-bottom w-full flex justify-between'>
@@ -104,7 +107,7 @@ export default async function PostPage({ params }) {
         <div className='h1'>({project.year})</div>
       </div>
 
-      <div className='pb-[34px] grid grid-cols-12 w-full h-full'>
+      <div className='grid grid-cols-12 w-full h-full'>
         <VideoDim
           colSpan={12}
           imgLink={featuredMediaUrl}
@@ -114,13 +117,12 @@ export default async function PostPage({ params }) {
         />
       </div>
       <ParagraphEyebrow
-        className='margin-top'
+        className='mt-[20%]'
         eyebrowText={"Overview"}
-        // TODO: get actual overview from sanity
-        mainText={"TODO: get actual overview from sanity"}
+        mainText={project.overview}
         buttonText={"View Live Site"}
         targetBlank={true}
-        buttonLink={project.liveSiteUrl}
+        buttonLink={project.projectUrl}
       />
 
       <div className='grid grid-cols-12 gap-[14px]'>
@@ -155,10 +157,9 @@ export default async function PostPage({ params }) {
       </div>
 
       <ParagraphEyebrow
-        className='margin-top'
+        className='mt-[20%]'
         eyebrowText={"Overview"}
-        // TODO: get actual overview from sanity
-        mainText={"TODO: get actual overview from sanity"}
+        mainText={project.overview}
       />
 
       <div className='grid h-full grid-cols-12 gap-[14px]'>
@@ -193,10 +194,9 @@ export default async function PostPage({ params }) {
       </div>
 
       <ParagraphEyebrow
-        className='margin-tops'
+        className='mt-[20%]'
         eyebrowText={"Overview"}
-        // TODO: get actual overview from sanity
-        mainText={"get actual overview from sanity"}
+        mainText={project.overview}
       />
 
       <div className='grid h-full grid-cols-12 gap-[14px]'>
@@ -229,6 +229,8 @@ export default async function PostPage({ params }) {
           }
         />
       </div>
+
+      <div className='mt-[20%]'>Next Project Page starts here</div>
     </main>
   );
 }

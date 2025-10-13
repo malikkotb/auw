@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FillButton from "../FillButton/FillButton";
+import FillLink from "../FillButton/FillLink";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,7 +91,7 @@ export default function Footer() {
             Excited to see how we can collaborate.
           </div>
           <div className='w-fit'>
-            <FillButton text='Book a call' />
+            <FillLink text='Book a call' />
           </div>
         </div>
         <div className='h-[1px] w-full bg-[#DEDEDE]'></div>
@@ -105,10 +106,16 @@ export default function Footer() {
         <div className='col-span-3 flex flex-col'>
           <div className='uppercase text-[#626262]'>Follow Us</div>
           <div className='uppercase flex gap-2'>
-            <a href='https://www.instagram.com/aunifiedwhole/'>
+            <a
+              href='https://www.instagram.com/aunifiedwhole/'
+              className='footer-link'
+            >
               Instagram
             </a>
-            <a href='https://www.linkedin.com/company/aunifiedwhole/'>
+            <a
+              href='https://www.linkedin.com/company/aunifiedwhole/'
+              className='footer-link'
+            >
               LinkedIn
             </a>
           </div>
@@ -116,19 +123,27 @@ export default function Footer() {
         <div className='col-span-3 flex flex-col'>
           <div className='uppercase text-[#626262]'>Navigation</div>
           <div className='uppercase flex gap-2'>
-            <Link href='/work'>Work</Link>
-            <Link href='/about'>About</Link>
-            <Link href='/contact'>Contact</Link>
+            <Link href='/work' className='footer-link'>
+              Work
+            </Link>
+            <Link href='/about' className='footer-link'>
+              About
+            </Link>
+            <Link href='/contact' className='footer-link'>
+              Contact
+            </Link>
             <Link
               href='/listening-experience'
-              className='whitespace-nowrap'
+              className='whitespace-nowrap footer-link'
             >
               Listening Experience
             </Link>
           </div>
         </div>
         <div className='col-span-2 uppercase justify-end flex items-end'>
-          <Link href='/privacy'>Privacy Policy</Link>
+          <Link href='/privacy' className='footer-link'>
+            Privacy Policy
+          </Link>
         </div>
       </div>
 
@@ -146,12 +161,14 @@ export default function Footer() {
             <a
               target='_blank'
               href='https://www.instagram.com/aunifiedwhole/'
+              className='footer-link'
             >
               Instagram
             </a>
             <a
               target='_blank'
               href='https://www.linkedin.com/company/aunifiedwhole/'
+              className='footer-link'
             >
               LinkedIn
             </a>
@@ -160,16 +177,27 @@ export default function Footer() {
         <div className='col-span-3 flex flex-col'>
           <div className='uppercase text-[#626262]'>Navigation</div>
           <div className='uppercase flex gap-2'>
-            <Link href='/work'>Work</Link>
-            <Link href='/about'>About</Link>
-            <Link href='/contact'>Contact</Link>
-            <Link href='/listening-experience'>
+            <Link href='/work' className='footer-link'>
+              Work
+            </Link>
+            <Link href='/about' className='footer-link'>
+              About
+            </Link>
+            <Link href='/contact' className='footer-link'>
+              Contact
+            </Link>
+            <Link
+              href='/listening-experience'
+              className='footer-link'
+            >
               Listening Experience
             </Link>
           </div>
         </div>
         <div className='col-span-2 uppercase'>
-          <Link href='/privacy'>Privacy Policy</Link>
+          <Link href='/privacy' className='footer-link'>
+            Privacy Policy
+          </Link>
         </div>
       </div>
       <div

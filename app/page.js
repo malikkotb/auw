@@ -13,26 +13,58 @@ export default async function IndexPage() {
   const projects = await client.fetch(PROJECTS_QUERY, {}, options);
 
   return (
-    <main className='container mx-auto max-w-3xl p-8'>
-      <h1 className='text-4xl font-bold mb-8'>Projects</h1>
-      <ul className='flex flex-col gap-y-4'>
-        {projects.map((project) => (
-          <li className='hover:underline' key={project._id}>
-            <Link
-              href={`/${project.title
-                .toLowerCase()
-                .replace(/\s+/g, "-")}`}
-            >
-              <h2 className='text-xl font-semibold'>
-                {project.title}
-              </h2>
-              <p>
-                {new Date(project.publishedAt).toLocaleDateString()}
-              </p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <main className='overflow-clip'>
+      <p className='h1 margin-top margin-bottom'>
+        We are a design studio that helps brands realize their
+        identity and execute it across branding, digital and physical
+        mediums.
+      </p>
+      <div className='w-full flex h-full aspect-video overflow-clip relative'>
+        <img
+          src='/images/about_auw.png'
+          alt='about'
+          className='col-span-12 w-full h-full object-cover'
+        />
+      </div>
     </main>
   );
 }
+
+// import Link from "next/link";
+
+// import { client } from "@/sanity/config";
+
+// const PROJECTS_QUERY = `*[
+//   _type == "project"
+//   && defined(title)
+// ]|order(publishedAt desc)[0...12]{_id, title, publishedAt}`;
+
+// const options = { next: { revalidate: 30 } };
+
+// export default async function IndexPage() {
+//   const projects = await client.fetch(PROJECTS_QUERY, {}, options);
+
+//   return (
+//     <main className='container mx-auto max-w-3xl p-8'>
+//       <h1 className='text-4xl font-bold mb-8'>Projects</h1>
+//       <ul className='flex flex-col gap-y-4'>
+//         {projects.map((project) => (
+//           <li className='hover:underline' key={project._id}>
+//             <Link
+//               href={`/${project.title
+//                 .toLowerCase()
+//                 .replace(/\s+/g, "-")}`}
+//             >
+//               <h2 className='text-xl font-semibold'>
+//                 {project.title}
+//               </h2>
+//               <p>
+//                 {new Date(project.publishedAt).toLocaleDateString()}
+//               </p>
+//             </Link>
+//           </li>
+//         ))}
+//       </ul>
+//     </main>
+//   );
+// }

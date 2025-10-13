@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import OpacityHoverList from "@/components/OpacityHoverList/OpacityHoverList";
 import { useState } from "react";
 import { projects } from "../projects";
+import Link from "next/link";
 
 export default function Work() {
   const [view, setView] = useState("grid");
@@ -43,7 +44,13 @@ export default function Work() {
         <div className='flex flex-col gap-12'>
           <div className='flex flex-col gap-8'>
             {projects.map((project) => (
-              <div key={project.id} className=''>
+              <Link
+                key={project.id}
+                className='cursor-pointer'
+                href={`/${project.title
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")}`}
+              >
                 <div className='w-full h-full pb-1'>
                   <img
                     src={project.mainImgOrVideo}
@@ -57,7 +64,7 @@ export default function Work() {
                     {project.description}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -45,7 +45,7 @@ export default function Menu({ menuOpen, setMenuOpen }) {
         top: 0,
         left: 0,
       }}
-      className='fixed grid lg:hidden gap-[14px] mt-[60px] grid-rows-5 borderr w-full p-[14px] bg-black text-white'
+      className='fixed grid lg:hidden gap-[14px] mt-[60px] grid-rows-5 w-full p-[14px] bg-black text-white'
     >
       <div className='row-start-2 row-span-2 flex flex-col h2'>
         <Link onClick={() => setMenuOpen(false)} href='/about'>

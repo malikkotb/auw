@@ -71,3 +71,12 @@ body {
 .borderr {
   border: 1px solid red;
 }
+
+.footer-link, .header-link {
+  transition: color 200ms ease-in-out;
+  height: fit-content;
+}
+
+.footer-link:hover, .header-link:hover {
+  color: #626262;
+}

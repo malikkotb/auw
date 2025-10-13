@@ -1,10 +1,9 @@
 "use client";
-
-import FillButton from "@/components/FillButton/FillButton";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Footer from "@/components/Footer/Footer";
 import gsap from "gsap";
+import FillLink from "@/components/FillButton/FillLink";
 
 export default function About() {
   const [activeSkill, setActiveSkill] = useState(null);
@@ -34,21 +33,21 @@ export default function About() {
         y: "0%",
       });
       gsap.to([image2.current, image3.current], {
-        y: "100%", // TODO: add 14px for the gap
+        y: "105%",
       });
     } else if (activeSkill === skills[1]) {
       gsap.to([image2.current], {
         y: "0%",
       });
       gsap.to([image1.current, image3.current], {
-        y: "100%", // TODO: add 14px for the gap
+        y: "105%",
       });
     } else if (activeSkill === skills[2]) {
       gsap.to([image3.current], {
         y: "0%",
       });
       gsap.to([image1.current, image2.current], {
-        y: "100%", // TODO: add 14px for the gap
+        y: "105%",
       });
     } else if (activeSkill === null) {
       gsap.to([image1.current, image2.current, image3.current], {
@@ -80,7 +79,7 @@ export default function About() {
           </div>
         </div>
         <div className='w-fit'>
-          <FillButton text='Book a call' />
+          <FillLink text='Book a call' />
         </div>
       </div>
 
@@ -163,12 +162,9 @@ export default function About() {
             </div>
           </div>
           <div className='w-fit'>
-            <FillButton text='Book a call' />
+            <FillLink text='Book a call' />
           </div>
         </div>
-        {/* <div className='absolute bottom-0 col-span-1 left-0 w-[calc((100%/12)-14px)]'>
-          <FillButton text='Book a call' />
-        </div> */}
         <div className='col-span-7 col-start-6 w-full h-full'>
           <img
             src='/images/color_palette.png'
