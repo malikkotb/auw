@@ -44,7 +44,23 @@ const urlFor = (source) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
-const options = { next: { revalidate: 30 } };
+const options = { next: { revalidate: 3600 } }; // Cache for 1 hour instead of 30 seconds
+
+// This tells Next.js which paths to pre-render
+export async function generateStaticParams() {
+  // Fetch only the slugs we need
+  const slugs = await client.fetch(
+    `*[_type == "project"][0...12]{
+      "slug": slug.current
+    }`,
+    {},
+    { next: { revalidate: 3600 } }
+  );
+
+  return slugs.map((slug) => ({
+    slug: slug.slug,
+  }));
+}
 
 export default async function PostPage({ params }) {
   const { slug } = await params;

@@ -1,16 +1,4 @@
-import Link from "next/link";
-
-import { client } from "@/sanity/config";
-
-const PROJECTS_QUERY = `*[
-  _type == "project"
-  && defined(title)
-]|order(publishedAt desc)[0...12]{_id, title, publishedAt}`;
-
-const options = { next: { revalidate: 30 } };
-
-export default async function IndexPage() {
-  const projects = await client.fetch(PROJECTS_QUERY, {}, options);
+export default function IndexPage() {
 
   return (
     <main className='overflow-clip'>
