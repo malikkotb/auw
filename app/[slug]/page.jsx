@@ -44,6 +44,7 @@ const urlFor = (source) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
+// chaned to 1 hour instead of 30 seconds, and changed the generateStaticParams to use the new cache time
 const options = { next: { revalidate: 3600 } }; // Cache for 1 hour instead of 30 seconds
 
 // This tells Next.js which paths to pre-render

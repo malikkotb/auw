@@ -1,10 +1,6 @@
 "use client";
 
-export default function VideoDim({
-  colSpan = 12,
-  imgLink,
-  videoLink,
-}) {
+export default function VideoDim({ colSpan, imgLink, videoLink }) {
   // Add functionaltiy, if both imgLink and videoLink are provided, show the video
   if (imgLink && videoLink) {
     return (

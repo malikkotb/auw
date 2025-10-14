@@ -12,10 +12,10 @@ export default function ParagraphEyebrow({
   className,
 }) {
   return (
-    <div className={`flex flex-col gap-2 ${className}`}>
+    <div className={`flex flex-col gap-2 mb-2 ${className}`}>
       <p className='eyebrow italic'>{eyebrowText}</p>
       <div className='grid grid-cols-12'>
-        <div className='h1 col-span-9'>{mainText}</div>
+        <div className='h1 col-span-12 sm:col-span-9'>{mainText}</div>
       </div>
       {buttonText && (
         <div className='w-fit'>
