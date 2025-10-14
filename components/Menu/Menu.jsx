@@ -35,7 +35,6 @@ export default function Menu({ menuOpen, setMenuOpen }) {
     };
   }, [menuOpen]);
 
-  //   TODO: fix menu
 
   return (
     <div

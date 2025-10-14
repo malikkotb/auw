@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 export default function OpacityHoverList({ projects }) {
   const [hoveredId, setHoveredId] = useState(null);
@@ -6,8 +7,11 @@ export default function OpacityHoverList({ projects }) {
   return (
     <div className='margin-top flex flex-col w-full border-t border-black'>
       {projects.map((project) => (
-        <div
+        <Link
           key={project.id}
+          href={`/${project.title
+            .toLowerCase()
+            .replace(/\s+/g, "-")}`}
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
           className='flex h1 cursor-pointer w-full justify-between border-b pt-2 pb-1 border-black'
@@ -47,7 +51,7 @@ export default function OpacityHoverList({ projects }) {
           >
             ({project.year})
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
