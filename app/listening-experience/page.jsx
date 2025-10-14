@@ -7,14 +7,14 @@ export default function ListeningExperience() {
       style={{
         position: "relative",
         width: "100%",
-        height: "calc(100vh - 14px - 18px - 14px)",
+        height: "calc(100vh - 68px)", // 40px (header) - 14px (margin) - 14px padding on listening experience page
         overflow: "hidden",
       }}
     >
       <iframe
         style={{
           position: "absolute",
-          top: 0,
+          top: "14px",
           left: 0,
           width: "100%",
           height: "100%",

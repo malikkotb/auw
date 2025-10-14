@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import Menu from "../Menu/Menu";
@@ -8,6 +8,19 @@ import Menu from "../Menu/Menu";
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleEnded = () => {
+      video.pause();
+    };
+
+    video.addEventListener("ended", handleEnded);
+    return () => video.removeEventListener("ended", handleEnded);
+  }, []);
 
   useEffect(() => {
     // Toggle body scroll
@@ -28,14 +41,30 @@ export default function Header() {
       style={{ zIndex: 1000 }}
       className='w-full text-[15px] uppercase'
     >
-      {/* <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} /> */}
+      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <div className='grid grid-cols-12 gap-[14px]'>
-        <div className='col-span-2 lg:col-span-1'>
-          <Link href='/'>
-            {/* TODO: get correct video that has transparent background */}
+        <div className='relative w-[40px]'>
+          <Link
+            href='/'
+            className='cursor-pointer'
+            onMouseEnter={() => {
+              if (videoRef.current) {
+                videoRef.current.currentTime = 0;
+                videoRef.current
+                  .play()
+                  .catch((err) =>
+                    console.warn("Video play prevented:", err)
+                  );
+              }
+            }}
+          >
             <video
-              src='auw_logo.mov'
-              className='w-full lg:w-[50%]'
+              ref={videoRef}
+              src='/auw_logo.webm'
+              className='w-full'
+              muted
+              playsInline
+              preload='auto'
             ></video>
           </Link>
         </div>

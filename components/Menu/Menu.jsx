@@ -35,12 +35,14 @@ export default function Menu({ menuOpen, setMenuOpen }) {
     };
   }, [menuOpen]);
 
+  //   TODO: fix menu
+
   return (
     <div
       ref={menuRef}
       style={{
         zIndex: 100,
-        transform: 'translateY(-110%)',
+        transform: "translateY(-110%)",
         height: "calc(100dvh - 60px)",
         top: 0,
         left: 0,
@@ -49,19 +51,31 @@ export default function Menu({ menuOpen, setMenuOpen }) {
     >
       <div className='row-start-2 row-span-2 flex flex-col h2'>
         <Link onClick={() => setMenuOpen(false)} href='/about'>
-          <div className={pathname === '/about' ? 'italic' : ''}>About</div>
+          <div className={pathname === "/about" ? "italic" : ""}>
+            About
+          </div>
         </Link>
         <Link onClick={() => setMenuOpen(false)} href='/work'>
-          <div className={pathname === '/work' ? 'italic' : ''}>Work</div>
+          <div className={pathname === "/work" ? "italic" : ""}>
+            Work
+          </div>
         </Link>
         <Link
           onClick={() => setMenuOpen(false)}
           href='/listening-experience'
         >
-          <div className={pathname === '/listening-experience' ? 'italic' : ''}>Sound</div>
+          <div
+            className={
+              pathname === "/listening-experience" ? "italic" : ""
+            }
+          >
+            Sound
+          </div>
         </Link>
         <Link onClick={() => setMenuOpen(false)} href='/contact'>
-          <div className={pathname === '/contact' ? 'italic' : ''}>Contact</div>
+          <div className={pathname === "/contact" ? "italic" : ""}>
+            Contact
+          </div>
         </Link>
       </div>
       <div className='row-start-5 row-span-1 flex items-end justify-between'>
