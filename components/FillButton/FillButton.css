@@ -17,7 +17,7 @@
   text-decoration: none;
 }
 
-.push-fill-btn-bg {
+/* .push-fill-btn-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,15 +29,27 @@
   transition: transform 0.4s ease;
   mix-blend-mode: difference;
   z-index: 10;
-}
+} */
 
 .btn-text {
   position: relative;
   z-index: 5;
   letter-spacing: 0.02em;
   color: black;
+  transition: color 1s ease-out;
 }
 
-.push-fill-btn:hover .push-fill-btn-bg {
-  transform: scaleY(1);
+.push-fill-btn {
+  background: white;
+  transition: background-color 1s ease-out;
+}
+
+.push-fill-btn:hover {
+  background: black;
+  transition: none;
+}
+
+.push-fill-btn:hover .btn-text {
+  color: white;
+  transition: none;
 }

@@ -7,10 +7,12 @@
 ✔ Header @started(25-10-04 12:41) @done(25-10-04 13:33) @lasted(52m22s)
 ✔ footer design @started(25-10-04 11:41) @done(25-10-04 12:40) @lasted(59m43s)
 ✔ make sound page full screen and not scrollable @started(25-10-13 09:14) @done(25-10-13 09:14) @lasted(27s)
-☐ all TODOs
-☐ add lazy blur or pixel loading to images
-☐ fade out text (on about/techincal skillset section) like bodyarmor text
-☐ page transitions
-☐ mobile layout
+☐ add lazy blur plaiceholder images: https://blog.olivierlarose.com/articles/placeholder-guide-using-next-image
+
 ☐ page transition on case study pages, where you scroll past enough it then goes to that link
 ☐ (maybe have the first few details of the next project displayed by default and then when you scroll past enough it then goes to that link)  
+
+✔ links in About page, effect: @started(25-10-15 10:54) @done(25-10-15 11:43) @lasted(49m6s)
+☐ make work page use sanity cms projects
+✔ about page layout with image hover interaction @started(25-10-15 09:57) @done(25-10-15 10:14) @lasted(17m15s)
+☐ fix footer video scrolltrigger

@@ -2,8 +2,8 @@ export const projects = [
   {
     id: 0,
     title: "Lost in Space",
-    // mainImgOrVideo: "/images/60FPS.mp4",
-    mainImgOrVideo: "/lost-in-space/1.png",
+    mainImgOrVideo: "/images/60FPS.mp4",
+    // mainImgOrVideo: "/lost-in-space/1.png",
     images: [
       "/lost-in-space/1.png",
       "/lost-in-space/2.png",

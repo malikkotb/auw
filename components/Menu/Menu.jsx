@@ -39,7 +39,7 @@ export default function Menu({ menuOpen, setMenuOpen }) {
           ease: "power3.out",
           stagger: 0.1,
         },
-        "<0.2" // Start 0.1s after menu animation begins
+        "<0.2" // Start 0.2s after menu animation begins
       );
     } else {
       // Animate menu and background out

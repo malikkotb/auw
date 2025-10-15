@@ -125,15 +125,14 @@ export default function Contact() {
       </div>
 
       <div className='mt-20 lg:mt-28 grid grid-cols-12 gap-[14px]'>
-        <div className='col-start-7 col-span-3 w-full h-full aspect-[4/5]'>
-          {/* TODO: get correct image here from figma */}
+        <div className='lg:col-start-7 col-span-12 lg:col-span-3 w-full h-full aspect-[4/5]'>
           <img
-            src='images/3.png'
+            src='images/jeff.png'
             className='object-cover w-full h-full'
             alt=''
           />
         </div>
-        <div className='col-start-10 col-span-3'>
+        <div className='lg:col-start-10 lg:col-span-3 col-span-12'>
           <div className='flex flex-col gap-2'>
             <div>
               <p className='eyebrow'>General Inquiries</p>

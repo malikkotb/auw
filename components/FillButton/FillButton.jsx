@@ -14,14 +14,40 @@ export default function FillButton({
   onClick,
   className = "",
 }) {
+  const handleMouseEnter = (e) => {
+    // Instant change on hover
+    e.currentTarget.style.transition = "none";
+    e.currentTarget.style.backgroundColor = "black";
+    const textEl = e.currentTarget.querySelector(".btn-text");
+    textEl.style.transition = "none";
+    textEl.style.color = "white";
+  };
+
+  const handleMouseLeave = (e) => {
+    // Smooth transition on mouse leave
+    e.currentTarget.style.transition = "background-color 1s ease-out";
+    e.currentTarget.style.backgroundColor = "white";
+    const textEl = e.currentTarget.querySelector(".btn-text");
+    textEl.style.transition = "color 1s ease-out";
+    textEl.style.color = "black";
+  };
+
   return (
     <a
       href={link}
       target={targetBlank ? "_blank" : "_self"}
       className={`push-fill-btn cursor-pointer font-medium ${ibmPlexMono.className} ${className}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        backgroundColor: "white",
+        border: "1px solid black",
+        padding: "6px 12px",
+      }}
     >
-      <div className='push-fill-btn-bg' />
-      <span className='btn-text'>{text}</span>
+      <div className='btn-text' style={{ color: "black" }}>
+        {text}
+      </div>
     </a>
   );
 }

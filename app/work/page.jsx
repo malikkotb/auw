@@ -6,6 +6,13 @@ import { useState } from "react";
 import { projects } from "../projects";
 import Link from "next/link";
 
+// Helper function to check if a URL is a video
+const isVideoUrl = (url) => {
+  if (!url) return false;
+  const videoExtensions = [".mp4", ".webm", ".mov"];
+  return videoExtensions.some((ext) => url.toLowerCase().endsWith(ext));
+};
+
 export default function Work() {
   const [view, setView] = useState("grid");
 
@@ -51,12 +58,23 @@ export default function Work() {
                   .toLowerCase()
                   .replace(/\s+/g, "-")}`}
               >
-                <div className='w-full h-full pb-1'>
-                  <img
-                    src={project.mainImgOrVideo}
-                    alt={project.title}
-                    className='w-full h-full object-cover'
-                  />
+                <div className='w-full h-full pb-1 aspect-video'>
+                  {isVideoUrl(project.mainImgOrVideo) ? (
+                    <video
+                      src={project.mainImgOrVideo}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className='w-full h-full object-cover'
+                    />
+                  ) : (
+                    <img
+                      src={project.mainImgOrVideo}
+                      alt={project.title}
+                      className='w-full h-full object-cover'
+                    />
+                  )}
                 </div>
                 <div className='flex flex-col'>
                   <h3 className='uppercase h1'>{project.title}</h3>
