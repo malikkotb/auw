@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Footer() {
   //   const footerRef = useRef(null);
   const footerVideoWrapperRef = useRef(null);
-
+  const footerNavRef = useRef(null);
   useEffect(() => {
     // Helpers to avoid AbortError
     const safePlay = (video) => {
@@ -55,7 +55,7 @@ export default function Footer() {
 
     if (bgVideo) {
       ScrollTrigger.create({
-        trigger: ".footer-video-wrapper",
+        trigger: footerNavRef.current,
         start: "top 50%",
         // Scrolling down into footer → first half
         onEnter: () => {
@@ -96,7 +96,10 @@ export default function Footer() {
         </div>
         <div className='h-[1px] w-full bg-[#DEDEDE]'></div>
       </div>
-      <div className='hidden lg:grid grid-cols-12 my-3 gap-[14px]'>
+      <div
+        ref={footerNavRef}
+        className='hidden lg:grid grid-cols-12 my-3 gap-[14px]'
+      >
         <div className='col-span-4 flex flex-col'>
           <div className=''>A Unified Whole®</div>
           <div className='uppercase text-[#626262]'>
@@ -206,7 +209,6 @@ export default function Footer() {
       >
         <video
           src='/images/60FPS.mp4'
-          loop
           muted
           playsInline
           preload='auto'
