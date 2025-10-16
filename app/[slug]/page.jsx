@@ -112,6 +112,8 @@ export default async function PostPage({ params }) {
 
   console.log("project", project);
 
+  console.log("mediaGallery", mediaGallery);
+
   return (
     <main className='h-full w-full'>
       <div className='flex flex-col min-h-screen'>
@@ -143,34 +145,42 @@ export default async function PostPage({ params }) {
         />
 
         <div className='grid grid-cols-12 gap-[14px]'>
-          <VideoDim
-            colSpan={12}
-            imgLink={mediaGallery[0]}
-            videoLink={
-              isVideoUrl(mediaGallery[0]) ? mediaGallery[0] : null
-            }
-          />
-          <InstaDim
-            colSpan={4}
-            imgLink={mediaGallery[1]}
-            videoLink={
-              isVideoUrl(mediaGallery[1]) ? mediaGallery[1] : null
-            }
-          />
-          <InstaDim
-            colSpan={8}
-            imgLink={mediaGallery[2]}
-            videoLink={
-              isVideoUrl(mediaGallery[2]) ? mediaGallery[2] : null
-            }
-          />
-          <VideoDim
-            colSpan={12}
-            imgLink={mediaGallery[3]}
-            videoLink={
-              isVideoUrl(mediaGallery[3]) ? mediaGallery[3] : null
-            }
-          />
+          {mediaGallery && mediaGallery[0] && (
+            <VideoDim
+              colSpan={12}
+              imgLink={mediaGallery[0]}
+              videoLink={
+                isVideoUrl(mediaGallery[0]) ? mediaGallery[0] : null
+              }
+            />
+          )}
+          {mediaGallery && mediaGallery[1] && (
+            <InstaDim
+              colSpan={4}
+              imgLink={mediaGallery[1]}
+              videoLink={
+                isVideoUrl(mediaGallery[1]) ? mediaGallery[1] : null
+              }
+            />
+          )}
+          {mediaGallery && mediaGallery[2] && (
+            <InstaDim
+              colSpan={8}
+              imgLink={mediaGallery[2]}
+              videoLink={
+                isVideoUrl(mediaGallery[2]) ? mediaGallery[2] : null
+              }
+            />
+          )}
+          {mediaGallery && mediaGallery[3] && (
+            <VideoDim
+              colSpan={12}
+              imgLink={mediaGallery[3]}
+              videoLink={
+                isVideoUrl(mediaGallery[3]) ? mediaGallery[3] : null
+              }
+            />
+          )}
         </div>
 
         <ParagraphEyebrow
@@ -179,34 +189,42 @@ export default async function PostPage({ params }) {
         />
 
         <div className='grid h-full grid-cols-12 gap-[14px]'>
-          <VideoDim
-            colSpan={12}
-            imgLink={mediaGallery[4]}
-            videoLink={
-              isVideoUrl(mediaGallery[4]) ? mediaGallery[4] : null
-            }
-          />
-          <InstaDim
-            colSpan={8}
-            imgLink={mediaGallery[5]}
-            videoLink={
-              isVideoUrl(mediaGallery[5]) ? mediaGallery[5] : null
-            }
-          />
-          <InstaDim
-            colSpan={4}
-            imgLink={mediaGallery[6]}
-            videoLink={
-              isVideoUrl(mediaGallery[6]) ? mediaGallery[6] : null
-            }
-          />
-          <VideoDim
-            colSpan={12}
-            imgLink={mediaGallery[7]}
-            videoLink={
-              isVideoUrl(mediaGallery[7]) ? mediaGallery[7] : null
-            }
-          />
+          {mediaGallery && mediaGallery[4] && (
+            <VideoDim
+              colSpan={12}
+              imgLink={mediaGallery[4]}
+              videoLink={
+                isVideoUrl(mediaGallery[4]) ? mediaGallery[4] : null
+              }
+            />
+          )}
+          {mediaGallery && mediaGallery[5] && (
+            <InstaDim
+              colSpan={8}
+              imgLink={mediaGallery[5]}
+              videoLink={
+                isVideoUrl(mediaGallery[5]) ? mediaGallery[5] : null
+              }
+            />
+          )}
+          {mediaGallery && mediaGallery[6] && (
+            <InstaDim
+              colSpan={4}
+              imgLink={mediaGallery[6]}
+              videoLink={
+                isVideoUrl(mediaGallery[6]) ? mediaGallery[6] : null
+              }
+            />
+          )}
+          {mediaGallery && mediaGallery[7] && (
+            <VideoDim
+              colSpan={12}
+              imgLink={mediaGallery[7]}
+              videoLink={
+                isVideoUrl(mediaGallery[7]) ? mediaGallery[7] : null
+              }
+            />
+          )}
         </div>
 
         <ParagraphEyebrow
@@ -215,34 +233,42 @@ export default async function PostPage({ params }) {
         />
 
         <div className='grid h-full grid-cols-12 gap-[14px]'>
-          <VideoDim
-            colSpan={12}
-            imgLink={mediaGallery[8]}
-            videoLink={
-              isVideoUrl(mediaGallery[8]) ? mediaGallery[8] : null
-            }
-          />
-          <InstaDim
-            colSpan={4}
-            imgLink={mediaGallery[10]}
-            videoLink={
-              isVideoUrl(mediaGallery[10]) ? mediaGallery[10] : null
-            }
-          />
-          <InstaDim
-            colSpan={8}
-            imgLink={mediaGallery[9]}
-            videoLink={
-              isVideoUrl(mediaGallery[9]) ? mediaGallery[9] : null
-            }
-          />
-          <VideoDim
-            colSpan={12}
-            imgLink={mediaGallery[11]}
-            videoLink={
-              isVideoUrl(mediaGallery[11]) ? mediaGallery[11] : null
-            }
-          />
+          {mediaGallery && mediaGallery[8] && (
+            <VideoDim
+              colSpan={12}
+              imgLink={mediaGallery[8]}
+              videoLink={
+                isVideoUrl(mediaGallery[8]) ? mediaGallery[8] : null
+              }
+            />
+          )}
+          {mediaGallery && mediaGallery[10] && (
+            <InstaDim
+              colSpan={4}
+              imgLink={mediaGallery[10]}
+              videoLink={
+                isVideoUrl(mediaGallery[10]) ? mediaGallery[10] : null
+              }
+            />
+          )}
+          {mediaGallery && mediaGallery[9] && (
+            <InstaDim
+              colSpan={8}
+              imgLink={mediaGallery[9]}
+              videoLink={
+                isVideoUrl(mediaGallery[9]) ? mediaGallery[9] : null
+              }
+            />
+          )}
+          {mediaGallery && mediaGallery[11] && (
+            <VideoDim
+              colSpan={12}
+              imgLink={mediaGallery[11]}
+              videoLink={
+                isVideoUrl(mediaGallery[11]) ? mediaGallery[11] : null
+              }
+            />
+          )}
         </div>
       </div>
 

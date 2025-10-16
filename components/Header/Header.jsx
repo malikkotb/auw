@@ -170,8 +170,8 @@ export default function Header() {
               <video
                 ref={videoRef}
                 src='/auw_logo.webm'
-                poster='/auw_logo.svg'
-                className='w-[32px]'
+                poster='/logo_poster.png'
+                className='w-[34px] h-[43px] borderr'
                 muted
                 playsInline
                 preload='auto'

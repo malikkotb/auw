@@ -1,103 +1,46 @@
-"use client";
+import WorkClient from "./WorkClient";
+import { client } from "@/sanity/config";
+import imageUrlBuilder from "@sanity/image-url";
 
-import Footer from "@/components/Footer/Footer";
-import OpacityHoverList from "@/components/OpacityHoverList/OpacityHoverList";
-import { useState } from "react";
-import { projects } from "../projects";
-import Link from "next/link";
-import { useHeaderHeight } from "@/hooks/useHeaderHeight";
+const builder = imageUrlBuilder(client);
+const urlFor = (source) => builder.image(source);
 
-// Helper function to check if a URL is a video
-const isVideoUrl = (url) => {
-  if (!url) return false;
-  const videoExtensions = [".mp4", ".webm", ".mov"];
-  return videoExtensions.some((ext) =>
-    url.toLowerCase().endsWith(ext)
-  );
-};
+const PROJECTS_QUERY = `*[
+  _type == "project"
+  && defined(title)
+]|order(publishedAt desc){
+  _id,
+  title,
+  description,
+  featuredMedia{
+    dimension,
+    type,
+    image{
+      asset->
+    },
+    video{
+      asset->
+    }
+  },
+  year,
+}`;
 
-export default function Work() {
-  const [view, setView] = useState("grid");
-  const headerHeight = useHeaderHeight();
-  return (
-    <div className='w-full h-full'>
-      <div className='flex flex-col min-h-screen'>
-        <div className='h1 margin-top margin-bottom flex items-center justify-between'>
-          <div>
-            ALL PROJECTS <span>(18)</span>
-          </div>
-          <div className='flex items-center gap-4'>
-            <span
-              onClick={() => setView("grid")}
-              style={{
-                cursor: "pointer",
-              }}
-              className={
-                view === "grid"
-                  ? "text-black italic"
-                  : "text-[#626262]"
-              }
-            >
-              GRID
-            </span>
-            <span
-              onClick={() => setView("list")}
-              style={{
-                cursor: "pointer",
-              }}
-              className={
-                view === "list"
-                  ? "text-black italic"
-                  : "text-[#626262]"
-              }
-            >
-              LIST
-            </span>
-          </div>
-        </div>
-        {view === "grid" && (
-          <div className='flex flex-col gap-12'>
-            <div className='flex flex-col gap-8'>
-              {projects.map((project) => (
-                <Link
-                  key={project.id}
-                  className='cursor-pointer'
-                  href={`/${project.title
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
-                >
-                  <div className='w-full h-full pb-1 aspect-video'>
-                    {isVideoUrl(project.mainImgOrVideo) ? (
-                      <video
-                        src={project.mainImgOrVideo}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className='w-full h-full object-cover'
-                      />
-                    ) : (
-                      <img
-                        src={project.mainImgOrVideo}
-                        alt={project.title}
-                        className='w-full h-full object-cover'
-                      />
-                    )}
-                  </div>
-                  <div className='flex flex-col'>
-                    <h3 className='uppercase h1'>{project.title}</h3>
-                    <p className='text-[#626262] h1 uppercase'>
-                      {project.description}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-        {view === "list" && <OpacityHoverList projects={projects} />}
-      </div>
-      <Footer />
-    </div>
-  );
+const options = { next: { revalidate: 30 } };
+
+export default async function Work() {
+  const projects = await client.fetch(PROJECTS_QUERY, {}, options);
+  
+  // Process the media URLs on the server side
+  const processedProjects = projects.map(project => ({
+    ...project,
+    mediaUrl: project.featuredMedia ? (
+      project.featuredMedia.type === "image" && project.featuredMedia.image?.asset
+        ? urlFor(project.featuredMedia.image).url()
+        : project.featuredMedia.type === "video" && project.featuredMedia.video?.asset?.url
+          ? project.featuredMedia.video.asset.url
+          : null
+    ) : null
+  }));
+
+  return <WorkClient projects={processedProjects} />;
 }

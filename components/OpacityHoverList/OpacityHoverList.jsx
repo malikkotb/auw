@@ -8,18 +8,18 @@ export default function OpacityHoverList({ projects }) {
     <div className='flex flex-col w-full border-t border-black'>
       {projects.map((project) => (
         <Link
-          key={project.id}
+          key={project._id}
           href={`/${project.title
             .toLowerCase()
             .replace(/\s+/g, "-")}`}
-          onMouseEnter={() => setHoveredId(project.id)}
+          onMouseEnter={() => setHoveredId(project._id)}
           onMouseLeave={() => setHoveredId(null)}
           className='flex h1 cursor-pointer w-full justify-between border-b pt-2 pb-1 border-black'
           style={{
             backgroundColor:
-              hoveredId === project.id ? "black" : "transparent",
+              hoveredId === project._id ? "black" : "transparent",
             transition:
-              hoveredId === project.id
+              hoveredId === project._id
                 ? "none"
                 : "background-color 1s ease-out",
           }}
@@ -27,7 +27,7 @@ export default function OpacityHoverList({ projects }) {
           <div
             className='uppercase'
             style={{
-              color: hoveredId === project.id ? "white" : "black",
+              color: hoveredId === project._id ? "white" : "black",
               transition: "none",
             }}
           >
@@ -36,7 +36,7 @@ export default function OpacityHoverList({ projects }) {
           <div
             className='uppercase md:block hidden'
             style={{
-              color: hoveredId === project.id ? "white" : "black",
+              color: hoveredId === project._id ? "white" : "black",
               transition: "none",
             }}
           >
@@ -45,7 +45,7 @@ export default function OpacityHoverList({ projects }) {
           <div
             className='uppercase'
             style={{
-              color: hoveredId === project.id ? "white" : "black",
+              color: hoveredId === project._id ? "white" : "black",
               transition: "none",
             }}
           >
