@@ -74,13 +74,13 @@ export default function Contact() {
 
   return (
     <div className='w-full h-full'>
-      <div className='flex flex-col h-screen'>
+      <div className='flex flex-col min-h-screen'>
         <div className='h1 margin-top margin-bottom'>
           We're excited to collaborate.
         </div>
-        <div className='space-y-2'>
+        <div className='space-y-2 h-full'>
           {/* Name Field */}
-          <div className='border-b border-t pb-1 md:pb-0 pt-2 border-black'>
+          <div className='border-b border-t pb-1 pt-2 border-black'>
             <input
               type='text'
               name='name'
@@ -92,7 +92,7 @@ export default function Contact() {
           </div>
 
           {/* Email Field */}
-          <div className='border-b pb-1 md:pb-0 border-black'>
+          <div className='border-b pb-1 border-black'>
             <input
               type='email'
               name='email'
@@ -104,17 +104,16 @@ export default function Contact() {
           </div>
 
           {/* Message Field */}
-          <div>
-            <div className='border-b border-black'>
-              <textarea
-                name='message'
-                placeholder='How can we help?'
-                value={formData.message}
-                onChange={handleChange}
-                rows='10'
-                className='w-full placeholder-[#838383] h1 bg-transparent border-none outline-none focus:ring-0 resize-none'
-              />
-            </div>
+          <div className='border-b border-black'>
+            <textarea
+              name='message'
+              placeholder='How can we help?'
+              value={formData.message}
+              onChange={handleChange}
+              rows='8'
+              // rows={window.innerWidth < 1536 ? "10" : "8"}
+              className='w-full h-full placeholder-[#838383] h1 bg-transparent border-none outline-none focus:ring-0 resize-none'
+            />
           </div>
 
           {/* Error Message */}

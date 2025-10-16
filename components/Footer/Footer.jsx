@@ -83,142 +83,144 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className='mt-[14px] w-full h-full text-body'>
-      <div className='footer-header w-full h-full'>
-        <div className='h-[1px] w-full bg-black'></div>
-        <div className='flex flex-col gap-3 mt-5 mb-24'>
-          <div className='h1'>
-            Excited to see how we can collaborate.
+    <footer className='mt-[14px] w-full h-full text-body relative'>
+      <div className='footer-wrapper w-full h-full bg-white sticky top-[14px] z-10'>
+        <div className='footer-header w-full h-full'>
+          <div className='h-[1px] w-full bg-black'></div>
+          <div className='flex flex-col gap-3 mt-5 mb-24'>
+            <div className='h1'>
+              Excited to see how we can collaborate.
+            </div>
+            <div className='w-fit'>
+              <FillLink text='Book a call' />
+            </div>
           </div>
-          <div className='w-fit'>
-            <FillLink text='Book a call' />
-          </div>
+          <div className='h-[1px] w-full bg-black'></div>
         </div>
-        <div className='h-[1px] w-full bg-black'></div>
-      </div>
-      <div
-        ref={footerNavRef}
-        className='hidden lg:grid grid-cols-12 my-3 gap-[14px]'
-      >
-        <div className='col-span-4 flex flex-col'>
-          <div
-            style={{ letterSpacing: "0.14px" }}
-            className='uppercase text-[#626262]'
-          >
-            DESIGN WITH PURPOSE.
-          </div>
-          <div className='uppercase'>© A UNIFIED WHOLE LLC</div>
-        </div>
-        <div className='col-span-3 flex flex-col'>
-          <div
-            style={{ letterSpacing: "0.14px" }}
-            className='uppercase text-[#626262]'
-          >
-            Follow Us
-          </div>
-          <div className='uppercase flex gap-2'>
-            <a
-              href='https://www.instagram.com/aunifiedwhole/'
-              className='footer-link'
+        <div
+          ref={footerNavRef}
+          className='hidden lg:grid grid-cols-12 py-[14px] gap-[14px]'
+        >
+          <div className='col-span-4 flex flex-col'>
+            <div
+              style={{ letterSpacing: "0.14px" }}
+              className='uppercase text-[#626262]'
             >
-              Instagram
-            </a>
-            <a
-              href='https://www.linkedin.com/company/aunifiedwhole/'
-              className='footer-link'
+              DESIGN WITH PURPOSE.
+            </div>
+            <div className='uppercase'>© A UNIFIED WHOLE LLC</div>
+          </div>
+          <div className='col-span-3 flex flex-col'>
+            <div
+              style={{ letterSpacing: "0.14px" }}
+              className='uppercase text-[#626262]'
             >
-              LinkedIn
-            </a>
+              Follow Us
+            </div>
+            <div className='uppercase flex gap-2'>
+              <a
+                href='https://www.instagram.com/aunifiedwhole/'
+                className='footer-link'
+              >
+                Instagram
+              </a>
+              <a
+                href='https://www.linkedin.com/company/aunifiedwhole/'
+                className='footer-link'
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
-        </div>
-        <div className='col-span-3 flex flex-col'>
-          <div
-            style={{ letterSpacing: "0.14px" }}
-            className='uppercase text-[#626262]'
-          >
-            Navigation
-          </div>
-          <div className='uppercase flex gap-2'>
-            <Link href='/work' className='footer-link'>
-              Work
-            </Link>
-            <Link href='/about' className='footer-link'>
-              About
-            </Link>
-            <Link href='/contact' className='footer-link'>
-              Contact
-            </Link>
-            <Link
-              href='/listening-experience'
-              className='whitespace-nowrap footer-link'
+          <div className='col-span-3 flex flex-col'>
+            <div
+              style={{ letterSpacing: "0.14px" }}
+              className='uppercase text-[#626262]'
             >
-              Listening Experience
+              Navigation
+            </div>
+            <div className='uppercase flex gap-2'>
+              <Link href='/work' className='footer-link'>
+                Work
+              </Link>
+              <Link href='/about' className='footer-link'>
+                About
+              </Link>
+              <Link href='/contact' className='footer-link'>
+                Contact
+              </Link>
+              <Link
+                href='/listening-experience'
+                className='whitespace-nowrap footer-link'
+              >
+                Listening Experience
+              </Link>
+            </div>
+          </div>
+          <div className='col-span-2 uppercase justify-end flex items-end'>
+            <Link href='/privacy' className='footer-link'>
+              Privacy Policy
             </Link>
           </div>
         </div>
-        <div className='col-span-2 uppercase justify-end flex items-end'>
-          <Link href='/privacy' className='footer-link'>
-            Privacy Policy
-          </Link>
-        </div>
-      </div>
 
-      {/* mobile footer nav: */}
-      <div className='lg:hidden flex flex-col my-3 gap-[14px]'>
-        <div className='col-span-4 flex flex-col'>
-          <div className=''>A Unified Whole®</div>
-          <div className='uppercase text-[#626262]'>
-            A Multipurpose Design Studio
+        {/* mobile footer nav: */}
+        <div className='lg:hidden flex flex-col my-[14px] gap-[14px]'>
+          <div className='col-span-4 flex flex-col'>
+            <div className=''>A Unified Whole®</div>
+            <div className='uppercase text-[#626262]'>
+              A Multipurpose Design Studio
+            </div>
           </div>
-        </div>
-        <div className='col-span-3 flex flex-col'>
-          <div className='uppercase text-[#626262]'>Follow Us</div>
-          <div className='uppercase flex gap-2'>
-            <a
-              target='_blank'
-              href='https://www.instagram.com/aunifiedwhole/'
-              className='footer-link'
-            >
-              Instagram
-            </a>
-            <a
-              target='_blank'
-              href='https://www.linkedin.com/company/aunifiedwhole/'
-              className='footer-link'
-            >
-              LinkedIn
-            </a>
+          <div className='col-span-3 flex flex-col'>
+            <div className='uppercase text-[#626262]'>Follow Us</div>
+            <div className='uppercase flex gap-2'>
+              <a
+                target='_blank'
+                href='https://www.instagram.com/aunifiedwhole/'
+                className='footer-link'
+              >
+                Instagram
+              </a>
+              <a
+                target='_blank'
+                href='https://www.linkedin.com/company/aunifiedwhole/'
+                className='footer-link'
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
-        </div>
-        <div className='col-span-3 flex flex-col'>
-          <div className='uppercase text-[#626262]'>Navigation</div>
-          <div className='uppercase flex gap-2'>
-            <Link href='/work' className='footer-link'>
-              Work
-            </Link>
-            <Link href='/about' className='footer-link'>
-              About
-            </Link>
-            <Link href='/contact' className='footer-link'>
-              Contact
-            </Link>
-            <Link
-              href='/listening-experience'
-              className='footer-link'
-            >
-              Listening Experience
+          <div className='col-span-3 flex flex-col'>
+            <div className='uppercase text-[#626262]'>Navigation</div>
+            <div className='uppercase flex gap-2'>
+              <Link href='/work' className='footer-link'>
+                Work
+              </Link>
+              <Link href='/about' className='footer-link'>
+                About
+              </Link>
+              <Link href='/contact' className='footer-link'>
+                Contact
+              </Link>
+              <Link
+                href='/listening-experience'
+                className='footer-link'
+              >
+                Listening Experience
+              </Link>
+            </div>
+          </div>
+          <div className='col-span-2 uppercase'>
+            <Link href='/privacy' className='footer-link'>
+              Privacy Policy
             </Link>
           </div>
-        </div>
-        <div className='col-span-2 uppercase'>
-          <Link href='/privacy' className='footer-link'>
-            Privacy Policy
-          </Link>
         </div>
       </div>
       <div
         ref={footerVideoWrapperRef}
-        className='footer-video-wrapper w-full h-fit aspect-video'
+        className='footer-video-wrapper w-full h-fit aspect-video relative z-0'
       >
         <video
           src='/images/60FPS.mp4'

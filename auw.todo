@@ -12,10 +12,9 @@
 ☐ page transition on case study pages, where you scroll past enough it then goes to that link
 ☐ (maybe have the first few details of the next project displayed by default and then when you scroll past enough it then goes to that link)  
 
-☐ make work page use sanity cms projects
+☐ make /work page use sanity cms projects
 
 ☐ make sure sanity cms works
 
-
-☐ Footer top part should always be visible
+✔ Footer top part should always be visible @started(25-10-16 13:12) @done(25-10-16 13:12) @lasted(22s)
 ☐ Make logo video bit bigger, roughly same size as h1 text
