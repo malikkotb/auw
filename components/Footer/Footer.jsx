@@ -83,9 +83,9 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className='margin-top w-full h-full text-[14px]'>
+    <footer className='mt-[14px] w-full h-full text-body'>
       <div className='footer-header w-full h-full'>
-        <div className='h-[1px] w-full bg-[#DEDEDE]'></div>
+        <div className='h-[1px] w-full bg-black'></div>
         <div className='flex flex-col gap-3 mt-5 mb-24'>
           <div className='h1'>
             Excited to see how we can collaborate.
@@ -94,20 +94,28 @@ export default function Footer() {
             <FillLink text='Book a call' />
           </div>
         </div>
-        <div className='h-[1px] w-full bg-[#DEDEDE]'></div>
+        <div className='h-[1px] w-full bg-black'></div>
       </div>
       <div
         ref={footerNavRef}
         className='hidden lg:grid grid-cols-12 my-3 gap-[14px]'
       >
         <div className='col-span-4 flex flex-col'>
-          <div className=''>A Unified Whole®</div>
-          <div className='uppercase text-[#626262]'>
-            A Multipurpose Design Studio
+          <div
+            style={{ letterSpacing: "0.14px" }}
+            className='uppercase text-[#626262]'
+          >
+            DESIGN WITH PURPOSE.
           </div>
+          <div className='uppercase'>© A UNIFIED WHOLE LLC</div>
         </div>
         <div className='col-span-3 flex flex-col'>
-          <div className='uppercase text-[#626262]'>Follow Us</div>
+          <div
+            style={{ letterSpacing: "0.14px" }}
+            className='uppercase text-[#626262]'
+          >
+            Follow Us
+          </div>
           <div className='uppercase flex gap-2'>
             <a
               href='https://www.instagram.com/aunifiedwhole/'
@@ -124,7 +132,12 @@ export default function Footer() {
           </div>
         </div>
         <div className='col-span-3 flex flex-col'>
-          <div className='uppercase text-[#626262]'>Navigation</div>
+          <div
+            style={{ letterSpacing: "0.14px" }}
+            className='uppercase text-[#626262]'
+          >
+            Navigation
+          </div>
           <div className='uppercase flex gap-2'>
             <Link href='/work' className='footer-link'>
               Work

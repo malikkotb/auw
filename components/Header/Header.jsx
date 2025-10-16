@@ -7,9 +7,32 @@ import Menu from "../Menu/Menu";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
   const videoRef = useRef(null);
   const closeButtonLinesRef = useRef([]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+      const scrollThreshold = 50; // How many pixels to scroll before showing/hiding
+
+      if (scrollingDown && currentScrollY > scrollThreshold) {
+        setIsVisible(false);
+      } else if (!scrollingDown) {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -104,42 +127,64 @@ export default function Header() {
     <header
       style={{
         zIndex: 1000,
+        transform: `translateY(${isVisible ? "0" : "-100%"})`,
       }}
-      className='w-full text-[15px] uppercase'
+      className='fixed top-0 bg-white left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out'
     >
+      {/* <div id='header-bg' className='header-bg absolute -top-[14px] -left-[14px] w-[calc(100%+28px)] h-[calc(100%+14px)] bg-white'></div> */}
       <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <div className='grid grid-cols-12 gap-[14px]'>
-        <div className='relative w-[40px]'>
-          <Link
-            href='/'
-            className='cursor-pointer'
-            onMouseEnter={() => {
-              if (videoRef.current) {
-                videoRef.current.currentTime = 0;
-                videoRef.current
-                  .play()
-                  .catch((err) =>
-                    console.warn("Video play prevented:", err)
-                  );
-              }
-            }}
-          >
-            <video
-              ref={videoRef}
-              src='/auw_logo.webm'
-              className='w-full'
-              muted
-              playsInline
-              preload='auto'
-            ></video>
-          </Link>
+        <div className='relative'>
+          {pathname === "/listening-experience" ? (
+            <Link
+              href='/'
+              onClick={() => setMenuOpen(false)}
+              className='cursor-pointer whitespace-nowrap transition-color duration-400'
+              style={{ color: menuOpen ? "#FFFFFF" : "#000000" }}
+            >
+              A UNIFIED WHOLE®
+            </Link>
+          ) : (
+            <Link
+              href='/'
+              onClick={() => setMenuOpen(false)}
+              className='cursor-pointer'
+              onMouseEnter={() => {
+                if (videoRef.current) {
+                  videoRef.current.currentTime = 0;
+                  videoRef.current
+                    .play()
+                    .catch((err) =>
+                      console.warn("Video play prevented:", err)
+                    );
+                }
+              }}
+              onMouseLeave={() => {
+                if (videoRef.current) {
+                  videoRef.current.pause();
+                  videoRef.current.currentTime = 0;
+                  videoRef.current.load(); // This forces the poster to show again
+                }
+              }}
+            >
+              <video
+                ref={videoRef}
+                src='/auw_logo.webm'
+                // poster='/auw_logo.svg'
+                className='w-[32px]'
+                muted
+                playsInline
+                preload='auto'
+              ></video>
+            </Link>
+          )}
         </div>
-        <div className='flex lg:hidden col-span-2 col-start-11 justify-end gap-4'>
+        <div className='flex relative lg:hidden col-span-2 col-start-11 justify-end gap-4'>
           <button
             className='cursor-pointer'
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <div className='relative w-6 h-6'>
+            <div className='relative  w-6 h-6 -mt-[6px]'>
               <div
                 ref={(el) => (closeButtonLinesRef.current[0] = el)}
                 className='absolute top-[40%] left-0 w-full h-[1.5px] bg-black origin-center'
@@ -151,7 +196,7 @@ export default function Header() {
             </div>
           </button>
         </div>
-        <div className='hidden lg:flex col-span-2 col-start-11 justify-end gap-4'>
+        <div className='hidden relative lg:flex col-span-2 col-start-11 justify-end gap-4'>
           <Link href='/about' className='header-link'>
             <div className={pathname === "/about" ? "italic" : ""}>
               About

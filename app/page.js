@@ -1,20 +1,21 @@
 export default function IndexPage() {
-
   return (
-    <main className='overflow-clip'>
-      <p className='h1 margin-top margin-bottom'>
-        We are a design studio that helps brands realize their
-        identity and execute it across branding, digital and physical
-        mediums.
-      </p>
-      <div className='w-full flex h-full aspect-video overflow-clip relative'>
-        <img
-          src='/images/about_auw.png'
-          alt='about'
-          className='col-span-12 w-full h-full object-cover'
-        />
+    <div className='h-full w-full '>
+      <div className='flex flex-col min-h-screen'>
+        <div className='h1 margin-top margin-bottom'>
+          We are a design studio that helps brands realize their
+          identity and execute it across branding, digital and
+          physical mediums.
+        </div>
+        <div className='w-full flex h-full aspect-video overflow-clip relative'>
+          <img
+            src='/images/about_auw.png'
+            alt='about'
+            className='col-span-12 w-full h-full object-cover'
+          />
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
 

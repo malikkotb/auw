@@ -1,20 +1,22 @@
 "use client";
 
+import { useHeaderHeight } from "@/hooks/useHeaderHeight";
+
 export default function ListeningExperience() {
+  const headerHeight = useHeaderHeight();
   return (
     <div
       className='iframe-wrapper'
       style={{
         position: "relative",
         width: "100%",
-        height: "calc(100vh - 68px)", // 40px (header) - 14px (margin) - 14px padding on listening experience page
+        height: `calc(100vh - ${headerHeight}px)`,
         overflow: "hidden",
       }}
     >
       <iframe
         style={{
           position: "absolute",
-          top: "14px",
           left: 0,
           width: "100%",
           height: "100%",

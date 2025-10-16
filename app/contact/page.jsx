@@ -3,6 +3,8 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import FillButton from "@/components/FillButton/FillButton";
 import Footer from "@/components/Footer/Footer";
+import ArrowLink from "@/components/ArrowLink/ArrowLink";
+import { useHeaderHeight } from "@/hooks/useHeaderHeight";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -68,64 +70,72 @@ export default function Contact() {
     }
   };
 
+  const headerHeight = useHeaderHeight();
+
   return (
     <div className='w-full h-full'>
-      <div className='h1 margin-top margin-bottom'>
-        We're excited to collaborate.
-      </div>
-      <div className='space-y-2'>
-        {/* Name Field */}
-        <div className='border-b border-black'>
-          <input
-            type='text'
-            name='name'
-            placeholder='NAME'
-            value={formData.name}
-            onChange={handleChange}
-            className='w-full h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
-          />
+      <div className='flex flex-col h-screen'>
+        <div className='h1 margin-top margin-bottom'>
+          We're excited to collaborate.
         </div>
-
-        {/* Email Field */}
-        <div className='border-b border-black'>
-          <input
-            type='email'
-            name='email'
-            placeholder='EMAIL'
-            value={formData.email}
-            onChange={handleChange}
-            className='w-full h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
-          />
-        </div>
-
-        {/* Message Field */}
-        <div>
-          <div className='border-b border-black'>
-            <textarea
-              name='message'
-              placeholder='I would love to work with you on a specific project. Are
-            you free tomorrow to chat?'
-              value={formData.message}
+        <div className='space-y-2'>
+          {/* Name Field */}
+          <div className='border-b border-t pb-1 md:pb-0 pt-2 border-black'>
+            <input
+              type='text'
+              name='name'
+              placeholder='NAME'
+              value={formData.name}
               onChange={handleChange}
-              rows='6'
-              className='w-full placeholder-[#838383] h1 bg-transparent border-none outline-none focus:ring-0 resize-none'
+              className='w-full h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+            />
+          </div>
+
+          {/* Email Field */}
+          <div className='border-b pb-1 md:pb-0 border-black'>
+            <input
+              type='email'
+              name='email'
+              placeholder='EMAIL'
+              value={formData.email}
+              onChange={handleChange}
+              className='w-full h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+            />
+          </div>
+
+          {/* Message Field */}
+          <div>
+            <div className='border-b border-black'>
+              <textarea
+                name='message'
+                placeholder='How can we help?'
+                value={formData.message}
+                onChange={handleChange}
+                rows='10'
+                className='w-full placeholder-[#838383] h1 bg-transparent border-none outline-none focus:ring-0 resize-none'
+              />
+            </div>
+          </div>
+
+          {/* Error Message */}
+          {error && <div className='text-red-500 mt-4'>{error}</div>}
+        </div>
+        {/* Submit Button */}
+        <div
+          className='w-full mt-5 grid grid-cols-12 gap-[14px]'
+          onClick={!isLoading ? handleSubmit : undefined}
+        >
+          <div className='md:col-span-2 col-span-4'>
+            <FillButton
+              className='w-full flex text-center'
+              text={isLoading ? "Sending..." : "Submit"}
             />
           </div>
         </div>
-
-        {/* Error Message */}
-        {error && <div className='text-red-500 mt-4'>{error}</div>}
-      </div>
-      {/* Submit Button */}
-      <div
-        className='w-full mt-5'
-        onClick={!isLoading ? handleSubmit : undefined}
-      >
-        <FillButton text={isLoading ? "Sending..." : "Submit"} />
       </div>
 
-      <div className='mt-20 lg:mt-28 grid grid-cols-12 gap-[14px]'>
-        <div className='lg:col-start-7 col-span-12 lg:col-span-3 w-full h-full aspect-[4/5]'>
+      <div className='grid grid-cols-12 gap-[14px]'>
+        <div className='lg:col-start-7 col-span-6 md:col-span-4 lg:col-span-3 w-full h-full aspect-[4/5]'>
           <img
             src='images/jeff.png'
             className='object-cover w-full h-full'
@@ -136,30 +146,26 @@ export default function Contact() {
           <div className='flex flex-col gap-2'>
             <div>
               <p className='eyebrow'>General Inquiries</p>
-              <a href='mailto:info@auw.studio' className='h1'>
-                info@auw.studio
-              </a>
+              <ArrowLink
+                link='mailto:info@auw.studio'
+                text='info@auw.studio'
+              />
             </div>
             <div>
               <p className='eyebrow'>Follow Us</p>
               <div className='flex flex-col'>
-                <a
-                  target='_blank'
-                  className='h1'
-                  href='https://www.instagram.com/aunifiedwhole/'
-                >
-                  Instagram
-                </a>
-                <a
-                  target='_blank'
-                  className='h1'
-                  href='https://www.linkedin.com/company/aunifiedwhole/'
-                >
-                  LinkedIn
-                </a>
-                <a href='' target='_blank' className='h1'>
-                  Substack
-                </a>
+                <ArrowLink
+                  link='https://www.instagram.com/aunifiedwhole/'
+                  text='Instagram'
+                />
+                <ArrowLink
+                  link='https://www.linkedin.com/company/aunifiedwhole/'
+                  text='LinkedIn'
+                />
+                <ArrowLink
+                  link='https://www.substack.com/profile/143636563-aunifiedwhole'
+                  text='Substack'
+                />
               </div>
             </div>
             <div>
