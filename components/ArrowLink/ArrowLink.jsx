@@ -83,7 +83,7 @@ export default function ArrowLink({ link, text }) {
       {text}
       <div ref={svgsRef} className='flex'>
         <svg
-          className='mt-[4px] lg:w-[10px] lg:h-[21px] w-[8px] h-[16px] opacity-0 -translate-x-[10px]'
+          className='mt-[4px] 2xl:mt-[6px] 2xl:w-[15px] 2xl:h-[28px] lg:w-[10px] lg:h-[21px] w-[8px] h-[16px] opacity-0 -translate-x-[10px]'
           viewBox='0 0 10 21'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
@@ -94,7 +94,7 @@ export default function ArrowLink({ link, text }) {
           />
           </svg>
          <svg
-           className='mt-[4px] -ml-[2px] lg:w-[10px] lg:h-[21px] w-[8px] h-[16px] opacity-0 -translate-x-[10px]'
+           className='mt-[4px] 2xl:mt-[6px] -ml-[2px] 2xl:-ml-[4px] 2xl:w-[15px] 2xl:h-[28px] lg:w-[10px] lg:h-[21px] w-[8px] h-[16px] opacity-0 -translate-x-[10px]'
           viewBox='0 0 10 21'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'

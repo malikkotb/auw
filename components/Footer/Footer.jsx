@@ -84,7 +84,7 @@ export default function Footer() {
 
   return (
     <footer className='mt-[14px] w-full h-full text-body relative'>
-      <div className='footer-wrapper w-full h-full bg-white sticky top-[14px] z-10'>
+      <div className='footer-wrapper w-full h-full bg-white sticky top-0 pt-[14px] z-10'>
         <div className='footer-header w-full h-full'>
           <div className='h-[1px] w-full bg-black'></div>
           <div className='flex flex-col gap-3 mt-5 mb-24'>

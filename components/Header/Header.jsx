@@ -170,7 +170,7 @@ export default function Header() {
               <video
                 ref={videoRef}
                 src='/auw_logo.webm'
-                // poster='/auw_logo.svg'
+                poster='/auw_logo.svg'
                 className='w-[32px]'
                 muted
                 playsInline
