@@ -8,22 +8,25 @@ export default function ListeningExperience() {
     <div
       className='iframe-wrapper'
       style={{
-        position: "relative",
+        position: "fixed",
         width: "100%",
-        height: `calc(100vh - ${headerHeight}px)`,
+        top: headerHeight,
+        bottom: "14px",
+        // left: "14px",
+        // right: "14px",
+        left: 0,
         overflow: "hidden",
+        paddingLeft: "14px",
+        paddingRight: "14px",
       }}
     >
       <iframe
         style={{
-          position: "absolute",
-          left: 0,
           width: "100%",
           height: "100%",
           border: "none",
         }}
         src='https://sound-studio-eight.vercel.app/'
-        // frameBorder='0'
         allowFullScreen
         loading='lazy'
       ></iframe>

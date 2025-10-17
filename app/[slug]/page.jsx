@@ -10,8 +10,9 @@ const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0]{
   _id,
   title,
   description,
+  textFieldTwo,
+  textFieldThree,
   client,
-  publishedAt,
   overview,
   year,
   projectUrl,
@@ -184,8 +185,8 @@ export default async function PostPage({ params }) {
         </div>
 
         <ParagraphEyebrow
-          eyebrowText={"Overview"}
-          mainText={project.overview}
+          eyebrowText={"Project Details"}
+          mainText={project.textFieldTwo}
         />
 
         <div className='grid h-full grid-cols-12 gap-[14px]'>
@@ -228,8 +229,8 @@ export default async function PostPage({ params }) {
         </div>
 
         <ParagraphEyebrow
-          eyebrowText={"Overview"}
-          mainText={project.overview}
+          eyebrowText={"Additional Information"}
+          mainText={project.textFieldThree}
         />
 
         <div className='grid h-full grid-cols-12 gap-[14px]'>
