@@ -12,8 +12,6 @@ export default function ListeningExperience() {
         width: "100%",
         top: headerHeight,
         bottom: "14px",
-        // left: "14px",
-        // right: "14px",
         left: 0,
         overflow: "hidden",
         paddingLeft: "14px",

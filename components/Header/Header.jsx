@@ -161,21 +161,23 @@ export default function Header() {
               }}
               onMouseLeave={() => {
                 if (videoRef.current) {
-                  videoRef.current.pause();
+                  videoRef.current.pause();pabout
                   videoRef.current.currentTime = 0;
-                  videoRef.current.load(); // This forces the poster to show again
+                  videoRef.current.load();
                 }
               }}
             >
-              <video
-                ref={videoRef}
-                src='/auw_logo.webm'
-                poster='/logo_poster.png'
-                className='w-[34px] h-[43px] borderr'
-                muted
-                playsInline
-                preload='auto'
-              ></video>
+              <div className='w-[27px] h-[34px] lg:w-[36px] lg:h-[45px] relative'>
+                <video
+                  ref={videoRef}
+                  src='/auw_logo.webm'
+                  poster='/logo_poster.png'
+                  className='absolute inset-0 w-full h-full object-cover'
+                  muted
+                  playsInline
+                  preload='auto'
+                ></video>
+              </div>
             </Link>
           )}
         </div>

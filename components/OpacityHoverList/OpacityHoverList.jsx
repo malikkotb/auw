@@ -14,7 +14,7 @@ export default function OpacityHoverList({ projects }) {
             .replace(/\s+/g, "-")}`}
           onMouseEnter={() => setHoveredId(project._id)}
           onMouseLeave={() => setHoveredId(null)}
-          className='flex h1 cursor-pointer w-full justify-between border-b pt-2 pb-1 border-black'
+          className='flex h1 cursor-pointer relative w-full justify-between border-b pt-2 pb-1 border-black'
           style={{
             backgroundColor:
               hoveredId === project._id ? "black" : "transparent",
@@ -34,10 +34,11 @@ export default function OpacityHoverList({ projects }) {
             {project.title}
           </div>
           <div
-            className='uppercase md:block hidden'
+            className='uppercase md:block hidden absolute left-[40%]'
             style={{
               color: hoveredId === project._id ? "white" : "black",
               transition: "none",
+              textAlign: "left",
             }}
           >
             {project.description}

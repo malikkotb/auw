@@ -20,7 +20,7 @@ export default function About() {
     "Good Routine",
     "Heaven Mayhem",
     "LacPac",
-    "Lost In Spice",
+    "Lost In Space",
     "Nogum",
     "Oenza",
     "ParaNano",
