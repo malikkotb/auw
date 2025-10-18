@@ -17,7 +17,9 @@ export default function ArrowLink({ link, text }) {
 
     if (svgsRef.current) {
       // Get both SVGs and convert to array to reverse order
-      const svgs = Array.from(svgsRef.current.querySelectorAll("svg")).reverse();
+      const svgs = Array.from(
+        svgsRef.current.querySelectorAll("svg")
+      ).reverse();
 
       // Remove classes from both SVGs
       svgs.forEach((svg) => {
@@ -46,7 +48,9 @@ export default function ArrowLink({ link, text }) {
     killAnimation();
 
     if (svgsRef.current) {
-      const svgs = Array.from(svgsRef.current.querySelectorAll("svg")).reverse();
+      const svgs = Array.from(
+        svgsRef.current.querySelectorAll("svg")
+      ).reverse();
 
       animationRef.current = gsap.to(svgs, {
         opacity: 0,
@@ -74,7 +78,7 @@ export default function ArrowLink({ link, text }) {
 
   return (
     <a
-      className='h1 cursor-pointer flex gap-1 items-start'
+      className='external-link cursor-pointer flex gap-1 items-start'
       href={link}
       target='_blank'
       onMouseEnter={handleMouseEnter}
@@ -83,7 +87,9 @@ export default function ArrowLink({ link, text }) {
       {text}
       <div ref={svgsRef} className='flex'>
         <svg
-          className='mt-[4px] 2xl:mt-[6px] 2xl:w-[15px] 2xl:h-[28px] lg:w-[10px] lg:h-[21px] w-[8px] h-[16px] opacity-0 -translate-x-[10px]'
+          className='external-link-svg mt-[4px] w-[8px] h-[16px] lg:w-[9px] lg:h-[17px] opacity-0 -translate-x-[10px]'
+          // className='mt-[4px] lg:w-[10px] lg:h-[21px] w-[8px] h-[16px] opacity-0 -translate-x-[10px]'
+
           viewBox='0 0 10 21'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
@@ -92,9 +98,9 @@ export default function ArrowLink({ link, text }) {
             d='M9.9972 10.009L4.93844 20.0179H0.335938L5.38844 10.009L0.335938 0H4.93844L9.9972 10.009Z'
             fill='black'
           />
-          </svg>
-         <svg
-           className='mt-[4px] 2xl:mt-[6px] -ml-[2px] 2xl:-ml-[4px] 2xl:w-[15px] 2xl:h-[28px] lg:w-[10px] lg:h-[21px] w-[8px] h-[16px] opacity-0 -translate-x-[10px]'
+        </svg>
+        <svg
+          className='external-link-svg mt-[4px] -ml-[2px] w-[8px] h-[16px] lg:w-[9px] lg:h-[17px] 3xl:w-[10px] 3xl:h-[21px] opacity-0 -translate-x-[10px]'
           viewBox='0 0 10 21'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
@@ -105,12 +111,6 @@ export default function ArrowLink({ link, text }) {
           />
         </svg>
       </div>
-
-      {/* <div className='h1'>〉〉</div> */}
-      {/* <div className='text-[16px] lg:text-[24px] leading-[120%] flex'>
-        <span className=''>{String.fromCharCode(0x3009)}</span>
-        <span className=''>{String.fromCharCode(0x3009)}</span>
-      </div> */}
     </a>
   );
 }

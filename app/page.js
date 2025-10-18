@@ -1,6 +1,6 @@
 export default function IndexPage() {
   return (
-    <div className='h-full w-full '>
+    <div className='h-full w-full bg-white'>
       <div className='flex flex-col min-h-screen'>
         <div className='h1 margin-top margin-bottom'>
           We are a design studio that helps brands realize their

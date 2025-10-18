@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import OpacityHoverList from "@/components/OpacityHoverList/OpacityHoverList";
 import { useState } from "react";
 import Link from "next/link";
+import ArrowHoverText from "@/components/ArrowHoverText/ArrowHoverText";
 
 // Helper function to check if a URL is a video
 const isVideoUrl = (url) => {
@@ -16,9 +17,9 @@ const isVideoUrl = (url) => {
 
 export default function WorkClient({ projects }) {
   const [view, setView] = useState("grid");
-
+  const [hoveredId, setHoveredId] = useState(null);
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full bg-white'>
       <div className='flex flex-col min-h-screen'>
         <div className='h1 margin-top margin-bottom flex items-center justify-between'>
           <div>
@@ -60,6 +61,8 @@ export default function WorkClient({ projects }) {
                 <Link
                   key={project._id}
                   className='cursor-pointer'
+                  onMouseEnter={() => setHoveredId(project._id)}
+                  onMouseLeave={() => setHoveredId(null)}
                   href={`/${project.title
                     .toLowerCase()
                     .replace(/\s+/g, "-")}`}
@@ -82,11 +85,22 @@ export default function WorkClient({ projects }) {
                       />
                     )}
                   </div>
-                  <div className='flex flex-col'>
-                    <h3 className='uppercase h1'>{project.title}</h3>
-                    <p className='text-[#626262] h1 uppercase'>
-                      {project.description}
-                    </p>
+
+                  <div className='flex justify-between'>
+                    <div className='flex flex-col'>
+                      <h3 className='uppercase projects-eyebrow'>
+                        {project.title}
+                      </h3>
+                      <p className='text-[#626262] projects-eyebrow uppercase'>
+                        {project.description}
+                      </p>
+                    </div>
+                    <div className='projects-eyebrow uppercase'>
+                      <ArrowHoverText
+                        isHovered={hoveredId === project._id}
+                        text='View Project'
+                      />
+                    </div>
                   </div>
                 </Link>
               ))}

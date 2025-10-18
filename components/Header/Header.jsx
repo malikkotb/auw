@@ -129,7 +129,7 @@ export default function Header() {
         zIndex: 1000,
         transform: `translateY(${isVisible ? "0" : "-100%"})`,
       }}
-      className='fixed top-0 bg-white left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out'
+      className='fixed top-0 left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out mix-blend-difference text-white'
     >
       {/* <div id='header-bg' className='header-bg absolute -top-[14px] -left-[14px] w-[calc(100%+28px)] h-[calc(100%+14px)] bg-white'></div> */}
       <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
@@ -161,7 +161,7 @@ export default function Header() {
               }}
               onMouseLeave={() => {
                 if (videoRef.current) {
-                  videoRef.current.pause();pabout
+                  videoRef.current.pause();
                   videoRef.current.currentTime = 0;
                   videoRef.current.load();
                 }
@@ -171,7 +171,7 @@ export default function Header() {
                 <video
                   ref={videoRef}
                   src='/auw_logo.webm'
-                  poster='/logo_poster.png'
+                  // poster='/logo_poster.png'
                   className='absolute inset-0 w-full h-full object-cover'
                   muted
                   playsInline
@@ -210,11 +210,7 @@ export default function Header() {
             </div>
           </Link>
           <Link href='/listening-experience' className='header-link'>
-            <div
-              className={
-                pathname === "/listening-experience" ? "italic" : ""
-              }
-            >
+            <div className={pathname === "/listening-experience" ? "italic" : ""}>
               Sound
             </div>
           </Link>

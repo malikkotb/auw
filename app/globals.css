@@ -2,10 +2,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
-.margin-top {
-  margin-top: 80px;
-}
-
 @font-face {
   font-family: "SharpGrotesk";
   src: url("/SharpGrotesk SemiBold.otf") format("opentype");
@@ -32,7 +28,7 @@
   font-size: 15px;
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1920px) {
   .h1 {
     font-size: 38px;
   }
@@ -63,6 +59,43 @@
   .margin-bottom {
     margin-bottom: 64px;
   }
+}
+
+.external-link {
+  font-size: 24px;
+  text-transform: uppercase;
+}
+/* TODO: add responsive sizes for other screen sizes */
+@media (min-width: 1920px) {
+  .external-link {
+    font-size: 28px;
+  }
+}
+/*
+@media (max-width: 1023px) {
+  .external-link {
+    font-size: 16px;
+  }
+} */
+
+/* .external-link-svg {
+  width: 10px;
+  height: 21px;
+} */
+@media (min-width: 1920px) {
+  .external-link-svg {
+    width: 10px;
+    height: 21px;
+  }
+}
+
+.projects-eyebrow {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.h1.heading {
+  font-size: 26px;
 }
 
 .h2 {

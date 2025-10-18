@@ -103,7 +103,7 @@ export default function About() {
   ];
 
   return (
-    <div className='h-full w-full'>
+    <div className='h-full w-full bg-white'>
       <div className='flex flex-col min-h-screen'>
         <div className='h1 margin-top margin-bottom'>
           We turn ideas into brands people instantly understand.

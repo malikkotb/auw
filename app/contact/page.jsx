@@ -73,7 +73,7 @@ export default function Contact() {
   const headerHeight = useHeaderHeight();
 
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full bg-white'>
       <div className='flex flex-col min-h-screen'>
         <div className='h1 margin-top margin-bottom'>
           We're excited to collaborate.
@@ -141,7 +141,7 @@ export default function Contact() {
             alt=''
           />
         </div>
-        <div className='lg:col-start-10 lg:col-span-3 col-span-12'>
+        <div className='lg:col-start-10 lg:col-span-3 col-span-6'>
           <div className='flex flex-col gap-2'>
             <div>
               <p className='eyebrow'>General Inquiries</p>
@@ -169,7 +169,7 @@ export default function Contact() {
             </div>
             <div>
               <p className='eyebrow'>Founded by</p>
-              <div className='h1'>Jeff Visoky</div>
+              <div className='external-link'>Jeff Visoky</div>
             </div>
           </div>
         </div>
