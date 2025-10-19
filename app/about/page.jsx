@@ -7,7 +7,9 @@ async function getClients() {
     "imageUrl": image.asset->url
   }`;
 
-  return await client.fetch(query);
+  const options = { next: { revalidate: 3600 } }; // 1 hour in seconds
+
+  return await client.fetch(query, {}, options);
 }
 
 export default async function About() {

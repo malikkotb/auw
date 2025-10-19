@@ -25,7 +25,10 @@ const PROJECTS_QUERY = `*[
   year,
 }`;
 
-const options = { next: { revalidate: 30 } };
+// This option tells Next.js to revalidate this page's data every 1 hour
+// This enables Incremental Static Regeneration (ISR) - the page will be regenerated
+// in the background while stale data is served to users
+const options = { next: { revalidate: 3600 } }; // 1 hour in seconds
 
 export default async function Work() {
   const projects = await client.fetch(PROJECTS_QUERY, {}, options);
