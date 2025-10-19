@@ -9,6 +9,7 @@ import FillLink from "@/components/FillButton/FillLink";
 import ArrowLink from "@/components/ArrowLink/ArrowLink";
 
 export default function AboutClient({ clientsData }) {
+  console.log("clientsData", clientsData);
   const headerHeight = useHeaderHeight();
   const [hoveredIndex, setHoveredIndex] = useState(
     clientsData.length - 1
