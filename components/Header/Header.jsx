@@ -1,10 +1,10 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import Menu from "../Menu/Menu";
 import { useTransitionRouter } from "next-view-transitions";
+import Link from "next/link";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -131,8 +131,8 @@ export default function Header() {
       style={{
         zIndex: 1000,
         transform: `translateY(${isVisible ? "0" : "-100%"})`,
-        color: pathname === "/listening-experience" ? "#000" : "#fff",
-        mixBlendMode: "difference",
+        // color: pathname === "/listening-experience" ? "#000" : "#fff",
+        // mixBlendMode: "difference",
       }}
       className='fixed top-0 left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out'
     >
@@ -205,56 +205,56 @@ export default function Header() {
             className='cursor-pointer'
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <div className='relative  w-6 h-6 -mt-[6px]'>
+            <div className='relative w-6 h-6 -mt-[6px]'>
               <div
                 ref={(el) => (closeButtonLinesRef.current[0] = el)}
-                className='absolute top-[40%] left-0 w-full h-[1.5px] bg-black origin-center'
+                className='absolute top-[40%] left-0 w-full h-[1.5px] bg-white origin-center'
               ></div>
               <div
                 ref={(el) => (closeButtonLinesRef.current[1] = el)}
-                className='absolute top-[60%] left-0 w-full h-[1.5px] bg-black origin-center'
+                className='absolute top-[60%] left-0 w-full h-[1.5px] bg-white origin-center'
               ></div>
             </div>
           </button>
         </div>
         <div className='hidden relative lg:flex col-span-2 col-start-11 justify-end gap-4'>
           <Link
+            href='/about'
+            className='header-link'
             onClick={(e) => {
               e.preventDefault();
               router.push("/about", {
                 onTransitionReady: pageAnimation,
               });
             }}
-            href='/about'
-            className='header-link'
           >
             <div className={pathname === "/about" ? "italic" : ""}>
               About
             </div>
           </Link>
           <Link
+            href='/work'
+            className='header-link'
             onClick={(e) => {
               e.preventDefault();
               router.push("/work", {
                 onTransitionReady: pageAnimation,
               });
             }}
-            href='/work'
-            className='header-link'
           >
             <div className={pathname === "/work" ? "italic" : ""}>
               Work
             </div>
           </Link>
           <Link
+            href='/listening-experience'
+            className='header-link'
             onClick={(e) => {
               e.preventDefault();
               router.push("/listening-experience", {
                 onTransitionReady: pageAnimation,
               });
             }}
-            href='/listening-experience'
-            className='header-link'
           >
             <div
               className={
@@ -265,14 +265,14 @@ export default function Header() {
             </div>
           </Link>
           <Link
+            href='/contact'
+            className='header-link'
             onClick={(e) => {
               e.preventDefault();
               router.push("/contact", {
                 onTransitionReady: pageAnimation,
               });
             }}
-            href='/contact'
-            className='header-link'
           >
             <div className={pathname === "/contact" ? "italic" : ""}>
               Contact
@@ -284,42 +284,85 @@ export default function Header() {
   );
 }
 
-const pageAnimation = () => {
-  document.documentElement.animate(
+function pageAnimation() {
+  const oldPageAnimation = document.documentElement.animate(
     [
       {
         opacity: 1,
-        scale: 1,
-        transform: "translateY(0)",
+        // transform: "translateY(0)",
       },
       {
-        opacity: 0.5,
-        scale: 0.9,
-        transform: "translateY(-100px)",
+        opacity: 0,
+        // transform: "translateY(-100px)",
       },
     ],
     {
-      duration: 1000,
+      duration: 600,
       easing: "cubic-bezier(0.76, 0, 0.24, 1)",
       fill: "forwards",
-      pseudoElement: "::view-transition-old(root)",
+      pseudoElement: "::view-transition-old(page-content)",
     }
   );
 
-  document.documentElement.animate(
-    [
+  // Wait for old page animation to finish, then start new page animation
+  oldPageAnimation.addEventListener('finish', () => {
+    document.documentElement.animate(
+      [
+        {
+          opacity: 0,
+          // transform: "translateY(100px)",
+        },
+        {
+          opacity: 1,
+          // transform: "translateY(0)",
+        },
+      ],
       {
-        transform: "translateY(100%)",
-      },
-      {
-        transform: "translateY(0)",
-      },
-    ],
-    {
-      duration: 1000,
-      easing: "cubic-bezier(0.76, 0, 0.24, 1)",
-      fill: "forwards",
-      pseudoElement: "::view-transition-new(root)",
-    }
-  );
-};
+        duration: 600,
+        easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+        fill: "forwards",
+        pseudoElement: "::view-transition-new(page-content)",
+      }
+    );
+  });
+}
+
+// const pageAnimation = () => {
+//   document.documentElement.animate(
+//     [
+//       {
+//         opacity: 1,
+//         scale: 1,
+//         transform: "translateY(0)",
+//       },
+//       {
+//         opacity: 0.5,
+//         scale: 0.9,
+//         transform: "translateY(-100px)",
+//       },
+//     ],
+//     {
+//       duration: 1000,
+//       easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+//       fill: "forwards",
+//       pseudoElement: "::view-transition-old(root)",
+//     }
+//   );
+
+//   document.documentElement.animate(
+//     [
+//       {
+//         transform: "translateY(100%)",
+//       },
+//       {
+//         transform: "translateY(0)",
+//       },
+//     ],
+//     {
+//       duration: 1000,
+//       easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+//       fill: "forwards",
+//       pseudoElement: "::view-transition-new(root)",
+//     }
+//   );
+// };

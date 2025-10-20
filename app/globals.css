@@ -11,13 +11,36 @@
 }
 
 body {
-  background: black;
-  /* margin: 14px; */
+  /* background: black; */
+  margin: 14px;
   font-family: "SharpGrotesk", sans-serif;
   line-height: 1.2;
 }
 
-::view-transition-group(root) {
+/* In your globals.css */
+.to-animate {
+  view-transition-name: page-content;
+}
+
+header {
+  view-transition-name: header;
+}
+
+/* Old content fades out */
+::view-transition-old(page-content) {
+  /* animation: fadeOut 600ms cubic-bezier(0.76, 0, 0.24, 1); */
+  animation: none !important;
+}
+
+/* New content waits, then fades in */
+::view-transition-new(page-content) {
+  /* animation: fadeIn 600ms cubic-bezier(0.76, 0, 0.24, 1); */
+  animation: none !important;
+  /* animation-delay: 600ms; */
+  opacity: 0; /* Start invisible */
+}
+
+/* ::view-transition-group(root) {
   z-index: auto !important;
 }
 
@@ -35,7 +58,7 @@ body {
 ::view-transition-old(root) {
   z-index: 1;
   animation: none !important;
-}
+} */
 
 .margin-top {
   margin-top: 120px;

@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
       <html lang='en'>
         <body className={`antialiased`}>
           <Header />
-          <div className="p-[14px] bg-white">{children}</div>
+          <div className='to-animate'>{children}</div>
         </body>
       </html>
     </ViewTransitions>
