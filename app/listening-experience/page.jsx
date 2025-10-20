@@ -6,12 +6,13 @@ export default function ListeningExperience() {
   const headerHeight = useHeaderHeight();
   return (
     <div
-      className='iframe-wrapper'
+      className='iframe-wrapper bg-white'
       style={{
         position: "fixed",
         width: "100%",
         top: headerHeight,
-        bottom: "14px",
+        paddingBottom: "14px",
+        bottom: 0,
         left: 0,
         overflow: "hidden",
         paddingLeft: "14px",

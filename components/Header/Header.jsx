@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import Menu from "../Menu/Menu";
+import { useTransitionRouter } from "next-view-transitions";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,6 +13,8 @@ export default function Header() {
   const pathname = usePathname();
   const videoRef = useRef(null);
   const closeButtonLinesRef = useRef([]);
+
+  const router = useTransitionRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -128,8 +131,10 @@ export default function Header() {
       style={{
         zIndex: 1000,
         transform: `translateY(${isVisible ? "0" : "-100%"})`,
+        color: pathname === "/listening-experience" ? "#000" : "#fff",
+        mixBlendMode: "difference",
       }}
-      className='fixed top-0 left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out mix-blend-difference text-white'
+      className='fixed top-0 left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out'
     >
       {/* <div id='header-bg' className='header-bg absolute -top-[14px] -left-[14px] w-[calc(100%+28px)] h-[calc(100%+14px)] bg-white'></div> */}
       <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
@@ -138,7 +143,14 @@ export default function Header() {
           {pathname === "/listening-experience" ? (
             <Link
               href='/'
-              onClick={() => setMenuOpen(false)}
+              // TODO: combine (menu open false function) with pagetransition
+              // onClick={() => setMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/", {
+                  onTransitionReady: pageAnimation,
+                });
+              }}
               className='cursor-pointer whitespace-nowrap transition-color duration-400'
               style={{ color: menuOpen ? "#FFFFFF" : "#000000" }}
             >
@@ -147,7 +159,14 @@ export default function Header() {
           ) : (
             <Link
               href='/'
-              onClick={() => setMenuOpen(false)}
+              // TODO: combine (menu open false function) with pagetransition
+              // onClick={() => setMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/", {
+                  onTransitionReady: pageAnimation,
+                });
+              }}
               className='cursor-pointer'
               onMouseEnter={() => {
                 if (videoRef.current) {
@@ -199,22 +218,62 @@ export default function Header() {
           </button>
         </div>
         <div className='hidden relative lg:flex col-span-2 col-start-11 justify-end gap-4'>
-          <Link href='/about' className='header-link'>
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/about", {
+                onTransitionReady: pageAnimation,
+              });
+            }}
+            href='/about'
+            className='header-link'
+          >
             <div className={pathname === "/about" ? "italic" : ""}>
               About
             </div>
           </Link>
-          <Link href='/work' className='header-link'>
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/work", {
+                onTransitionReady: pageAnimation,
+              });
+            }}
+            href='/work'
+            className='header-link'
+          >
             <div className={pathname === "/work" ? "italic" : ""}>
               Work
             </div>
           </Link>
-          <Link href='/listening-experience' className='header-link'>
-            <div className={pathname === "/listening-experience" ? "italic" : ""}>
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/listening-experience", {
+                onTransitionReady: pageAnimation,
+              });
+            }}
+            href='/listening-experience'
+            className='header-link'
+          >
+            <div
+              className={
+                pathname === "/listening-experience" ? "italic" : ""
+              }
+            >
               Sound
             </div>
           </Link>
-          <Link href='/contact' className='header-link'>
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/contact", {
+                onTransitionReady: pageAnimation,
+              });
+            }}
+            href='/contact'
+            className='header-link'
+          >
             <div className={pathname === "/contact" ? "italic" : ""}>
               Contact
             </div>
@@ -224,3 +283,43 @@ export default function Header() {
     </header>
   );
 }
+
+const pageAnimation = () => {
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        scale: 1,
+        transform: "translateY(0)",
+      },
+      {
+        opacity: 0.5,
+        scale: 0.9,
+        transform: "translateY(-100px)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        transform: "translateY(100%)",
+      },
+      {
+        transform: "translateY(0)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+      fill: "forwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
+  );
+};

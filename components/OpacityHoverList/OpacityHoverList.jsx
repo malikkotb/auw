@@ -34,7 +34,7 @@ export default function OpacityHoverList({ projects }) {
             {project.title}
           </div>
           <div
-            className='uppercase md:block hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'
+            className='uppercase md:block hidden pt-1 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'
             style={{
               color: hoveredId === project._id ? "white" : "black",
               transition: "none",

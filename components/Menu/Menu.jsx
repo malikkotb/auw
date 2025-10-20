@@ -71,7 +71,7 @@ export default function Menu({ menuOpen, setMenuOpen }) {
       <div
         ref={menuRef}
         style={{
-          zIndex: 100,
+          zIndex: 1000,
           transform: "translateY(-110%)",
           height: "calc(100dvh - 60px)",
           top: 0,
