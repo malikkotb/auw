@@ -16,6 +16,20 @@ const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0]{
   overview,
   year,
   projectUrl,
+  nextProjectTitle,
+  nextProjectLink,
+  nextProjectYear,
+  nextProjectDescription,
+  nextProjectMedia{
+    dimension,
+    type,
+    image{
+      asset->
+    },
+    video{
+      asset->
+    }
+  },
   featuredMedia{
     dimension,
     type,
@@ -112,8 +126,6 @@ export default async function PostPage({ params }) {
     : null;
 
   console.log("project", project);
-
-  console.log("mediaGallery", mediaGallery);
 
   return (
     <main className='h-full w-full'>
@@ -273,7 +285,37 @@ export default async function PostPage({ params }) {
         </div>
       </div>
 
-      <div className='mt-[20%]'>Next Project Page starts here</div>
+      {/* Next Project */}
+      <div className='margin-bottom margin-top h-full w-full flex justify-between'>
+        <div className='flex flex-col'>
+          <div className='h1'>{project.nextProjectTitle}</div>
+          <div className='h1 text-[#838383]'>
+            {project.nextProjectDescription}
+          </div>
+        </div>
+        <div className='h1'>({project.nextProjectYear})</div>
+      </div>
+
+      <div className='grid grid-cols-12 gap-[14px]'>
+        <div className='col-span-12'>
+          <VideoDim
+            colSpan={12}
+            imgLink={
+              project.nextProjectMedia
+                ? getFeaturedMediaUrl(project.nextProjectMedia)
+                : null
+            }
+            videoLink={
+              project.nextProjectMedia &&
+              isVideoUrl(
+                getFeaturedMediaUrl(project.nextProjectMedia)
+              )
+                ? getFeaturedMediaUrl(project.nextProjectMedia)
+                : null
+            }
+          />
+        </div>
+      </div>
     </main>
   );
 }
