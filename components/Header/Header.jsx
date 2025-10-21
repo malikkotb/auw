@@ -5,6 +5,7 @@ import gsap from "gsap";
 import Menu from "../Menu/Menu";
 import { useTransitionRouter } from "next-view-transitions";
 import Link from "next/link";
+import { pageAnimation } from "../../utils/pageAnimation";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -143,13 +144,22 @@ export default function Header() {
           {pathname === "/listening-experience" ? (
             <Link
               href='/'
-              // TODO: combine (menu open false function) with pagetransition
-              // onClick={() => setMenuOpen(false)}
               onClick={(e) => {
                 e.preventDefault();
-                router.push("/", {
-                  onTransitionReady: pageAnimation,
-                });
+                if (pathname !== "/") {
+                  if (menuOpen) {
+                    setMenuOpen(false);
+                    setTimeout(() => {
+                      router.push("/", {
+                        onTransitionReady: pageAnimation,
+                      });
+                    }, 400); // Wait for menu close animation (0.4s duration)
+                  } else {
+                    router.push("/", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }
               }}
               className='cursor-pointer whitespace-nowrap transition-color duration-400'
               style={{ color: menuOpen ? "#FFFFFF" : "#000000" }}
@@ -159,13 +169,22 @@ export default function Header() {
           ) : (
             <Link
               href='/'
-              // TODO: combine (menu open false function) with pagetransition
-              // onClick={() => setMenuOpen(false)}
               onClick={(e) => {
                 e.preventDefault();
-                router.push("/", {
-                  onTransitionReady: pageAnimation,
-                });
+                if (pathname !== "/") {
+                  if (menuOpen) {
+                    setMenuOpen(false);
+                    setTimeout(() => {
+                      router.push("/", {
+                        onTransitionReady: pageAnimation,
+                      });
+                    }, 400); // Wait for menu close animation (0.4s duration)
+                  } else {
+                    router.push("/", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }
               }}
               className='cursor-pointer'
               onMouseEnter={() => {
@@ -223,9 +242,11 @@ export default function Header() {
             className='header-link'
             onClick={(e) => {
               e.preventDefault();
-              router.push("/about", {
-                onTransitionReady: pageAnimation,
-              });
+              if (pathname !== "/about") {
+                router.push("/about", {
+                  onTransitionReady: pageAnimation,
+                });
+              }
             }}
           >
             <div className={pathname === "/about" ? "italic" : ""}>
@@ -237,9 +258,11 @@ export default function Header() {
             className='header-link'
             onClick={(e) => {
               e.preventDefault();
-              router.push("/work", {
-                onTransitionReady: pageAnimation,
-              });
+              if (pathname !== "/work") {
+                router.push("/work", {
+                  onTransitionReady: pageAnimation,
+                });
+              }
             }}
           >
             <div className={pathname === "/work" ? "italic" : ""}>
@@ -251,9 +274,11 @@ export default function Header() {
             className='header-link'
             onClick={(e) => {
               e.preventDefault();
-              router.push("/listening-experience", {
-                onTransitionReady: pageAnimation,
-              });
+              if (pathname !== "/listening-experience") {
+                router.push("/listening-experience", {
+                  onTransitionReady: pageAnimation,
+                });
+              }
             }}
           >
             <div
@@ -269,9 +294,11 @@ export default function Header() {
             className='header-link'
             onClick={(e) => {
               e.preventDefault();
-              router.push("/contact", {
-                onTransitionReady: pageAnimation,
-              });
+              if (pathname !== "/contact") {
+                router.push("/contact", {
+                  onTransitionReady: pageAnimation,
+                });
+              }
             }}
           >
             <div className={pathname === "/contact" ? "italic" : ""}>
@@ -283,86 +310,3 @@ export default function Header() {
     </header>
   );
 }
-
-function pageAnimation() {
-  const oldPageAnimation = document.documentElement.animate(
-    [
-      {
-        opacity: 1,
-        // transform: "translateY(0)",
-      },
-      {
-        opacity: 0,
-        // transform: "translateY(-100px)",
-      },
-    ],
-    {
-      duration: 600,
-      easing: "cubic-bezier(0.76, 0, 0.24, 1)",
-      fill: "forwards",
-      pseudoElement: "::view-transition-old(page-content)",
-    }
-  );
-
-  // Wait for old page animation to finish, then start new page animation
-  oldPageAnimation.addEventListener('finish', () => {
-    document.documentElement.animate(
-      [
-        {
-          opacity: 0,
-          // transform: "translateY(100px)",
-        },
-        {
-          opacity: 1,
-          // transform: "translateY(0)",
-        },
-      ],
-      {
-        duration: 600,
-        easing: "cubic-bezier(0.76, 0, 0.24, 1)",
-        fill: "forwards",
-        pseudoElement: "::view-transition-new(page-content)",
-      }
-    );
-  });
-}
-
-// const pageAnimation = () => {
-//   document.documentElement.animate(
-//     [
-//       {
-//         opacity: 1,
-//         scale: 1,
-//         transform: "translateY(0)",
-//       },
-//       {
-//         opacity: 0.5,
-//         scale: 0.9,
-//         transform: "translateY(-100px)",
-//       },
-//     ],
-//     {
-//       duration: 1000,
-//       easing: "cubic-bezier(0.76, 0, 0.24, 1)",
-//       fill: "forwards",
-//       pseudoElement: "::view-transition-old(root)",
-//     }
-//   );
-
-//   document.documentElement.animate(
-//     [
-//       {
-//         transform: "translateY(100%)",
-//       },
-//       {
-//         transform: "translateY(0)",
-//       },
-//     ],
-//     {
-//       duration: 1000,
-//       easing: "cubic-bezier(0.76, 0, 0.24, 1)",
-//       fill: "forwards",
-//       pseudoElement: "::view-transition-new(root)",
-//     }
-//   );
-// };

@@ -3,13 +3,16 @@ import Link from "next/link";
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { useTransitionRouter } from "next-view-transitions";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FillButton from "../FillButton/FillButton";
+import { pageAnimation } from "../../utils/pageAnimation";
 
 export default function Menu({ menuOpen, setMenuOpen }) {
   const menuRef = useRef(null);
   const pathname = usePathname();
+  const router = useTransitionRouter();
   const linksRef = useRef([]);
   const bgRef = useRef(null);
 
@@ -81,7 +84,17 @@ export default function Menu({ menuOpen, setMenuOpen }) {
       >
         <div className='row-start-2 row-span-2 flex flex-col h2'>
           <Link
-            onClick={() => setMenuOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuOpen(false);
+              setTimeout(() => {
+                if (pathname !== "/about") {
+                  router.push("/about", {
+                    onTransitionReady: pageAnimation,
+                  });
+                }
+              }, 400); // Wait for menu close animation (0.4s duration)
+            }}
             href='/about'
             ref={(el) => (linksRef.current[0] = el)}
             className='footer-link w-fit'
@@ -89,7 +102,17 @@ export default function Menu({ menuOpen, setMenuOpen }) {
             <div>About</div>
           </Link>
           <Link
-            onClick={() => setMenuOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuOpen(false);
+              setTimeout(() => {
+                if (pathname !== "/work") {
+                  router.push("/work", {
+                    onTransitionReady: pageAnimation,
+                  });
+                }
+              }, 400); // Wait for menu close animation (0.4s duration)
+            }}
             href='/work'
             ref={(el) => (linksRef.current[1] = el)}
             className='footer-link w-fit'
@@ -97,7 +120,17 @@ export default function Menu({ menuOpen, setMenuOpen }) {
             <div>Work</div>
           </Link>
           <Link
-            onClick={() => setMenuOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuOpen(false);
+              setTimeout(() => {
+                if (pathname !== "/listening-experience") {
+                  router.push("/listening-experience", {
+                    onTransitionReady: pageAnimation,
+                  });
+                }
+              }, 400); // Wait for menu close animation (0.4s duration)
+            }}
             href='/listening-experience'
             ref={(el) => (linksRef.current[2] = el)}
             className='footer-link w-fit'
@@ -105,7 +138,17 @@ export default function Menu({ menuOpen, setMenuOpen }) {
             <div>Sound</div>
           </Link>
           <Link
-            onClick={() => setMenuOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuOpen(false);
+              setTimeout(() => {
+                if (pathname !== "/contact") {
+                  router.push("/contact", {
+                    onTransitionReady: pageAnimation,
+                  });
+                }
+              }, 400); // Wait for menu close animation (0.4s duration)
+            }}
             href='/contact'
             ref={(el) => (linksRef.current[3] = el)}
             className='footer-link w-fit'

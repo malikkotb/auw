@@ -5,6 +5,8 @@ import OpacityHoverList from "@/components/OpacityHoverList/OpacityHoverList";
 import { useState } from "react";
 import Link from "next/link";
 import ArrowHoverText from "@/components/ArrowHoverText/ArrowHoverText";
+import { pageAnimation } from "@/utils/pageAnimation";
+import { useTransitionRouter } from "next-view-transitions";
 
 // Helper function to check if a URL is a video
 const isVideoUrl = (url) => {
@@ -18,6 +20,7 @@ const isVideoUrl = (url) => {
 export default function WorkClient({ projects }) {
   const [view, setView] = useState("grid");
   const [hoveredId, setHoveredId] = useState(null);
+  const router = useTransitionRouter();
   return (
     <div className='w-full h-full bg-white'>
       <div className='flex flex-col min-h-screen'>
@@ -63,6 +66,17 @@ export default function WorkClient({ projects }) {
                   className='cursor-pointer'
                   onMouseEnter={() => setHoveredId(project._id)}
                   onMouseLeave={() => setHoveredId(null)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push(
+                      `/${project.title
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`,
+                      {
+                        onTransitionReady: pageAnimation,
+                      }
+                    );
+                  }}
                   href={`/${project.title
                     .toLowerCase()
                     .replace(/\s+/g, "-")}`}

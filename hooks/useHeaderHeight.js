@@ -11,7 +11,6 @@ export const useHeaderHeight = () => {
       if (header) {
         // Get the actual rendered height including padding and borders
         const height = header.getBoundingClientRect().height;
-        console.log("Header height updated:", height + "px");
         setHeaderHeight(height);
       }
     };

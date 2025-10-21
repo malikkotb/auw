@@ -14,14 +14,14 @@
 
 ☐ add loading animation lottie file to home page
 
-☐ page transitions on all pages
-☐ add page transiton links to links in Menu component
-
-☐ add slide in animatinos on viewport enter (for case study and every section for that matter, mimicing area17)
 
 ☐ edits in Figma: "Final Site Edits"
 
-☐ intro animation for headings on all pages like area17 but add a slight subtle stagger animation to the text
+☐ intro animation for headings on all pages like area17 but add a slight
+ ☐ subtle fadeUp (translateY) animation on the content
+
+ ☐ add slide in animatinos on viewport enter (for case study and every section for that matter, mimicking area17)
+
 
 ☐ Make logo video bit bigger, roughly same size as h1 text
 

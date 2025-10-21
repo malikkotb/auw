@@ -4,8 +4,10 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import FillButton from "../FillButton/FillButton";
 import FillLink from "../FillButton/FillLink";
+import { useTransitionRouter } from "next-view-transitions";
+import { usePathname } from "next/navigation";
+import { pageAnimation } from "@/utils/pageAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +15,8 @@ export default function Footer() {
   //   const footerRef = useRef(null);
   const footerVideoWrapperRef = useRef(null);
   const footerNavRef = useRef(null);
+  const router = useTransitionRouter();
+  const pathname = usePathname();
   useEffect(() => {
     // Helpers to avoid AbortError
     const safePlay = (video) => {
@@ -140,16 +144,57 @@ export default function Footer() {
               Navigation
             </div>
             <div className='uppercase flex gap-2'>
-              <Link href='/work' className='footer-link'>
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/work") {
+                    router.push("/work", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }}
+                href='/work'
+                className='footer-link'
+              >
                 Work
               </Link>
-              <Link href='/about' className='footer-link'>
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/about") {
+                    router.push("/about", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }}
+                href='/about'
+                className='footer-link'
+              >
                 About
               </Link>
-              <Link href='/contact' className='footer-link'>
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/contact") {
+                    router.push("/contact", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }}
+                href='/contact'
+                className='footer-link'
+              >
                 Contact
               </Link>
               <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/listening-experience") {
+                    router.push("/listening-experience", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }}
                 href='/listening-experience'
                 className='whitespace-nowrap footer-link'
               >
@@ -158,7 +203,18 @@ export default function Footer() {
             </div>
           </div>
           <div className='col-span-2 uppercase justify-end flex items-end'>
-            <Link href='/privacy' className='footer-link'>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/privacy") {
+                  router.push("/privacy", {
+                    onTransitionReady: pageAnimation,
+                  });
+                }
+              }}
+              href='/privacy'
+              className='footer-link'
+            >
               Privacy Policy
             </Link>
           </div>
@@ -194,16 +250,57 @@ export default function Footer() {
           <div className='col-span-3 flex flex-col'>
             <div className='uppercase text-[#626262]'>Navigation</div>
             <div className='uppercase flex gap-2'>
-              <Link href='/work' className='footer-link'>
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/work") {
+                    router.push("/work", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }}
+                href='/work'
+                className='footer-link'
+              >
                 Work
               </Link>
-              <Link href='/about' className='footer-link'>
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/about") {
+                    router.push("/about", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }}
+                href='/about'
+                className='footer-link'
+              >
                 About
               </Link>
-              <Link href='/contact' className='footer-link'>
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/contact") {
+                    router.push("/contact", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }}
+                href='/contact'
+                className='footer-link'
+              >
                 Contact
               </Link>
               <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/listening-experience") {
+                    router.push("/listening-experience", {
+                      onTransitionReady: pageAnimation,
+                    });
+                  }
+                }}
                 href='/listening-experience'
                 className='footer-link'
               >
@@ -212,7 +309,18 @@ export default function Footer() {
             </div>
           </div>
           <div className='col-span-2 uppercase'>
-            <Link href='/privacy' className='footer-link'>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/privacy") {
+                  router.push("/privacy", {
+                    onTransitionReady: pageAnimation,
+                  });
+                }
+              }}
+              href='/privacy'
+              className='footer-link'
+            >
               Privacy Policy
             </Link>
           </div>
