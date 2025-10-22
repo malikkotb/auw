@@ -1,13 +1,16 @@
 export default function IndexPage() {
   return (
     <div className='h-full w-full bg-white'>
-      <div className='flex flex-col min-h-screen'>
-        <div className='h1 margin-top margin-bottom'>
+      <div
+        style={{ height: "calc(100vh - 28px)" }}
+        className='flex flex-col relative'
+      >
+        <div className='h1 text-26 flex-grow items-center flex h-full lg:margin-top lg:margin-bottom'>
           We are a design studio that helps brands realize their
           identity and execute it across branding, digital and
           physical mediums.
         </div>
-        <div className='w-full flex h-full aspect-video overflow-clip relative'>
+        <div className='w-full flex h-fit aspect-video overflow-clip'>
           <img
             src='/images/about_auw.png'
             alt='about'

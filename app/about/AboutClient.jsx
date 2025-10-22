@@ -65,23 +65,33 @@ export default function AboutClient({ clientsData }) {
   return (
     <div className='h-full w-full bg-white'>
       <div className='flex flex-col min-h-screen'>
-        <motion.div
-          className='h1 margin-top margin-bottom'
-          {...fadeInUp}
+        <div
+          style={{ height: "calc(100vh - 28px)" }}
+          className='flex flex-col relative'
         >
-          We turn ideas into brands people instantly understand.
-        </motion.div>
-        <motion.div
-          className='w-full h-full grid grid-cols-12 gap-[14px]'
-          {...fadeInUp}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        >
-          <img
-            src='/images/about_auw.png'
-            alt='about'
-            className='col-span-12 w-full h-full object-cover'
-          />
-        </motion.div>
+          <motion.div
+            className='h1 text-26 flex-grow items-center flex h-full lg:margin-top lg:margin-bottom'
+            {...fadeInUp}
+          >
+            We turn ideas into brands people instantly understand.
+          </motion.div>
+          <motion.div
+            className='w-full flex h-fit aspect-video overflow-clip'
+            {...fadeInUp}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+          >
+            <img
+              src='/images/about_auw.png'
+              alt='about'
+              className='col-span-12 w-full h-full object-cover'
+            />
+          </motion.div>
+        </div>
+
         <motion.div
           className='pt-[34px] flex flex-col gap-2'
           {...fadeInUp}
