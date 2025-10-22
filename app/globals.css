@@ -26,17 +26,16 @@ header {
   view-transition-name: header;
 }
 
+/* globals css */
+
 /* Old content fades out */
 ::view-transition-old(page-content) {
-  /* animation: fadeOut 600ms cubic-bezier(0.76, 0, 0.24, 1); */
   animation: none !important;
 }
 
 /* New content waits, then fades in */
 ::view-transition-new(page-content) {
-  /* animation: fadeIn 600ms cubic-bezier(0.76, 0, 0.24, 1); */
   animation: none !important;
-  /* animation-delay: 600ms; */
   opacity: 0; /* Start invisible */
 }
 
@@ -66,6 +65,19 @@ header {
 
 .margin-bottom {
   margin-bottom: 120px;
+}
+
+/* Reusable fade-in with translate animation */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(10%);
+  transition: opacity 0.6s cubic-bezier(0.76, 0, 0.24, 1),
+    transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.fade-in-up.animate {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .h1 {

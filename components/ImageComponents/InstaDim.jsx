@@ -1,5 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { blurIn } from "@/utils/animations";
+
 export default function InstaDim({ colSpan, imgLink, videoLink }) {
   // Create a mapping for column span classes
   const getColSpanClass = (span) => {
@@ -19,60 +22,55 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
     };
     return classes[span] || "sm:col-span-12";
   };
-  // Add functionaltiy, if both imgLink and videoLink are provided, show the video
-  if (imgLink && videoLink) {
-    return (
-      <div
-        className={`${getColSpanClass(
-          colSpan
-        )} col-span-12 aspect-[4/5] w-full`}
-      >
-        <video
-          src={videoLink}
-          muted
-          playsInline
-          autoPlay
-          loop
-          className='w-full h-full object-cover'
-        ></video>
-      </div>
-    );
+
+  // If neither imgLink nor videoLink are provided, show nothing
+  if (!imgLink && !videoLink) {
+    return null;
   }
-  // if only imgLink is provided, show the img
-  if (imgLink) {
-    return (
-      <div
-        className={`${getColSpanClass(
-          colSpan
-        )} col-span-12 aspect-[4/5] w-full`}
+
+  return (
+    <div className={`${getColSpanClass(colSpan)} col-span-12 aspect-[4/5] w-full relative`}>
+      {/* Gray background placeholder */}
+      <div className="absolute inset-0 bg-gray-300 w-full h-full" />
+      
+      {/* Animated content with blur effect */}
+      <motion.div 
+        className="absolute inset-0 w-full h-full"
+        {...blurIn}
       >
-        <img
-          src={imgLink}
-          alt='about'
-          className='w-full h-full object-cover'
-        />
-      </div>
-    );
-  }
-  // if only videoLink is provided, show the video
-  if (videoLink) {
-    return (
-      <div
-        className={`${getColSpanClass(
-          colSpan
-        )} col-span-12 aspect-[4/5] w-full`}
-      >
-        <video
-          src={videoLink}
-          muted
-          playsInline
-          autoPlay
-          loop
-          className='w-full h-full object-cover'
-        ></video>
-      </div>
-    );
-  }
-  // if neither imgLink nor videoLink are provided, show nothing
-  return null;
+        {/* Show video if both imgLink and videoLink are provided */}
+        {imgLink && videoLink && (
+          <video
+            src={videoLink}
+            muted
+            playsInline
+            autoPlay
+            loop
+            className='w-full h-full object-cover'
+          />
+        )}
+        
+        {/* Show image if only imgLink is provided */}
+        {imgLink && !videoLink && (
+          <img
+            src={imgLink}
+            alt='about'
+            className='w-full h-full object-cover'
+          />
+        )}
+        
+        {/* Show video if only videoLink is provided */}
+        {videoLink && !imgLink && (
+          <video
+            src={videoLink}
+            muted
+            playsInline
+            autoPlay
+            loop
+            className='w-full h-full object-cover'
+          />
+        )}
+      </motion.div>
+    </div>
+  );
 }

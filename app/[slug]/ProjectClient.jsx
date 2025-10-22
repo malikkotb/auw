@@ -238,6 +238,7 @@ export default function ProjectClient({
             e.preventDefault();
             
             router.push(`/${project.nextProjectLink}`, {
+                
               onTransitionReady: pageAnimation,
             //   scroll: false, // Prevent automatic scroll to top
             });

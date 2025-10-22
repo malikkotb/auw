@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Link from "next/link";
 import { pageAnimation } from "@/utils/pageAnimation";
 import { useTransitionRouter } from "next-view-transitions";
-
+import { motion } from "framer-motion";
+import { staggerVariants } from "@/utils/animations";
 // Helper function to check if a URL is a video
 const isVideoUrl = (url) => {
   if (!url) return false;
@@ -22,10 +22,17 @@ export default function OpacityHoverList({ projects }) {
   );
 
   return (
-    <div className='relative flex flex-col w-full border-t border-black'>
+    <motion.div
+      className='relative flex flex-col w-full'
+      variants={staggerVariants.container}
+      initial='initial'
+      whileInView='whileInView'
+      viewport={{ once: true, margin: "-50px" }}
+    >
       {projects.map((project) => (
-        <Link
+        <motion.button
           key={project._id}
+          variants={staggerVariants.item}
           onClick={(e) => {
             e.preventDefault();
             router.push(
@@ -35,12 +42,11 @@ export default function OpacityHoverList({ projects }) {
               }
             );
           }}
-          href={`/${project.title
-            .toLowerCase()
-            .replace(/\s+/g, "-")}`}
           onMouseEnter={() => setHoveredId(project._id)}
           onMouseLeave={() => setHoveredId(null)}
-          className='flex h1 cursor-pointer relative w-full justify-between border-b pt-2 pb-1 border-black'
+          className={`flex h1 cursor-pointer relative w-full justify-between border-b pt-2 pb-1 border-black ${
+            projects.indexOf(project) === 0 ? "border-t" : ""
+          }`}
           style={{
             backgroundColor:
               hoveredId === project._id ? "black" : "transparent",
@@ -77,7 +83,7 @@ export default function OpacityHoverList({ projects }) {
           >
             ({project.year})
           </div>
-        </Link>
+        </motion.button>
       ))}
 
       {/* Pinned image in bottom right corner */}
@@ -129,6 +135,6 @@ export default function OpacityHoverList({ projects }) {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

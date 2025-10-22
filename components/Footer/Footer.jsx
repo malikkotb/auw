@@ -8,6 +8,8 @@ import FillLink from "../FillButton/FillLink";
 import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { pageAnimation } from "@/utils/pageAnimation";
+import { motion } from "framer-motion";
+import { fadeInUp, growFromLeft } from "@/utils/animations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,8 +91,20 @@ export default function Footer() {
   return (
     <footer className='mt-[14px] w-full h-full text-body relative'>
       <div className='footer-wrapper w-full h-full bg-white sticky top-0 pt-[14px] z-10'>
-        <div className='footer-header w-full h-full'>
-          <div className='h-[1px] w-full bg-black'></div>
+        <motion.div
+          className='footer-header w-full h-full'
+          // {...fadeInUp}
+          // transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
+          <motion.div
+            className='h-[1px] w-full bg-black'
+            // {...growFromLeft}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeInOut",
+            //   delay: 0.4,
+            // }}
+          />{" "}
           <div className='flex flex-col gap-3 mt-5 mb-24'>
             <div className='h1'>
               Excited to see how we can collaborate.
@@ -99,13 +113,29 @@ export default function Footer() {
               <FillLink text='Book a call' />
             </div>
           </div>
-          <div className='h-[1px] w-full bg-black'></div>
-        </div>
+          <motion.div
+            className='h-[1px] w-full bg-black'
+            // {...growFromLeft}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeInOut",
+            //   delay: 0.6,
+            // }}
+          />
+        </motion.div>
         <div
           ref={footerNavRef}
           className='hidden lg:grid grid-cols-12 py-[14px] gap-[14px]'
         >
-          <div className='col-span-4 flex flex-col'>
+          <motion.div
+            className='col-span-4 flex flex-col'
+            // {...fadeInUp}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeOut",
+            //   delay: 0.1,
+            // }}
+          >
             <div
               style={{ letterSpacing: "0.14px" }}
               className='uppercase text-[#626262]'
@@ -113,8 +143,16 @@ export default function Footer() {
               DESIGN WITH PURPOSE.
             </div>
             <div className='uppercase'>© A UNIFIED WHOLE LLC</div>
-          </div>
-          <div className='col-span-3 flex flex-col'>
+          </motion.div>
+          <motion.div
+            className='col-span-3 flex flex-col'
+            // {...fadeInUp}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeOut",
+            //   delay: 0.2,
+            // }}
+          >
             <div
               style={{ letterSpacing: "0.14px" }}
               className='uppercase text-[#626262]'
@@ -135,8 +173,16 @@ export default function Footer() {
                 LinkedIn
               </a>
             </div>
-          </div>
-          <div className='col-span-3 flex flex-col'>
+          </motion.div>
+          <motion.div
+            className='col-span-3 flex flex-col'
+            // {...fadeInUp}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeOut",
+            //   delay: 0.3,
+            // }}
+          >
             <div
               style={{ letterSpacing: "0.14px" }}
               className='uppercase text-[#626262]'
@@ -201,8 +247,16 @@ export default function Footer() {
                 Listening Experience
               </Link>
             </div>
-          </div>
-          <div className='col-span-2 uppercase justify-end flex items-end'>
+          </motion.div>
+          <motion.div
+            className='col-span-2 uppercase justify-end flex items-end'
+            // {...fadeInUp}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeOut",
+            //   delay: 0.4,
+            // }}
+          >
             <Link
               onClick={(e) => {
                 e.preventDefault();
@@ -217,18 +271,34 @@ export default function Footer() {
             >
               Privacy Policy
             </Link>
-          </div>
+          </motion.div>
         </div>
 
         {/* mobile footer nav: */}
         <div className='lg:hidden flex flex-col my-[14px] gap-[14px]'>
-          <div className='col-span-4 flex flex-col'>
+          <motion.div
+            className='col-span-4 flex flex-col'
+            // {...fadeInUp}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeOut",
+            //   delay: 0.1,
+            // }}
+          >
             <div className=''>A Unified Whole®</div>
             <div className='uppercase text-[#626262]'>
               A Multipurpose Design Studio
             </div>
-          </div>
-          <div className='col-span-3 flex flex-col'>
+          </motion.div>
+          <motion.div
+            className='col-span-3 flex flex-col'
+            // {...fadeInUp}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeOut",
+            //   delay: 0.2,
+            // }}
+          >
             <div className='uppercase text-[#626262]'>Follow Us</div>
             <div className='uppercase flex gap-2'>
               <a
@@ -246,8 +316,16 @@ export default function Footer() {
                 LinkedIn
               </a>
             </div>
-          </div>
-          <div className='col-span-3 flex flex-col'>
+          </motion.div>
+          <motion.div
+            className='col-span-3 flex flex-col'
+            // {...fadeInUp}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeOut",
+            //   delay: 0.3,
+            // }}
+          >
             <div className='uppercase text-[#626262]'>Navigation</div>
             <div className='uppercase flex gap-2'>
               <Link
@@ -307,8 +385,16 @@ export default function Footer() {
                 Listening Experience
               </Link>
             </div>
-          </div>
-          <div className='col-span-2 uppercase'>
+          </motion.div>
+          <motion.div
+            className='col-span-2 uppercase'
+            // {...fadeInUp}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeOut",
+            //   delay: 0.4,
+            // }}
+          >
             <Link
               onClick={(e) => {
                 e.preventDefault();
@@ -323,7 +409,7 @@ export default function Footer() {
             >
               Privacy Policy
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
       <div

@@ -7,9 +7,10 @@ import Footer from "@/components/Footer/Footer";
 import gsap from "gsap";
 import FillLink from "@/components/FillButton/FillLink";
 import ArrowLink from "@/components/ArrowLink/ArrowLink";
+import { motion } from "framer-motion";
+import { fadeInUp } from "@/utils/animations";
 
 export default function AboutClient({ clientsData }) {
-
   const headerHeight = useHeaderHeight();
   const [hoveredIndex, setHoveredIndex] = useState(
     clientsData.length - 1
@@ -64,17 +65,28 @@ export default function AboutClient({ clientsData }) {
   return (
     <div className='h-full w-full bg-white'>
       <div className='flex flex-col min-h-screen'>
-        <div className='h1 margin-top margin-bottom'>
+        <motion.div
+          className='h1 margin-top margin-bottom'
+          {...fadeInUp}
+        >
           We turn ideas into brands people instantly understand.
-        </div>
-        <div className='w-full h-full grid grid-cols-12 gap-[14px]'>
+        </motion.div>
+        <motion.div
+          className='w-full h-full grid grid-cols-12 gap-[14px]'
+          {...fadeInUp}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
           <img
             src='/images/about_auw.png'
             alt='about'
             className='col-span-12 w-full h-full object-cover'
           />
-        </div>
-        <div className='pt-[34px] flex flex-col gap-2'>
+        </motion.div>
+        <motion.div
+          className='pt-[34px] flex flex-col gap-2'
+          {...fadeInUp}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
           <p className='eyebrow'>Our Mission</p>
           <div className='grid grid-cols-12'>
             <div className='h1 col-span-12'>
@@ -87,11 +99,19 @@ export default function AboutClient({ clientsData }) {
           <div className='w-fit'>
             <FillLink text='Contact Us' />
           </div>
-        </div>
+        </motion.div>
 
         {/* Capabilities, Clients, Press */}
         <div className='mt-[120px] md:mt-[240px] grid grid-cols-12 gap-[14px]'>
-          <div className='md:col-span-3 col-span-12'>
+          <motion.div
+            className='md:col-span-3 col-span-12'
+            {...fadeInUp}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+          >
             <p className='eyebrow'>Capabilities</p>
             <div className='h-[1px] w-full bg-[#838383] mt-1 mb-2'></div>
             {capabilities.map((capability, index) => (
@@ -99,8 +119,16 @@ export default function AboutClient({ clientsData }) {
                 {capability}
               </div>
             ))}
-          </div>
-          <div className='md:col-span-3 col-span-12'>
+          </motion.div>
+          <motion.div
+            className='md:col-span-3 col-span-12'
+            {...fadeInUp}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: 0.4,
+            }}
+          >
             <p className='eyebrow'>Clients</p>
             <div className='h-[1px] w-full bg-[#838383] mt-1 mb-2'></div>
             <div className='flex flex-col'>
@@ -115,8 +143,16 @@ export default function AboutClient({ clientsData }) {
               ))}
             </div>
             <div className='external-link'>& More</div>
-          </div>
-          <div className='md:col-span-3 col-span-12'>
+          </motion.div>
+          <motion.div
+            className='md:col-span-3 col-span-12'
+            {...fadeInUp}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: 0.6,
+            }}
+          >
             <p className='eyebrow'>Press</p>
             <div className='h-[1px] w-full bg-[#838383] mt-1 mb-2'></div>
             <div className='flex flex-col'>
@@ -128,8 +164,16 @@ export default function AboutClient({ clientsData }) {
                 />
               ))}
             </div>
-          </div>
-          <div className='relative aspect-[4/5] md:col-span-3 col-span-6 md:col-start-11 w-full mt-[18px]'>
+          </motion.div>
+          <motion.div
+            className='relative aspect-[4/5] md:col-span-3 col-span-6 md:col-start-11 w-full mt-[18px]'
+            {...fadeInUp}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: 0.8,
+            }}
+          >
             <div className='flex flex-col'>
               {clientsData.map((client, index) => (
                 <img
@@ -144,7 +188,7 @@ export default function AboutClient({ clientsData }) {
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       <Footer />

@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import FillButton from "@/components/FillButton/FillButton";
 import Footer from "@/components/Footer/Footer";
 import ArrowLink from "@/components/ArrowLink/ArrowLink";
 import { useHeaderHeight } from "@/hooks/useHeaderHeight";
+import { motion } from "framer-motion";
+import { fadeInUp, growFromLeft } from "@/utils/animations";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -72,39 +74,83 @@ export default function Contact() {
 
   const headerHeight = useHeaderHeight();
 
+  // Ensure page scrolls to top on mount
+  useEffect(() => {
+    // Use setTimeout to ensure DOM is fully rendered
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className='w-full h-full bg-white'>
       <div className='flex flex-col min-h-screen'>
-        <div className='h1 margin-top margin-bottom'>
+        <motion.div
+          className='h1 margin-top margin-bottom'
+          {...fadeInUp}
+        >
           We're excited to collaborate.
-        </div>
-        <div className='space-y-2 h-full'>
+        </motion.div>
+        <motion.div
+          className='space-y-2 h-full'
+          {...fadeInUp}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
           {/* Name Field */}
-          <div className='border-b border-t pb-1 pt-2 border-black'>
+          <div className=''>
+            <motion.div
+              className='h-[1px] w-full bg-black'
+              {...growFromLeft}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.3,
+              }}
+            />
             <input
               type='text'
               name='name'
               placeholder='NAME'
               value={formData.name}
               onChange={handleChange}
-              className='w-full h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+              className='w-full pb-1 pt-2 h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+            />
+            <motion.div
+              className='h-[1px] w-full bg-black'
+              {...growFromLeft}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.4,
+              }}
             />
           </div>
 
           {/* Email Field */}
-          <div className='border-b pb-1 border-black'>
+          <div className=''>
             <input
               type='email'
               name='email'
               placeholder='EMAIL'
               value={formData.email}
               onChange={handleChange}
-              className='w-full h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+              className='w-full pb-1 pt-0 h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+            />
+            <motion.div
+              className='h-[1px] w-full bg-black'
+              {...growFromLeft}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.5,
+              }}
             />
           </div>
 
           {/* Message Field */}
-          <div className='border-b border-black'>
+          <div>
             <textarea
               name='message'
               placeholder='How can we help?'
@@ -114,15 +160,26 @@ export default function Contact() {
               // rows={window.innerWidth < 1536 ? "10" : "8"}
               className='w-full h-full placeholder-[#838383] h1 bg-transparent border-none outline-none focus:ring-0 resize-none'
             />
+            <motion.div
+              className='h-[1px] w-full bg-black'
+              {...growFromLeft}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.6,
+              }}
+            />
           </div>
 
           {/* Error Message */}
           {error && <div className='text-red-500 mt-4'>{error}</div>}
-        </div>
+        </motion.div>
         {/* Submit Button */}
-        <div
+        <motion.div
           className='w-full mt-5 grid grid-cols-12 gap-[14px]'
           onClick={!isLoading ? handleSubmit : undefined}
+          {...fadeInUp}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
         >
           <div className='md:col-span-2 col-span-4'>
             <FillButton
@@ -130,18 +187,30 @@ export default function Contact() {
               text={isLoading ? "Sending..." : "Submit"}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className='grid grid-cols-12 gap-[14px]'>
-        <div className='lg:col-start-7 col-span-6 md:col-span-4 lg:col-span-3 w-full h-full aspect-[4/5]'>
+      <motion.div
+        className='grid grid-cols-12 gap-[14px]'
+        {...fadeInUp}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
+      >
+        <motion.div
+          className='lg:col-start-7 col-span-6 md:col-span-4 lg:col-span-3 w-full h-full aspect-[4/5]'
+          {...fadeInUp}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.9 }}
+        >
           <img
             src='images/jeff.png'
             className='object-cover w-full h-full'
             alt=''
           />
-        </div>
-        <div className='lg:col-start-10 lg:col-span-3 col-span-6'>
+        </motion.div>
+        <motion.div
+          className='lg:col-start-10 lg:col-span-3 col-span-6'
+          {...fadeInUp}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 1.0 }}
+        >
           <div className='flex flex-col gap-2'>
             <div>
               <p className='eyebrow'>General Inquiries</p>
@@ -172,8 +241,8 @@ export default function Contact() {
               <div className='external-link'>Jeff Visoky</div>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <Footer />
     </div>

@@ -7,21 +7,20 @@
 ✔ Header @started(25-10-04 12:41) @done(25-10-04 13:33) @lasted(52m22s)
 ✔ footer design @started(25-10-04 11:41) @done(25-10-04 12:40) @lasted(59m43s)
 ✔ make sound page full screen and not scrollable @started(25-10-13 09:14) @done(25-10-13 09:14) @lasted(27s)
-☐ add lazy blur plaiceholder images: https://blog.olivierlarose.com/articles/placeholder-guide-using-next-image
+✔ add lazy blur plaiceholder images: https://blog.olivierlarose.com/articles/placeholder-guide-using-next-image @done(25-10-22 11:16)
 
 ☐ page transition on case study pages, where you scroll past enough it then goes to that link
 
 ☐ add loading animation lottie file to home page
+
+☐ mix blend mode for header
+
+☐ fix height of the arrows in ArrowLink component
 
 ☐ edits in Figma: "Final Site Edits"
 
 ☐ intro animation for headings on all pages like area17 but add a slight
  ☐ subtle fadeUp (translateY) animation on the content
 
- ☐ add slide in animatinos on viewport enter (for case study and every section for that matter, mimicking area17)
-
 
 ☐ Make logo video bit bigger, roughly same size as h1 text
-
-✔ Add cms for client section and thumbnails associated with them @started(25-10-18 12:16) @done(25-10-18 12:24) @lasted(8m27s)
-✔ add view project similar to last web design, use our new arrow and animation with that arrow @started(25-10-17 20:26) @done(25-10-18 12:07) @lasted(15h41m12s)

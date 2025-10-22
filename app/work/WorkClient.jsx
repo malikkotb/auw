@@ -3,10 +3,11 @@
 import Footer from "@/components/Footer/Footer";
 import OpacityHoverList from "@/components/OpacityHoverList/OpacityHoverList";
 import { useState } from "react";
-import Link from "next/link";
 import ArrowHoverText from "@/components/ArrowHoverText/ArrowHoverText";
 import { pageAnimation } from "@/utils/pageAnimation";
 import { useTransitionRouter } from "next-view-transitions";
+import { fadeInUp } from "@/utils/animations";
+import { motion } from "framer-motion";
 
 // Helper function to check if a URL is a video
 const isVideoUrl = (url) => {
@@ -24,7 +25,10 @@ export default function WorkClient({ projects }) {
   return (
     <div className='w-full h-full bg-white'>
       <div className='flex flex-col min-h-screen'>
-        <div className='h1 margin-top margin-bottom flex items-center justify-between'>
+        <motion.div
+          {...fadeInUp}
+          className='h1 margin-top margin-bottom flex items-center justify-between'
+        >
           <div>
             ALL PROJECTS <span>({projects.length})</span>
           </div>
@@ -56,13 +60,19 @@ export default function WorkClient({ projects }) {
               LIST
             </span>
           </div>
-        </div>
+        </motion.div>
         {view === "grid" && (
           <div className='flex flex-col gap-12'>
             <div className='flex flex-col gap-8'>
               {projects.map((project) => (
-                <Link
+                <motion.button
                   key={project._id}
+                  {...fadeInUp}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: 0.2,
+                  }}
                   className='cursor-pointer'
                   onMouseEnter={() => setHoveredId(project._id)}
                   onMouseLeave={() => setHoveredId(null)}
@@ -77,9 +87,6 @@ export default function WorkClient({ projects }) {
                       }
                     );
                   }}
-                  href={`/${project.title
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
                 >
                   <div className='w-full h-full pb-1 aspect-video'>
                     {isVideoUrl(project.mediaUrl) ? (
@@ -101,7 +108,7 @@ export default function WorkClient({ projects }) {
                   </div>
 
                   <div className='flex justify-between'>
-                    <div className='flex flex-col'>
+                    <div className='flex items-start flex-col'>
                       <h3 className='uppercase projects-eyebrow'>
                         {project.title}
                       </h3>
@@ -116,7 +123,7 @@ export default function WorkClient({ projects }) {
                       />
                     </div>
                   </div>
-                </Link>
+                </motion.button>
               ))}
             </div>
           </div>
