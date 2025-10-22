@@ -87,10 +87,7 @@ export default function Contact() {
   return (
     <div className='w-full h-full bg-white'>
       <div className='flex flex-col min-h-screen'>
-        <div
-          style={{ height: "calc(100vh - 28px)" }}
-          className='flex flex-col relative'
-        >
+        <div className='flex flex-col relative h-[calc(100vh-28px)] 2xl:h-[150vh]'>
           <motion.div
             className='h1 text-26 flex-grow items-center flex h-full lg:margin-top lg:margin-bottom'
             {...fadeInUp}
