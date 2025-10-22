@@ -6,10 +6,10 @@ import { blurIn } from "@/utils/animations";
 export default function VideoDim({ colSpan, imgLink, videoLink }) {
   return (
     <div
-      className={`col-span-${colSpan} aspect-video w-full h-full relative overflow-hidden`}
+      className={`col-span-${colSpan} aspect-video w-full h-full relative overflow-hidden max-h-[calc(100vh-28px)]`}
     >
       {/* Gray background placeholder */}
-      <div className='absolute inset-0 bg-gray-300 w-full h-full' />
+      <div className='absolute inset-0 bg-gray-300 w-full h-full ' />
 
       {/* Animated content with blur effect */}
       <motion.div
@@ -24,7 +24,7 @@ export default function VideoDim({ colSpan, imgLink, videoLink }) {
             playsInline
             autoPlay
             loop
-            className='w-full h-full object-cover'
+            className='w-full h-full object-fill '
           />
         )}
 
@@ -33,7 +33,7 @@ export default function VideoDim({ colSpan, imgLink, videoLink }) {
           <img
             src={imgLink}
             alt='about'
-            className='w-full h-full object-cover'
+            className='w-full h-full object-fill '
           />
         )}
 
@@ -45,7 +45,7 @@ export default function VideoDim({ colSpan, imgLink, videoLink }) {
             playsInline
             autoPlay
             loop
-            className='w-full h-full object-cover'
+            className='w-full h-full object-fill '
           />
         )}
       </motion.div>

@@ -1,8 +1,22 @@
 export default function IndexPage() {
   return (
     <div className='h-full w-full bg-white'>
-      <div className='flex flex-col relative h-[calc(100vh-28px)] 2xl:h-[150vh]'>
-        <div className='h1 text-26 flex-grow items-center flex h-full lg:margin-top lg:margin-bottom'>
+      <div className='hidden lg:flex flex-col min-h-screen'>
+        <div className='h1 margin-top margin-bottom'>
+          We are a design studio that helps brands realize their
+          identity and execute it across branding, digital and
+          physical mediums.
+        </div>
+        <div className='w-full flex h-full aspect-video overflow-clip relative'>
+          <img
+            src='/images/about_auw.png'
+            alt='about'
+            className='col-span-12 w-full h-full object-cover'
+          />
+        </div>
+      </div>
+      <div className='flex lg:hidden flex-col relative h-[calc(100vh-28px)]'>
+        <div className='h1 text-26 items-center flex h-full lg:margin-top lg:margin-bottom'>
           We are a design studio that helps brands realize their
           identity and execute it across branding, digital and
           physical mediums.

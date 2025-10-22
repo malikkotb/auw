@@ -29,13 +29,17 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
   }
 
   return (
-    <div className={`${getColSpanClass(colSpan)} col-span-12 aspect-[4/5] w-full relative`}>
+    <div
+      className={`${getColSpanClass(
+        colSpan
+      )} col-span-12 aspect-[4/5] w-full relative max-h-[calc(100vh-28px)]`}
+    >
       {/* Gray background placeholder */}
-      <div className="absolute inset-0 bg-gray-300 w-full h-full" />
-      
+      <div className='absolute inset-0 bg-gray-300 w-full h-full ' />
+
       {/* Animated content with blur effect */}
-      <motion.div 
-        className="absolute inset-0 w-full h-full"
+      <motion.div
+        className='absolute inset-0 w-full h-full'
         {...blurIn}
       >
         {/* Show video if both imgLink and videoLink are provided */}
@@ -46,19 +50,19 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
             playsInline
             autoPlay
             loop
-            className='w-full h-full object-cover'
+            className='w-full h-full object-fill '
           />
         )}
-        
+
         {/* Show image if only imgLink is provided */}
         {imgLink && !videoLink && (
           <img
             src={imgLink}
             alt='about'
-            className='w-full h-full object-cover'
+            className='w-full h-full object-fill  '
           />
         )}
-        
+
         {/* Show video if only videoLink is provided */}
         {videoLink && !imgLink && (
           <video
@@ -67,7 +71,7 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
             playsInline
             autoPlay
             loop
-            className='w-full h-full object-cover'
+            className='w-full h-full object-fill '
           />
         )}
       </motion.div>
