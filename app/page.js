@@ -1,13 +1,13 @@
 export default function IndexPage() {
   return (
     <div className='h-full w-full bg-white'>
-      <div className='hidden lg:flex flex-col min-h-screen'>
-        <div className='h1 margin-top margin-bottom'>
+      <div className='flex flex-col h-[calc(100vh-28px)] desktop:min-h-screen'>
+        <div className='h1 text-26 items-center flex h-full desktop:margin-top desktop:margin-bottom'>
           We are a design studio that helps brands realize their
           identity and execute it across branding, digital and
           physical mediums.
         </div>
-        <div className='w-full flex h-full aspect-video overflow-clip relative'>
+        <div className='w-full flex desktop:h-full h-fit aspect-video overflow-clip'>
           <img
             src='/images/about_auw.png'
             alt='about'
@@ -15,8 +15,8 @@ export default function IndexPage() {
           />
         </div>
       </div>
-      <div className='flex lg:hidden flex-col relative h-[calc(100vh-28px)]'>
-        <div className='h1 text-26 items-center flex h-full lg:margin-top lg:margin-bottom'>
+      {/* <div className='flex desktop:hidden flex-col h-[calc(100vh-28px)]'>
+        <div className='h1 text-26 items-center flex h-full'>
           We are a design studio that helps brands realize their
           identity and execute it across branding, digital and
           physical mediums.
@@ -28,7 +28,7 @@ export default function IndexPage() {
             className='col-span-12 w-full h-full object-cover'
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

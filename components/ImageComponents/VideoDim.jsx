@@ -24,7 +24,7 @@ export default function VideoDim({ colSpan, imgLink, videoLink }) {
             playsInline
             autoPlay
             loop
-            className='w-full h-full object-fill '
+            className='w-full h-full object-cover '
           />
         )}
 
@@ -33,7 +33,7 @@ export default function VideoDim({ colSpan, imgLink, videoLink }) {
           <img
             src={imgLink}
             alt='about'
-            className='w-full h-full object-fill '
+            className='w-full h-full object-cover '
           />
         )}
 
@@ -45,7 +45,7 @@ export default function VideoDim({ colSpan, imgLink, videoLink }) {
             playsInline
             autoPlay
             loop
-            className='w-full h-full object-fill '
+            className='w-full h-full object-cover '
           />
         )}
       </motion.div>

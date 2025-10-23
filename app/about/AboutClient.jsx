@@ -65,7 +65,7 @@ export default function AboutClient({ clientsData }) {
   return (
     <div className='h-full w-full bg-white'>
       <div className='flex flex-col min-h-screen'>
-        <div className='flex flex-col relative h-[calc(100vh-28px)] 2xl:h-[150vh]'>
+        <div className='flex flex-col relative h-[calc(100vh-28px)]'>
           <motion.div
             className='h1 text-26 flex-grow items-center flex h-full lg:margin-top lg:margin-bottom'
             {...fadeInUp}

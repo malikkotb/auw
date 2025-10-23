@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  /* --breakpoint-xs: 30rem; */
+  --breakpoint-desktop: 1440px;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
 @font-face {
@@ -72,7 +77,6 @@ header {
   line-height: 1.2;
   text-transform: uppercase;
 }
-
 
 @media (max-width: 1023px) {
   .text-26 {
