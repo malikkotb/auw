@@ -3,11 +3,11 @@
 import Footer from "@/components/Footer/Footer";
 import OpacityHoverList from "@/components/OpacityHoverList/OpacityHoverList";
 import { useState } from "react";
-import ArrowHoverText from "@/components/ArrowHoverText/ArrowHoverText";
 import { pageAnimation } from "@/utils/pageAnimation";
 import { useTransitionRouter } from "next-view-transitions";
 import { fadeInUp } from "@/utils/animations";
 import { motion } from "framer-motion";
+import { IBM_Plex_Mono } from "next/font/google";
 
 // Helper function to check if a URL is a video
 const isVideoUrl = (url) => {
@@ -17,6 +17,11 @@ const isVideoUrl = (url) => {
     url.toLowerCase().endsWith(ext)
   );
 };
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+});
 
 export default function WorkClient({ projects }) {
   const [view, setView] = useState("grid");
@@ -51,8 +56,13 @@ export default function WorkClient({ projects }) {
       {/* Custom Cursor */}
       {showCustomCursor && (
         <div
-          className='fixed uppercase pointer-events-none rounded-full z-50 bg-black text-white px-3 pt-2 pb-1 text-sm font-medium whitespace-nowrap'
+          className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 bg-black text-white whitespace-nowrap`}
           style={{
+            fontSize: "12px",
+            letterSpacing: "0.24px",
+            lineHeight: "1.2",
+            // padding: "6px 12px",
+            padding: "6px 10px ",
             left: cursorPosition.x - 20,
             top: cursorPosition.y - 10,
             transform: "translateX(-100%)",

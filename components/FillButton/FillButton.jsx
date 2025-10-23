@@ -42,10 +42,10 @@ export default function FillButton({
       style={{
         backgroundColor: "white",
         border: "1px solid black",
-        paddingLeft: "12px",
-        paddingRight: "12px",
-        paddingTop: "6px",
-        paddingBottom: "3px",
+        // paddingLeft: "12px",
+        // paddingRight: "12px",
+        // paddingTop: "6px",
+        // paddingBottom: "6px",
       }}
     >
       <div className='btn-text' style={{ color: "black" }}>

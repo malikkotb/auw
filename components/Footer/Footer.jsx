@@ -89,8 +89,14 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className='mt-[14px] w-full h-full text-body relative'>
-      <div className='footer-wrapper w-full h-full bg-white sticky top-0 pt-[14px] z-10'>
+    <footer
+      style={{
+        height: "100dvh",
+        overflow: "hidden",
+      }}
+      className='pt-[14px] flex flex-col w-full h-full text-body relative'
+    >
+      <div className='footer-wrapper w-full bg-white pt-[14px] flex flex-col relative z-10'>
         <motion.div
           className='footer-header w-full h-full'
           // {...fadeInUp}
@@ -125,7 +131,7 @@ export default function Footer() {
         </motion.div>
         <div
           ref={footerNavRef}
-          className='hidden lg:grid grid-cols-12 py-[14px] gap-[14px]'
+          className='footer-nav hidden lg:grid grid-cols-12 py-[14px] gap-[14px]'
         >
           <motion.div
             className='col-span-4 flex flex-col'
@@ -275,7 +281,7 @@ export default function Footer() {
         </div>
 
         {/* mobile footer nav: */}
-        <div className='lg:hidden flex flex-col my-[14px] gap-[14px]'>
+        <div className='footer-nav lg:hidden flex flex-grow flex-col my-[14px] gap-[14px]'>
           <motion.div
             className='col-span-4 flex flex-col'
             // {...fadeInUp}
@@ -412,7 +418,19 @@ export default function Footer() {
           </motion.div>
         </div>
       </div>
-      <div
+      <div className='iframe-wrapper w-full overflow-hidden bg-white flex-1 relative z-0'>
+        <iframe
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "none",
+          }}
+          src='https://auw-wind-chimes.vercel.app/'
+          allowFullScreen
+          loading='lazy'
+        ></iframe>
+      </div>
+      {/* <div
         ref={footerVideoWrapperRef}
         className='footer-video-wrapper w-full h-fit aspect-video relative z-0'
       >
@@ -423,7 +441,7 @@ export default function Footer() {
           preload='auto'
           className='w-full h-full object-cover'
         />
-      </div>
+      </div> */}
     </footer>
   );
 }

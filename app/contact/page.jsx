@@ -71,7 +71,7 @@ export default function Contact() {
       // Mark as successfully submitted
       setIsSubmitted(true);
       setShowSuccess(true);
-      
+
       // Clear form after successful submission
       setFormData({
         name: "",
@@ -84,7 +84,6 @@ export default function Contact() {
         setShowSuccess(false);
         setTimeout(() => setIsSubmitted(false), 300); // Clear after fade animation
       }, 3000);
-
     } catch (err) {
       setError(
         err.message || "Failed to send message. Please try again."
@@ -207,12 +206,12 @@ export default function Contact() {
 
           {/* Success Message */}
           {isSubmitted && (
-            <motion.div 
+            <motion.div
               className='text-green-600 mt-4 h1'
               initial={{ opacity: 0, y: 10 }}
-              animate={{ 
-                opacity: showSuccess ? 1 : 0, 
-                y: showSuccess ? 0 : 10 
+              animate={{
+                opacity: showSuccess ? 1 : 0,
+                y: showSuccess ? 0 : 10,
               }}
               transition={{ duration: 0.3 }}
             >
@@ -222,12 +221,12 @@ export default function Contact() {
 
           {/* Error Message */}
           {error && (
-            <motion.div 
+            <motion.div
               className='text-red-500 mt-4 h1'
               initial={{ opacity: 0, y: 10 }}
-              animate={{ 
-                opacity: showError ? 1 : 0, 
-                y: showError ? 0 : 10 
+              animate={{
+                opacity: showError ? 1 : 0,
+                y: showError ? 0 : 10,
               }}
               transition={{ duration: 0.3 }}
             >
@@ -238,7 +237,9 @@ export default function Contact() {
           {/* Submit Button */}
           <motion.div
             className='w-full mt-5 grid grid-cols-12 gap-[14px]'
-            onClick={!isLoading && !isSubmitted ? handleSubmit : undefined}
+            onClick={
+              !isLoading && !isSubmitted ? handleSubmit : undefined
+            }
             {...fadeInUp}
             viewport={{ once: true, margin: "0px" }}
             transition={{
@@ -247,18 +248,18 @@ export default function Contact() {
               delay: 0.7,
             }}
           >
-            <div className='md:col-span-2 col-span-4'>
+            <div className='md:col-span-2 col-span-4 w-full h-full flex items-center'>
               <FillButton
-                className={`w-full h-full flex text-center ${
-                  isSubmitted ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
                 text={
-                  isLoading 
-                    ? "Sending..." 
-                    : isSubmitted 
-                    ? "Message Sent!" 
+                  isLoading
+                    ? "Sending..."
+                    : isSubmitted
+                    ? "Message Sent!"
                     : "Submit"
                 }
+                className={`w-full h-full text-center ${
+                  isSubmitted ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               />
             </div>
           </motion.div>

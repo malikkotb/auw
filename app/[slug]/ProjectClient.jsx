@@ -88,13 +88,19 @@ export default function ProjectClient({
         </div>
       </div>
 
-      <ParagraphEyebrow
-        eyebrowText={"Overview"}
-        mainText={project.overview}
-        buttonText={"View Live Site"}
-        targetBlank={true}
-        buttonLink={project.projectUrl}
-      />
+      {/*  pin aniamtion */}
+      <div className='relative h-[50vh]'>
+        {/* Container controls sticky duration */}
+        <div className='pt-[14px] sticky top-[25%]'>
+          <ParagraphEyebrow
+            eyebrowText={"Overview"}
+            mainText={project.overview}
+            buttonText={"View Live Site"}
+            targetBlank={true}
+            buttonLink={project.projectUrl}
+          />
+        </div>
+      </div>
 
       <div className='grid grid-cols-12 gap-[14px]'>
         {mediaGallery && mediaGallery[0] && (
@@ -135,10 +141,16 @@ export default function ProjectClient({
         )}
       </div>
 
-      <ParagraphEyebrow
-        eyebrowText={"Project Details"}
-        mainText={project.textFieldTwo}
-      />
+      {/*  pin aniamtion */}
+      <div className='relative h-[50vh]'>
+        {/* Container controls sticky duration */}
+        <div className='pt-[14px] sticky top-[25%]'>
+          <ParagraphEyebrow
+            eyebrowText={"Project Details"}
+            mainText={project.textFieldTwo}
+          />
+        </div>
+      </div>
 
       <div className='grid h-full grid-cols-12 gap-[14px]'>
         {mediaGallery && mediaGallery[4] && (
@@ -179,10 +191,16 @@ export default function ProjectClient({
         )}
       </div>
 
-      <ParagraphEyebrow
-        eyebrowText={"Additional Information"}
-        mainText={project.textFieldThree}
-      />
+      {/*  pin aniamtion */}
+      <div className='relative h-[50vh]'>
+        {/* Container controls sticky duration */}
+        <div className='pt-[14px] sticky top-[25%]'>
+          <ParagraphEyebrow
+            eyebrowText={"Additional Information"}
+            mainText={project.textFieldThree}
+          />
+        </div>
+      </div>
 
       <div className='grid h-full grid-cols-12 gap-[14px]'>
         {mediaGallery && mediaGallery[8] && (
