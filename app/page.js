@@ -2,7 +2,7 @@ export default function IndexPage() {
   return (
     <div className='h-full w-full bg-white'>
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:min-h-screen'>
-        <div className='h1 text-26 items-center flex h-full desktop:margin-top desktop:margin-bottom'>
+        <div className='h1 text-26 items-center desktop:items-start test-before flex h-full desktop:mb-[120px] desktop:mt-[120px]'>
           We are a design studio that helps brands realize their
           identity and execute it across branding, digital and
           physical mediums.
