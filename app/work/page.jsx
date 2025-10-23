@@ -18,9 +18,7 @@ const PROJECTS_QUERY = `*[
     image{
       asset->
     },
-    video{
-      asset->
-    }
+    video
   },
   year,
 }`;
@@ -36,13 +34,8 @@ export default async function Work() {
   // Process the media URLs on the server side
   const processedProjects = projects.map(project => ({
     ...project,
-    mediaUrl: project.featuredMedia ? (
-      project.featuredMedia.type === "image" && project.featuredMedia.image?.asset
-        ? urlFor(project.featuredMedia.image).url()
-        : project.featuredMedia.type === "video" && project.featuredMedia.video?.asset?.url
-          ? project.featuredMedia.video.asset.url
-          : null
-    ) : null
+    imageUrl: project.featuredMedia?.image?.asset ? urlFor(project.featuredMedia.image).url() : null,
+    videoUrl: project.featuredMedia?.video || null
   }));
 
   return <WorkClient projects={processedProjects} />;

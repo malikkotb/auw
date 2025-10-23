@@ -22,9 +22,7 @@ const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0]{
     image{
       asset->
     },
-    video{
-      asset->
-    }
+    video
   },
   featuredMedia{
     dimension,
@@ -32,9 +30,7 @@ const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0]{
     image{
       asset->
     },
-    video{
-      asset->
-    }
+    video
   },
   mediaGallery[]{
     _key,
@@ -43,9 +39,7 @@ const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0]{
     image{
       asset->
     },
-    video{
-      asset->
-    }
+    video
   }
 }`;
 
@@ -87,22 +81,32 @@ export default async function PostPage({ params }) {
     if (media?.type === "image" && media.image?.asset) {
       return urlFor(media.image)?.url();
     }
-    if (media?.type === "video" && media.video?.asset?.url) {
-      return media.video.asset.url;
+    if (media?.type === "video" && media.video) {
+      return media.video;
     }
     return null;
   };
 
+  // Process media data for ProjectClient
+  const getMediaData = (media) => {
+    if (!media) return null;
+    
+    return {
+      image: media.image?.asset ? urlFor(media.image)?.url() : null,
+      video: media.video || null
+    };
+  };
+
   const featuredMediaUrl = project.featuredMedia
-    ? getFeaturedMediaUrl(project.featuredMedia)
+    ? getMediaData(project.featuredMedia)
     : null;
 
   const mediaGallery = project.mediaGallery
-    ? project.mediaGallery.map((media) => getFeaturedMediaUrl(media))
+    ? project.mediaGallery.map((media) => getMediaData(media))
     : null;
 
   const nextProjectMediaUrl = project.nextProjectMedia
-    ? getFeaturedMediaUrl(project.nextProjectMedia)
+    ? getMediaData(project.nextProjectMedia)
     : null;
 
   console.log("project", project);

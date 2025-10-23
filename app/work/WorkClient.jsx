@@ -141,9 +141,9 @@ export default function WorkClient({ projects }) {
               }}
             >
               <div className='w-full h-full aspect-video'>
-                {isVideoUrl(projects[0].mediaUrl) ? (
+                {projects[0].videoUrl ? (
                   <video
-                    src={projects[0].mediaUrl}
+                    src={projects[0].videoUrl}
                     autoPlay
                     loop
                     muted
@@ -156,7 +156,7 @@ export default function WorkClient({ projects }) {
                   />
                 ) : (
                   <img
-                    src={projects[0].mediaUrl}
+                    src={projects[0].imageUrl}
                     alt={projects[0].title}
                     className='w-full h-full object-cover cursor-pointer'
                     onMouseEnter={() =>
@@ -212,9 +212,9 @@ export default function WorkClient({ projects }) {
                 }}
               >
                 <div className='w-full h-full aspect-video'>
-                  {isVideoUrl(project.mediaUrl) ? (
+                  {project.videoUrl ? (
                     <video
-                      src={project.mediaUrl}
+                      src={project.videoUrl}
                       autoPlay
                       loop
                       muted
@@ -227,7 +227,7 @@ export default function WorkClient({ projects }) {
                     />
                   ) : (
                     <img
-                      src={project.mediaUrl}
+                      src={project.imageUrl}
                       alt={project.title}
                       className='w-full h-full object-cover cursor-pointer'
                       onMouseEnter={() =>
