@@ -16,6 +16,9 @@ export default function Contact() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // EmailJS configuration
   const EMAILJS_SERVICE_ID = "service_x2xgt25";
@@ -32,11 +35,22 @@ export default function Contact() {
   const handleSubmit = async () => {
     setIsLoading(true);
     setError(null);
+    setIsSubmitted(false);
+    setShowError(false);
+    setShowSuccess(false);
 
     try {
       // Validate form data
       if (!formData.name || !formData.email || !formData.message) {
-        throw new Error("Please fill in all fields");
+        setError("Please fill in all fields");
+        setShowError(true);
+        setIsLoading(false);
+        // Fade out error after 3 seconds
+        setTimeout(() => {
+          setShowError(false);
+          setTimeout(() => setError(null), 300); // Clear after fade animation
+        }, 3000);
+        return;
       }
 
       // Prepare template parameters
@@ -54,6 +68,10 @@ export default function Contact() {
         EMAILJS_PUBLIC_KEY
       );
 
+      // Mark as successfully submitted
+      setIsSubmitted(true);
+      setShowSuccess(true);
+      
       // Clear form after successful submission
       setFormData({
         name: "",
@@ -61,12 +79,23 @@ export default function Contact() {
         message: "",
       });
 
-      alert("Thank you! Your message has been sent successfully.");
+      // Fade out success message after 3 seconds
+      setTimeout(() => {
+        setShowSuccess(false);
+        setTimeout(() => setIsSubmitted(false), 300); // Clear after fade animation
+      }, 3000);
+
     } catch (err) {
       setError(
         err.message || "Failed to send message. Please try again."
       );
+      setShowError(true);
       console.error("EmailJS Error:", err);
+      // Fade out error after 3 seconds
+      setTimeout(() => {
+        setShowError(false);
+        setTimeout(() => setError(null), 300); // Clear after fade animation
+      }, 3000);
     } finally {
       setIsLoading(false);
     }
@@ -176,13 +205,40 @@ export default function Contact() {
             />
           </div>
 
+          {/* Success Message */}
+          {isSubmitted && (
+            <motion.div 
+              className='text-green-600 mt-4 h1'
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ 
+                opacity: showSuccess ? 1 : 0, 
+                y: showSuccess ? 0 : 10 
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              Thank you! Your message has been sent successfully.
+            </motion.div>
+          )}
+
           {/* Error Message */}
-          {error && <div className='text-red-500 mt-4'>{error}</div>}
+          {error && (
+            <motion.div 
+              className='text-red-500 mt-4 h1'
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ 
+                opacity: showError ? 1 : 0, 
+                y: showError ? 0 : 10 
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {error}
+            </motion.div>
+          )}
 
           {/* Submit Button */}
           <motion.div
             className='w-full mt-5 grid grid-cols-12 gap-[14px]'
-            onClick={!isLoading ? handleSubmit : undefined}
+            onClick={!isLoading && !isSubmitted ? handleSubmit : undefined}
             {...fadeInUp}
             viewport={{ once: true, margin: "0px" }}
             transition={{
@@ -193,8 +249,16 @@ export default function Contact() {
           >
             <div className='md:col-span-2 col-span-4'>
               <FillButton
-                className='w-full flex text-center'
-                text={isLoading ? "Sending..." : "Submit"}
+                className={`w-full h-full flex text-center ${
+                  isSubmitted ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                text={
+                  isLoading 
+                    ? "Sending..." 
+                    : isSubmitted 
+                    ? "Message Sent!" 
+                    : "Submit"
+                }
               />
             </div>
           </motion.div>
@@ -202,7 +266,7 @@ export default function Contact() {
       </div>
 
       <motion.div
-        className='grid grid-cols-12 gap-[14px]'
+        className='mt-[120px] grid grid-cols-12 gap-[14px]'
         {...fadeInUp}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
       >
