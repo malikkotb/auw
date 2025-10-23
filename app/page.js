@@ -1,8 +1,8 @@
 export default function IndexPage() {
   return (
     <div className='h-full w-full bg-white'>
-      <div className='flex flex-col h-[calc(100vh-28px)] desktop:min-h-screen'>
-        <div className='h1 text-26 items-center desktop:items-start test-before flex h-full desktop:mb-[120px] desktop:mt-[120px]'>
+      <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
+        <div className='h1 text-26 items-center desktop:items-start flex h-full xl:mb-[120px] xl:mt-[120px]'>
           We are a design studio that helps brands realize their
           identity and execute it across branding, digital and
           physical mediums.
@@ -15,20 +15,6 @@ export default function IndexPage() {
           />
         </div>
       </div>
-      {/* <div className='flex desktop:hidden flex-col h-[calc(100vh-28px)]'>
-        <div className='h1 text-26 items-center flex h-full'>
-          We are a design studio that helps brands realize their
-          identity and execute it across branding, digital and
-          physical mediums.
-        </div>
-        <div className='w-full flex h-fit aspect-video overflow-clip'>
-          <img
-            src='/images/about_auw.png'
-            alt='about'
-            className='col-span-12 w-full h-full object-cover'
-          />
-        </div>
-      </div> */}
     </div>
   );
 }

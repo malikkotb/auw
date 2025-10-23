@@ -89,7 +89,7 @@ export default function OpacityHoverList({ projects }) {
       {/* Pinned image in bottom right corner */}
       {hoveredProject && hoveredProject.mediaUrl && (
         <div
-          className='fixed bottom-[14px] right-[14px] w-64 h-48 z-50 pointer-events-none'
+          className='fixed lg:hidden flex bottom-[14px] right-[14px] w-64 h-48 z-50 pointer-events-none'
           style={{
             opacity: hoveredId ? 1 : 0,
             transition: "opacity 0.3s ease-in-out",

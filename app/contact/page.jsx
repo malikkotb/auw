@@ -86,123 +86,119 @@ export default function Contact() {
 
   return (
     <div className='w-full h-full bg-white'>
-      <div className='flex flex-col min-h-screen'>
-        <div className='flex flex-col relative h-[calc(100vh-28px)] 2xl:h-[150vh]'>
-          <motion.div
-            className='h1 text-26 flex-grow items-center flex h-full lg:margin-top lg:margin-bottom'
-            {...fadeInUp}
-          >
-            We're excited to collaborate.
-          </motion.div>
+      <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
+        <motion.div
+          className='h1 text-26 items-center desktop:items-start flex h-full xl:mb-[120px] xl:mt-[120px]'
+          {...fadeInUp}
+        >
+          We're excited to collaborate.
+        </motion.div>
 
+        <motion.div
+          className='space-y-2 w-full desktop:h-full h-fit'
+          {...fadeInUp}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+            delay: 0.2,
+          }}
+        >
+          {/* Name Field */}
+          <div className=''>
+            <motion.div
+              className='h-[1px] w-full bg-black'
+              {...growFromLeft}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.3,
+              }}
+            />
+            <input
+              type='text'
+              name='name'
+              placeholder='NAME'
+              value={formData.name}
+              onChange={handleChange}
+              className='w-full pb-1 pt-2 h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+            />
+            <motion.div
+              className='h-[1px] w-full bg-black'
+              {...growFromLeft}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.4,
+              }}
+            />
+          </div>
+
+          {/* Email Field */}
+          <div className=''>
+            <input
+              type='email'
+              name='email'
+              placeholder='EMAIL'
+              value={formData.email}
+              onChange={handleChange}
+              className='w-full pb-1 pt-0 h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+            />
+            <motion.div
+              className='h-[1px] w-full bg-black'
+              {...growFromLeft}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.5,
+              }}
+            />
+          </div>
+
+          {/* Message Field */}
+          <div>
+            <textarea
+              name='message'
+              placeholder='How can we help?'
+              value={formData.message}
+              onChange={handleChange}
+              rows='8'
+              // rows={window.innerWidth < 1536 ? "10" : "8"}
+              className='w-full h-full placeholder-[#838383] h1 bg-transparent border-none outline-none focus:ring-0 resize-none'
+            />
+            <motion.div
+              className='h-[1px] w-full bg-black'
+              {...growFromLeft}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.6,
+              }}
+            />
+          </div>
+
+          {/* Error Message */}
+          {error && <div className='text-red-500 mt-4'>{error}</div>}
+
+          {/* Submit Button */}
           <motion.div
-            className='space-y-2 h-full'
+            className='w-full mt-5 grid grid-cols-12 gap-[14px]'
+            onClick={!isLoading ? handleSubmit : undefined}
             {...fadeInUp}
+            viewport={{ once: true, margin: "0px" }}
             transition={{
               duration: 0.6,
               ease: "easeOut",
-              delay: 0.2,
+              delay: 0.7,
             }}
           >
-            {/* Name Field */}
-            <div className=''>
-              <motion.div
-                className='h-[1px] w-full bg-black'
-                {...growFromLeft}
-                transition={{
-                  duration: 0.6,
-                  ease: "easeInOut",
-                  delay: 0.3,
-                }}
-              />
-              <input
-                type='text'
-                name='name'
-                placeholder='NAME'
-                value={formData.name}
-                onChange={handleChange}
-                className='w-full pb-1 pt-2 h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
-              />
-              <motion.div
-                className='h-[1px] w-full bg-black'
-                {...growFromLeft}
-                transition={{
-                  duration: 0.6,
-                  ease: "easeInOut",
-                  delay: 0.4,
-                }}
+            <div className='md:col-span-2 col-span-4'>
+              <FillButton
+                className='w-full flex text-center'
+                text={isLoading ? "Sending..." : "Submit"}
               />
             </div>
-
-            {/* Email Field */}
-            <div className=''>
-              <input
-                type='email'
-                name='email'
-                placeholder='EMAIL'
-                value={formData.email}
-                onChange={handleChange}
-                className='w-full pb-1 pt-0 h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
-              />
-              <motion.div
-                className='h-[1px] w-full bg-black'
-                {...growFromLeft}
-                transition={{
-                  duration: 0.6,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
-              />
-            </div>
-
-            {/* Message Field */}
-            <div>
-              <textarea
-                name='message'
-                placeholder='How can we help?'
-                value={formData.message}
-                onChange={handleChange}
-                rows='8'
-                // rows={window.innerWidth < 1536 ? "10" : "8"}
-                className='w-full h-full placeholder-[#838383] h1 bg-transparent border-none outline-none focus:ring-0 resize-none'
-              />
-              <motion.div
-                className='h-[1px] w-full bg-black'
-                {...growFromLeft}
-                transition={{
-                  duration: 0.6,
-                  ease: "easeInOut",
-                  delay: 0.6,
-                }}
-              />
-            </div>
-
-            {/* Error Message */}
-            {error && (
-              <div className='text-red-500 mt-4'>{error}</div>
-            )}
-
-            {/* Submit Button */}
-            <motion.div
-              className='w-full mt-5 grid grid-cols-12 gap-[14px]'
-              onClick={!isLoading ? handleSubmit : undefined}
-              {...fadeInUp}
-              viewport={{ once: true, margin: "0px" }}
-              transition={{
-                duration: 0.6,
-                ease: "easeOut",
-                delay: 0.7,
-              }}
-            >
-              <div className='md:col-span-2 col-span-4'>
-                <FillButton
-                  className='w-full flex text-center'
-                  text={isLoading ? "Sending..." : "Submit"}
-                />
-              </div>
-            </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       <motion.div
