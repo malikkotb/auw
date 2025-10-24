@@ -11,7 +11,11 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["500", "600"],
 });
 
-export default function FillLink({ text, className = "" }) {
+export default function FillLink({
+  text,
+  className = "",
+  link = "/contact",
+}) {
   const router = useTransitionRouter();
   const pathname = usePathname();
   const handleMouseEnter = (e) => {
@@ -34,7 +38,7 @@ export default function FillLink({ text, className = "" }) {
 
   return (
     <Link
-      href={"/contact"}
+      href={link}
       onClick={(e) => {
         e.preventDefault();
         if (pathname !== "/contact") {

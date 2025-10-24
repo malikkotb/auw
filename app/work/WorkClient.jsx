@@ -9,15 +9,6 @@ import { fadeInUp } from "@/utils/animations";
 import { motion } from "framer-motion";
 import { IBM_Plex_Mono } from "next/font/google";
 
-// Helper function to check if a URL is a video
-const isVideoUrl = (url) => {
-  if (!url) return false;
-  const videoExtensions = [".mp4", ".webm", ".mov"];
-  return videoExtensions.some((ext) =>
-    url.toLowerCase().endsWith(ext)
-  );
-};
-
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["500", "600"],
