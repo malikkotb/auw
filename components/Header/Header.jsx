@@ -14,6 +14,7 @@ export default function Header() {
   const pathname = usePathname();
   const videoRef = useRef(null);
   const closeButtonLinesRef = useRef([]);
+  const bgRef = useRef(null);
 
   const router = useTransitionRouter();
 
@@ -59,7 +60,9 @@ export default function Header() {
     if (menuOpen) {
       // Animate to X
       tl.to([line1, line2], {
-        backgroundColor: "#FFFFFF",
+        ...(pathname === "/listening-experience" && {
+          backgroundColor: "white",
+        }),
         delay: 0.2,
         duration: 0.4,
         ease: "power2.inOut",
@@ -87,7 +90,9 @@ export default function Header() {
     } else {
       // Animate to hamburger
       tl.to([line1, line2], {
-        backgroundColor: "#000000",
+        ...(pathname === "/listening-experience" && {
+          backgroundColor: "black",
+        }),
         delay: 0.5,
         duration: 0.4,
         ease: "power2.inOut",
@@ -128,185 +133,206 @@ export default function Header() {
   }, [menuOpen]);
 
   return (
-    <header
-      style={{
-        zIndex: 1000,
-        transform: `translateY(${isVisible ? "0" : "-100%"})`,
-        // color: pathname === "/listening-experience" ? "#000" : "#fff",
-        // mixBlendMode: "difference",
-      }}
-      className='fixed top-0 left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out'
-    >
-      {/* <div id='header-bg' className='header-bg absolute -top-[14px] -left-[14px] w-[calc(100%+28px)] h-[calc(100%+14px)] bg-white'></div> */}
-      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <div className='grid grid-cols-12 gap-[14px]'>
-        <div className='relative'>
-          {pathname === "/listening-experience" ? (
-            <Link
-              href='/'
-              onClick={(e) => {
-                e.preventDefault();
-                if (pathname !== "/") {
-                  if (menuOpen) {
-                    setMenuOpen(false);
-                    setTimeout(() => {
+    <>
+      <header
+        style={{
+          zIndex: 1000,
+          transform: `translateY(${isVisible ? "0" : "-100%"})`,
+          color:
+            pathname === "/listening-experience" ? "black" : "white",
+          // mixBlendMode:
+          //   pathname === "/listening-experience"
+          //     ? "normal"
+          //     : "difference",
+          mixBlendMode: "difference",
+        }}
+        className='fixed top-0 left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out'
+      >
+        <div className='grid grid-cols-12 gap-[14px]'>
+          <div className='relative'>
+            {pathname === "/listening-experience" ? (
+              <Link
+                href='/'
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/") {
+                    if (menuOpen) {
+                      setMenuOpen(false);
+                      setTimeout(() => {
+                        router.push("/", {
+                          onTransitionReady: pageAnimation,
+                        });
+                      }, 400); // Wait for menu close animation (0.4s duration)
+                    } else {
                       router.push("/", {
                         onTransitionReady: pageAnimation,
                       });
-                    }, 400); // Wait for menu close animation (0.4s duration)
-                  } else {
-                    router.push("/", {
-                      onTransitionReady: pageAnimation,
-                    });
+                    }
                   }
-                }
-              }}
-              className='cursor-pointer whitespace-nowrap transition-color duration-400'
-              style={{ color: menuOpen ? "#FFFFFF" : "#000000" }}
-            >
-              A UNIFIED WHOLE®
-            </Link>
-          ) : (
-            <Link
-              href='/'
-              onClick={(e) => {
-                e.preventDefault();
-                if (pathname !== "/") {
-                  if (menuOpen) {
-                    setMenuOpen(false);
-                    setTimeout(() => {
+                }}
+                className='cursor-pointer whitespace-nowrap transition-color duration-400'
+                style={{ color: menuOpen ? "#FFFFFF" : "#000000" }}
+              >
+                A UNIFIED WHOLE®
+              </Link>
+            ) : (
+              <Link
+                href='/'
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname !== "/") {
+                    if (menuOpen) {
+                      setMenuOpen(false);
+                      setTimeout(() => {
+                        router.push("/", {
+                          onTransitionReady: pageAnimation,
+                        });
+                      }, 400); // Wait for menu close animation (0.4s duration)
+                    } else {
                       router.push("/", {
                         onTransitionReady: pageAnimation,
                       });
-                    }, 400); // Wait for menu close animation (0.4s duration)
-                  } else {
-                    router.push("/", {
-                      onTransitionReady: pageAnimation,
-                    });
+                    }
                   }
-                }
-              }}
+                }}
+                className='cursor-pointer'
+                onMouseEnter={() => {
+                  if (videoRef.current) {
+                    videoRef.current.currentTime = 0;
+                    videoRef.current
+                      .play()
+                      .catch((err) =>
+                        console.warn("Video play prevented:", err)
+                      );
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (videoRef.current) {
+                    videoRef.current.pause();
+                    videoRef.current.currentTime = 0;
+                    videoRef.current.load();
+                  }
+                }}
+              >
+                <div className='w-[27px] h-[34px] lg:w-[36px] lg:h-[45px] relative'>
+                  <video
+                    ref={videoRef}
+                    src='/auw_logo.webm'
+                    // poster='/logo_poster.png'
+                    className='absolute inset-0 w-full h-full object-cover'
+                    muted
+                    playsInline
+                    preload='auto'
+                  ></video>
+                </div>
+              </Link>
+            )}
+          </div>
+          <div className='flex relative lg:hidden col-span-2 col-start-11 justify-end gap-4'>
+            <button
               className='cursor-pointer'
-              onMouseEnter={() => {
-                if (videoRef.current) {
-                  videoRef.current.currentTime = 0;
-                  videoRef.current
-                    .play()
-                    .catch((err) =>
-                      console.warn("Video play prevented:", err)
-                    );
-                }
-              }}
-              onMouseLeave={() => {
-                if (videoRef.current) {
-                  videoRef.current.pause();
-                  videoRef.current.currentTime = 0;
-                  videoRef.current.load();
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              <div className='relative w-6 h-6 -mt-[6px]'>
+                <div
+                  ref={(el) => (closeButtonLinesRef.current[0] = el)}
+                  style={{
+                    backgroundColor:
+                      pathname === "/listening-experience"
+                        ? "black"
+                        : "white",
+                  }}
+                  className='absolute top-[40%] left-0 w-full h-[1.5px] origin-center'
+                ></div>
+                <div
+                  ref={(el) => (closeButtonLinesRef.current[1] = el)}
+                  style={{
+                    backgroundColor:
+                      pathname === "/listening-experience"
+                        ? "black"
+                        : "white",
+                  }}
+                  className='absolute top-[60%] left-0 w-full h-[1.5px] origin-center'
+                ></div>
+              </div>
+            </button>
+          </div>
+          <div className='hidden relative lg:flex col-span-2 col-start-11 justify-end gap-4'>
+            <Link
+              href='/about'
+              className='header-link'
+              style={{}}
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/about") {
+                  router.push("/about", {
+                    onTransitionReady: pageAnimation,
+                  });
                 }
               }}
             >
-              <div className='w-[27px] h-[34px] lg:w-[36px] lg:h-[45px] relative'>
-                <video
-                  ref={videoRef}
-                  src='/auw_logo.webm'
-                  // poster='/logo_poster.png'
-                  className='absolute inset-0 w-full h-full object-cover'
-                  muted
-                  playsInline
-                  preload='auto'
-                ></video>
+              <div className={pathname === "/about" ? "italic" : ""}>
+                About
               </div>
             </Link>
-          )}
-        </div>
-        <div className='flex relative lg:hidden col-span-2 col-start-11 justify-end gap-4'>
-          <button
-            className='cursor-pointer'
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <div className='relative w-6 h-6 -mt-[6px]'>
-              <div
-                ref={(el) => (closeButtonLinesRef.current[0] = el)}
-                className='absolute top-[40%] left-0 w-full h-[1.5px] bg-white origin-center'
-              ></div>
-              <div
-                ref={(el) => (closeButtonLinesRef.current[1] = el)}
-                className='absolute top-[60%] left-0 w-full h-[1.5px] bg-white origin-center'
-              ></div>
-            </div>
-          </button>
-        </div>
-        <div className='hidden relative lg:flex col-span-2 col-start-11 justify-end gap-4'>
-          <Link
-            href='/about'
-            className='header-link'
-            onClick={(e) => {
-              e.preventDefault();
-              if (pathname !== "/about") {
-                router.push("/about", {
-                  onTransitionReady: pageAnimation,
-                });
-              }
-            }}
-          >
-            <div className={pathname === "/about" ? "italic" : ""}>
-              About
-            </div>
-          </Link>
-          <Link
-            href='/work'
-            className='header-link'
-            onClick={(e) => {
-              e.preventDefault();
-              if (pathname !== "/work") {
-                router.push("/work", {
-                  onTransitionReady: pageAnimation,
-                });
-              }
-            }}
-          >
-            <div className={pathname === "/work" ? "italic" : ""}>
-              Work
-            </div>
-          </Link>
-          <Link
-            href='/listening-experience'
-            className='header-link'
-            onClick={(e) => {
-              e.preventDefault();
-              if (pathname !== "/listening-experience") {
-                router.push("/listening-experience", {
-                  onTransitionReady: pageAnimation,
-                });
-              }
-            }}
-          >
-            <div
-              className={
-                pathname === "/listening-experience" ? "italic" : ""
-              }
+            <Link
+              href='/work'
+              className='header-link'
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/work") {
+                  router.push("/work", {
+                    onTransitionReady: pageAnimation,
+                  });
+                }
+              }}
             >
-              Sound
-            </div>
-          </Link>
-          <Link
-            href='/contact'
-            className='header-link'
-            onClick={(e) => {
-              e.preventDefault();
-              if (pathname !== "/contact") {
-                router.push("/contact", {
-                  onTransitionReady: pageAnimation,
-                });
-              }
-            }}
-          >
-            <div className={pathname === "/contact" ? "italic" : ""}>
-              Contact
-            </div>
-          </Link>
+              <div className={pathname === "/work" ? "italic" : ""}>
+                Work
+              </div>
+            </Link>
+            <Link
+              href='/listening-experience'
+              className='header-link'
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/listening-experience") {
+                  router.push("/listening-experience", {
+                    onTransitionReady: pageAnimation,
+                  });
+                }
+              }}
+            >
+              <div
+                className={
+                  pathname === "/listening-experience" ? "italic" : ""
+                }
+              >
+                Sound
+              </div>
+            </Link>
+            <Link
+              href='/contact'
+              className='header-link'
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== "/contact") {
+                  router.push("/contact", {
+                    onTransitionReady: pageAnimation,
+                  });
+                }
+              }}
+            >
+              <div
+                className={pathname === "/contact" ? "italic" : ""}
+              >
+                Contact
+              </div>
+            </Link>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+    </>
   );
 }

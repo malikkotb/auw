@@ -1,10 +1,8 @@
 "use client";
 
 import { useHeaderHeight } from "@/hooks/useHeaderHeight";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Footer from "@/components/Footer/Footer";
-import gsap from "gsap";
 import FillLink from "@/components/FillButton/FillLink";
 import ArrowLink from "@/components/ArrowLink/ArrowLink";
 import { motion } from "framer-motion";

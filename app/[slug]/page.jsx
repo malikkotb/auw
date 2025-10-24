@@ -90,10 +90,10 @@ export default async function PostPage({ params }) {
   // Process media data for ProjectClient
   const getMediaData = (media) => {
     if (!media) return null;
-    
+
     return {
       image: media.image?.asset ? urlFor(media.image)?.url() : null,
-      video: media.video || null
+      video: media.video || null,
     };
   };
 
@@ -109,10 +109,8 @@ export default async function PostPage({ params }) {
     ? getMediaData(project.nextProjectMedia)
     : null;
 
-  console.log("project", project);
-
   return (
-    <ProjectClient 
+    <ProjectClient
       project={project}
       featuredMediaUrl={featuredMediaUrl}
       mediaGallery={mediaGallery}

@@ -44,29 +44,8 @@ export default function ProjectClient({
   //     }
   //   }, [project.nextProjectLink, router]);
 
-  // Helper function to check if a URL is a video
-  const isVideoUrl = (url) => {
-    if (!url) return false;
-    const videoExtensions = [".mp4", ".webm", ".mov"];
-    return videoExtensions.some((ext) =>
-      url.toLowerCase().endsWith(ext)
-    );
-  };
-
-  // Helper function to get aspect ratio class
-  const getAspectRatioClass = (dimension) => {
-    switch (dimension) {
-      case "instagram":
-        return "aspect-[4/5]";
-      case "video":
-        return "aspect-video";
-      default:
-        return "aspect-video";
-    }
-  };
-
   return (
-    <main className='h-full w-full'>
+    <main className='h-full w-full bg-white'>
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
         <div className='h1 text-26 items-center desktop:items-start flex justify-between h-full xl:mb-[120px] xl:mt-[120px]'>
           <div className='flex flex-col'>
@@ -82,9 +61,6 @@ export default function ProjectClient({
             colSpan={12}
             imgLink={featuredMediaUrl?.image || null}
             videoLink={featuredMediaUrl?.video || null}
-            // videoLink={
-            //   isVideoUrl(featuredMediaUrl) ? featuredMediaUrl : null
-            // }
           />
         </div>
       </div>

@@ -68,6 +68,7 @@ export default function Menu({ menuOpen, setMenuOpen }) {
           height: "80px",
           top: 0,
           left: 0,
+          zIndex: 999,
         }}
         className='fixed lg:hidden w-full bg-black'
       />
