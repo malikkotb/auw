@@ -1,7 +1,7 @@
 "use client";
 import Footer from "@/components/Footer/Footer";
 
-export default function Contact() {
+export default function Privacy() {
   return (
     <div className='w-full h-full'>
       <div className='h1 margin-top margin-bottom'>

@@ -7,8 +7,16 @@ import ArrowLink from "@/components/ArrowLink/ArrowLink";
 import { useHeaderHeight } from "@/hooks/useHeaderHeight";
 import { motion } from "framer-motion";
 import { fadeInUp, growFromLeft } from "@/utils/animations";
-
+import Lenis from "lenis";
 export default function Contact() {
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
   const [formData, setFormData] = useState({
     name: "",
     email: "",

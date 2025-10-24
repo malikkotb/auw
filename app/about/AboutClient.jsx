@@ -1,14 +1,23 @@
 "use client";
 
 import { useHeaderHeight } from "@/hooks/useHeaderHeight";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "@/components/Footer/Footer";
 import FillLink from "@/components/FillButton/FillLink";
 import ArrowLink from "@/components/ArrowLink/ArrowLink";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/utils/animations";
-
+import Lenis from "lenis";
 export default function AboutClient({ clientsData }) {
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
+
   const headerHeight = useHeaderHeight();
   const [hoveredIndex, setHoveredIndex] = useState(
     clientsData.length - 1

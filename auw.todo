@@ -2,7 +2,6 @@
 ✔ static layout for work page @started(25-10-13 09:14) @done(25-10-13 09:14) @lasted(41s)
 ✔ static layout for home page @started(25-10-13 09:14) @done(25-10-13 09:14) @lasted(41s)
 ✔ static layout for about page @started(25-10-13 09:14) @done(25-10-13 09:14) @lasted(40s)
-☐ add lenis scroll may need to add it in each individal client component
 ✔ contact page @done(25-10-04 13:33)
 ✔ Header @started(25-10-04 12:41) @done(25-10-04 13:33) @lasted(52m22s)
 ✔ footer design @started(25-10-04 11:41) @done(25-10-04 12:40) @lasted(59m43s)
@@ -11,11 +10,9 @@
 
 ☐ page transition on case study pages, where you scroll past enough it then goes to that link
 
-☐ mix blend mode for header
-
 ☐ fix height of the arrows in ArrowLink component
 
-☐ home page design
+☐ add fadeup animations on heading an images and keep consistent across all pages
 
 ☐ intro animation for headings on all pages like area17 but add a slight
  ☐ subtle fadeUp (translateY) animation on the content

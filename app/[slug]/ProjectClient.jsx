@@ -9,6 +9,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { pageAnimation } from "@/utils/pageAnimation";
 import Link from "next/link";
+import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,14 @@ export default function ProjectClient({
   mediaGallery,
   nextProjectMediaUrl,
 }) {
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
   const router = useTransitionRouter();
   const nextProjectRef = useRef(null);
 

@@ -1,21 +1,31 @@
 "use client";
 import { IBM_Plex_Mono } from "next/font/google";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTransitionRouter } from "next-view-transitions";
 import FillLink from "@/components/FillButton/FillLink";
 import ParagraphEyebrowLink from "@/components/ParagraphEyebrowLink";
 import Footer from "@/components/Footer/Footer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { fadeInUp } from "@/utils/animations";
 import ArrowLink from "@/components/ArrowLink/ArrowLink";
+import Lenis from "lenis";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["500", "600"],
 });
 
-export default function IndexClient({ clientsData }) {
-  // TODO: add fadeup animations on heading an images and keep consistent across all pages
+export default function IndexClient({ clientsData, projects }) {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
 
   const [cursorPosition, setCursorPosition] = useState({
     x: 0,
@@ -90,25 +100,36 @@ export default function IndexClient({ clientsData }) {
   ];
 
   return (
-    <div className='h-full w-full bg-white'>
+    <div ref={containerRef} className='h-full w-full bg-white'>
       {/* Custom Cursor */}
-      {showCustomCursor && (
-        <div
-          className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 bg-black text-white whitespace-nowrap`}
-          style={{
-            fontSize: "12px",
-            letterSpacing: "0.24px",
-            lineHeight: "1.2",
-            // padding: "6px 12px",
-            padding: "6px 10px ",
-            left: cursorPosition.x - 20,
-            top: cursorPosition.y - 10,
-            transform: "translateX(-100%)",
-          }}
-        >
-          {hoveredProjectTitle}
-        </div>
-      )}
+      <AnimatePresence>
+        {showCustomCursor && (
+          <motion.div
+            className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 bg-black text-white whitespace-nowrap`}
+            style={{
+              fontSize: "12px",
+              letterSpacing: "0.24px",
+              lineHeight: "1.2",
+              padding: "6px 10px",
+              right: containerRef.current
+                ? containerRef.current.offsetWidth -
+                  cursorPosition.x +
+                  40
+                : 0,
+              top: cursorPosition.y - 5,
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{
+              duration: 0.2,
+              ease: "easeOut",
+            }}
+          >
+            {hoveredProjectTitle}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
         <motion.div
           className='h1 text-26 items-center desktop:items-start flex h-full xl:mb-[120px] xl:mt-[120px]'
@@ -147,31 +168,33 @@ export default function IndexClient({ clientsData }) {
         />
       </div>
 
-      <div className='my-[10%] grid grid-cols-12 gap-[14px]'>
-        <motion.div
-          className='col-span-8 col-start-3 cursor-pointer'
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() =>
-            handleVideoHover("LISTENING EXPERIENCE")
-          }
-          onMouseLeave={handleVideoLeave}
-          {...fadeInUp}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-            delay: 0.2,
-          }}
-        >
-          <img
-            src='/images/about_auw.png'
-            alt='about'
-            className='w-full h-full object-cover'
-          />
-        </motion.div>
-      </div>
+      {/* <div className='relative h-[100vh]'> */}
+        <div className='pt-[14px] my-[10%] top-[25%] grid grid-cols-12 gap-[14px]'>
+          <motion.div
+            className='col-span-8 col-start-3 cursor-pointer'
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() =>
+              handleVideoHover("LISTENING EXPERIENCE")
+            }
+            onMouseLeave={handleVideoLeave}
+            {...fadeInUp}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+          >
+            <img
+              src='/images/about_auw.png'
+              alt='about'
+              className='w-full h-full object-cover'
+            />
+          </motion.div>
+        </div>
+      {/* </div> */}
 
-      <div className='flex justify-between'>
-        <div className='h1 text-26'>
+      <div className='flex margin-top margin-bottom md:flex-row flex-col justify-between'>
+        <div className='h1'>
           A look at brands we've helped bring to life.
         </div>
         <div className='w-fit'>
@@ -184,7 +207,9 @@ export default function IndexClient({ clientsData }) {
           className='col-span-12 cursor-pointer'
           onMouseMove={handleMouseMove}
           onMouseEnter={() =>
-            handleVideoHover("LISTENING EXPERIENCE")
+            handleVideoHover(
+              `${projects[0].title} | ${projects[0].description}`
+            )
           }
           onMouseLeave={handleVideoLeave}
           {...fadeInUp}
@@ -194,17 +219,32 @@ export default function IndexClient({ clientsData }) {
             delay: 0.2,
           }}
         >
-          <img
-            src='/images/about_auw.png'
-            alt='about'
-            className='w-full h-full object-cover'
-          />
+          {projects[0].videoUrl ? (
+            <video
+              src={projects[0].videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className='w-full h-full object-cover'
+              onMouseLeave={handleVideoLeave}
+            />
+          ) : (
+            <img
+              src={projects[0].imageUrl || "/images/about_auw.png"}
+              alt={projects[0].title}
+              className='w-full h-full object-cover'
+              onMouseLeave={handleVideoLeave}
+            />
+          )}
         </motion.div>
         <motion.div
           className='col-span-12 cursor-pointer'
           onMouseMove={handleMouseMove}
           onMouseEnter={() =>
-            handleVideoHover("LISTENING EXPERIENCE")
+            handleVideoHover(
+              `${projects[1].title} | ${projects[1].description}`
+            )
           }
           onMouseLeave={handleVideoLeave}
           {...fadeInUp}
@@ -214,17 +254,32 @@ export default function IndexClient({ clientsData }) {
             delay: 0.4,
           }}
         >
-          <img
-            src='/images/about_auw.png'
-            alt='about'
-            className='w-full h-full object-cover'
-          />
+          {projects[1].videoUrl ? (
+            <video
+              src={projects[1].videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className='w-full h-full object-cover'
+              onMouseLeave={handleVideoLeave}
+            />
+          ) : (
+            <img
+              src={projects[1].imageUrl}
+              alt={projects[1].title}
+              className='w-full h-full object-cover'
+              onMouseLeave={handleVideoLeave}
+            />
+          )}
         </motion.div>
         <motion.div
           className='col-span-12 cursor-pointer'
           onMouseMove={handleMouseMove}
           onMouseEnter={() =>
-            handleVideoHover("LISTENING EXPERIENCE")
+            handleVideoHover(
+              `${projects[2].title} | ${projects[2].description}`
+            )
           }
           onMouseLeave={handleVideoLeave}
           {...fadeInUp}
@@ -234,11 +289,24 @@ export default function IndexClient({ clientsData }) {
             delay: 0.6,
           }}
         >
-          <img
-            src='/images/about_auw.png'
-            alt='about'
-            className='w-full h-full object-cover'
-          />
+          {projects[2].videoUrl ? (
+            <video
+              src={projects[2].videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className='w-full h-full object-cover'
+              onMouseLeave={handleVideoLeave}
+            />
+          ) : (
+            <img
+              src={projects[2].imageUrl || "/images/about_auw.png"}
+              alt={projects[2].title}
+              className='w-full h-full object-cover'
+              onMouseLeave={handleVideoLeave}
+            />
+          )}
         </motion.div>
       </div>
 

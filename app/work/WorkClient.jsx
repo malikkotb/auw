@@ -2,12 +2,13 @@
 
 import Footer from "@/components/Footer/Footer";
 import OpacityHoverList from "@/components/OpacityHoverList/OpacityHoverList";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { pageAnimation } from "@/utils/pageAnimation";
 import { useTransitionRouter } from "next-view-transitions";
 import { fadeInUp } from "@/utils/animations";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { IBM_Plex_Mono } from "next/font/google";
+import Lenis from "lenis";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -15,6 +16,15 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export default function WorkClient({ projects }) {
+  const containerRef = useRef(null);
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
   const [view, setView] = useState("grid");
   const [hoveredId, setHoveredId] = useState(null);
   const [cursorPosition, setCursorPosition] = useState({
@@ -43,25 +53,37 @@ export default function WorkClient({ projects }) {
     <div
       className='w-full h-full bg-white'
       onMouseMove={handleMouseMove}
+      ref={containerRef}
     >
       {/* Custom Cursor */}
-      {showCustomCursor && (
-        <div
-          className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 bg-black text-white whitespace-nowrap`}
-          style={{
-            fontSize: "12px",
-            letterSpacing: "0.24px",
-            lineHeight: "1.2",
-            // padding: "6px 12px",
-            padding: "6px 10px ",
-            left: cursorPosition.x - 20,
-            top: cursorPosition.y - 10,
-            transform: "translateX(-100%)",
-          }}
-        >
-          {hoveredProjectTitle} | View Case Study
-        </div>
-      )}
+      <AnimatePresence>
+        {showCustomCursor && (
+          <motion.div
+            className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 bg-black text-white whitespace-nowrap`}
+            style={{
+              fontSize: "12px",
+              letterSpacing: "0.24px",
+              lineHeight: "1.2",
+              padding: "6px 10px",
+              right: containerRef.current
+                ? containerRef.current.offsetWidth -
+                  cursorPosition.x +
+                  40
+                : 0,
+              top: cursorPosition.y - 5,
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{
+              duration: 0.2,
+              ease: "easeOut",
+            }}
+          >
+            {hoveredProjectTitle} | View Case Study
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
         <motion.div
           className='h1 text-26 items-center desktop:items-start justify-between  flex h-full xl:mb-[120px] xl:mt-[120px]'
