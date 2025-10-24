@@ -80,8 +80,8 @@ export default function ProjectClient({
         <div className='w-full grid grid-cols-12 desktop:h-full h-fit overflow-clip'>
           <VideoDim
             colSpan={12}
-            imgLink={featuredMediaUrl}
-            videoLink={featuredMediaUrl}
+            imgLink={featuredMediaUrl?.image || null}
+            videoLink={featuredMediaUrl?.video || null}
             // videoLink={
             //   isVideoUrl(featuredMediaUrl) ? featuredMediaUrl : null
             // }
@@ -107,29 +107,29 @@ export default function ProjectClient({
         {mediaGallery && mediaGallery[0] && (
           <VideoDim
             colSpan={12}
-            imgLink={mediaGallery[0].image || null}
-            videoLink={mediaGallery[0].video || null}
+            imgLink={mediaGallery[0]?.image || null}
+            videoLink={mediaGallery[0]?.video || null}
           />
         )}
         {mediaGallery && mediaGallery[1] && (
           <InstaDim
             colSpan={4}
-            imgLink={mediaGallery[1].image || null}
-            videoLink={mediaGallery[1].video || null}
+            imgLink={mediaGallery[1]?.image || null}
+            videoLink={mediaGallery[1]?.video || null}
           />
         )}
         {mediaGallery && mediaGallery[2] && (
           <InstaDim
             colSpan={8}
-            imgLink={mediaGallery[2].image || null}
-            videoLink={mediaGallery[2].video || null}
+            imgLink={mediaGallery[2]?.image || null}
+            videoLink={mediaGallery[2]?.video || null}
           />
         )}
         {mediaGallery && mediaGallery[3] && (
           <VideoDim
             colSpan={12}
-            imgLink={mediaGallery[3].image || null}
-            videoLink={mediaGallery[3].video || null}
+            imgLink={mediaGallery[3]?.image || null}
+            videoLink={mediaGallery[3]?.video || null}
           />
         )}
       </div>
@@ -149,29 +149,29 @@ export default function ProjectClient({
         {mediaGallery && mediaGallery[4] && (
           <VideoDim
             colSpan={12}
-            imgLink={mediaGallery[4].image || null}
-            videoLink={mediaGallery[4].video || null}
+            imgLink={mediaGallery[4]?.image || null}
+            videoLink={mediaGallery[4]?.video || null}
           />
         )}
         {mediaGallery && mediaGallery[5] && (
           <InstaDim
             colSpan={8}
-            imgLink={mediaGallery[5].image || mediaGallery[5]}
-            videoLink={mediaGallery[5].video || null}
+            imgLink={mediaGallery[5]?.image || mediaGallery[5]}
+            videoLink={mediaGallery[5]?.video || null}
           />
         )}
         {mediaGallery && mediaGallery[6] && (
           <InstaDim
             colSpan={4}
-            imgLink={mediaGallery[6].image || null}
-            videoLink={mediaGallery[6].video || null}
+            imgLink={mediaGallery[6]?.image || null}
+            videoLink={mediaGallery[6]?.video || null}
           />
         )}
         {mediaGallery && mediaGallery[7] && (
           <VideoDim
             colSpan={12}
-            imgLink={mediaGallery[7].image || null}
-            videoLink={mediaGallery[7].video || null}
+            imgLink={mediaGallery[7]?.image || null}
+            videoLink={mediaGallery[7]?.video || null}
           />
         )}
       </div>
@@ -191,29 +191,29 @@ export default function ProjectClient({
         {mediaGallery && mediaGallery[8] && (
           <VideoDim
             colSpan={12}
-            imgLink={mediaGallery[8].image || null}
-            videoLink={mediaGallery[8].video || null}
+            imgLink={mediaGallery[8]?.image || null}
+            videoLink={mediaGallery[8]?.video || null}
           />
         )}
         {mediaGallery && mediaGallery[10] && (
           <InstaDim
             colSpan={4}
-            imgLink={mediaGallery[10].image || null}
-            videoLink={mediaGallery[10].video || null}
+            imgLink={mediaGallery[10]?.image || null}
+            videoLink={mediaGallery[10]?.video || null}
           />
         )}
         {mediaGallery && mediaGallery[9] && (
           <InstaDim
             colSpan={8}
-            imgLink={mediaGallery[9].image || null}
-            videoLink={mediaGallery[9].video || null}
+            imgLink={mediaGallery[9]?.image || null}
+            videoLink={mediaGallery[9]?.video || null}
           />
         )}
         {mediaGallery && mediaGallery[11] && (
           <VideoDim
             colSpan={12}
-            imgLink={mediaGallery[11].image || null}
-            videoLink={mediaGallery[11].video || null}
+            imgLink={mediaGallery[11]?.image || null}
+            videoLink={mediaGallery[11]?.video || null}
           />
         )}
       </div>
@@ -247,8 +247,8 @@ export default function ProjectClient({
         <div className='col-span-12' ref={nextProjectRef}>
           <VideoDim
             colSpan={12}
-            imgLink={nextProjectMediaUrl.image || null}
-            videoLink={nextProjectMediaUrl.video || null}
+            imgLink={nextProjectMediaUrl?.image || null}
+            videoLink={nextProjectMediaUrl?.video || null}
           />
         </div>
       </div>
