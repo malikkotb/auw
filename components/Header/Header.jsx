@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import Menu from "../Menu/Menu";
-import { useTransitionRouter } from "next-view-transitions";
 import Link from "next/link";
 import { pageAnimation } from "../../utils/pageAnimation";
 
@@ -16,7 +15,6 @@ export default function Header() {
   const closeButtonLinesRef = useRef([]);
   const bgRef = useRef(null);
 
-  const router = useTransitionRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -153,23 +151,23 @@ export default function Header() {
             {pathname === "/listening-experience" ? (
               <Link
                 href='/'
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/") {
-                    if (menuOpen) {
-                      setMenuOpen(false);
-                      setTimeout(() => {
-                        router.push("/", {
-                          onTransitionReady: pageAnimation,
-                        });
-                      }, 400); // Wait for menu close animation (0.4s duration)
-                    } else {
-                      router.push("/", {
-                        onTransitionReady: pageAnimation,
-                      });
-                    }
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/") {
+                //     if (menuOpen) {
+                //       setMenuOpen(false);
+                //       setTimeout(() => {
+                //         router.push("/", {
+                //           onTransitionReady: pageAnimation,
+                //         });
+                //       }, 400); // Wait for menu close animation (0.4s duration)
+                //     } else {
+                //       router.push("/", {
+                //         onTransitionReady: pageAnimation,
+                //       });
+                //     }
+                //   }
+                // }}
                 className='cursor-pointer whitespace-nowrap transition-color duration-400'
                 style={{ color: menuOpen ? "#FFFFFF" : "#000000" }}
               >
@@ -178,23 +176,23 @@ export default function Header() {
             ) : (
               <Link
                 href='/'
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/") {
-                    if (menuOpen) {
-                      setMenuOpen(false);
-                      setTimeout(() => {
-                        router.push("/", {
-                          onTransitionReady: pageAnimation,
-                        });
-                      }, 400); // Wait for menu close animation (0.4s duration)
-                    } else {
-                      router.push("/", {
-                        onTransitionReady: pageAnimation,
-                      });
-                    }
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/") {
+                //     if (menuOpen) {
+                //       setMenuOpen(false);
+                //       setTimeout(() => {
+                //         router.push("/", {
+                //           onTransitionReady: pageAnimation,
+                //         });
+                //       }, 400); // Wait for menu close animation (0.4s duration)
+                //     } else {
+                //       router.push("/", {
+                //         onTransitionReady: pageAnimation,
+                //       });
+                //     }
+                //   }
+                // }}
                 className='cursor-pointer'
                 onMouseEnter={() => {
                   if (videoRef.current) {
@@ -262,14 +260,14 @@ export default function Header() {
               href='/about'
               className='header-link'
               style={{}}
-              onClick={(e) => {
-                e.preventDefault();
-                if (pathname !== "/about") {
-                  router.push("/about", {
-                    onTransitionReady: pageAnimation,
-                  });
-                }
-              }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   if (pathname !== "/about") {
+              //     router.push("/about", {
+              //       onTransitionReady: pageAnimation,
+              //     });
+              //   }
+              // }}
             >
               <div className={pathname === "/about" ? "italic" : ""}>
                 About
@@ -278,14 +276,14 @@ export default function Header() {
             <Link
               href='/work'
               className='header-link'
-              onClick={(e) => {
-                e.preventDefault();
-                if (pathname !== "/work") {
-                  router.push("/work", {
-                    onTransitionReady: pageAnimation,
-                  });
-                }
-              }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   if (pathname !== "/work") {
+              //     router.push("/work", {
+              //       onTransitionReady: pageAnimation,
+              //     });
+              //   }
+              // }}
             >
               <div className={pathname === "/work" ? "italic" : ""}>
                 Work
@@ -294,14 +292,14 @@ export default function Header() {
             <Link
               href='/listening-experience'
               className='header-link'
-              onClick={(e) => {
-                e.preventDefault();
-                if (pathname !== "/listening-experience") {
-                  router.push("/listening-experience", {
-                    onTransitionReady: pageAnimation,
-                  });
-                }
-              }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   if (pathname !== "/listening-experience") {
+              //     router.push("/listening-experience", {
+              //       onTransitionReady: pageAnimation,
+              //     });
+              //   }
+              // }}
             >
               <div
                 className={
@@ -314,14 +312,14 @@ export default function Header() {
             <Link
               href='/contact'
               className='header-link'
-              onClick={(e) => {
-                e.preventDefault();
-                if (pathname !== "/contact") {
-                  router.push("/contact", {
-                    onTransitionReady: pageAnimation,
-                  });
-                }
-              }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   if (pathname !== "/contact") {
+              //     router.push("/contact", {
+              //       onTransitionReady: pageAnimation,
+              //     });
+              //   }
+              // }}
             >
               <div
                 className={pathname === "/contact" ? "italic" : ""}

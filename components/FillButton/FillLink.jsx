@@ -3,7 +3,6 @@ import { IBM_Plex_Mono } from "next/font/google";
 import "./FillButton.css";
 import Link from "next/link";
 import { pageAnimation } from "@/utils/pageAnimation";
-import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -16,7 +15,6 @@ export default function FillLink({
   className = "",
   link = "/contact",
 }) {
-  const router = useTransitionRouter();
   const pathname = usePathname();
   const handleMouseEnter = (e) => {
     // Instant change on hover
@@ -39,14 +37,14 @@ export default function FillLink({
   return (
     <Link
       href={link}
-      onClick={(e) => {
-        e.preventDefault();
-        if (pathname !== "/contact") {
-          router.push("/contact", {
-            onTransitionReady: pageAnimation,
-          });
-        }
-      }}
+      // onClick={(e) => {
+      //   e.preventDefault();
+      //   if (pathname !== "/contact") {
+      //     router.push("/contact", {
+      //       onTransitionReady: pageAnimation,
+      //     });
+      //   }
+      // }}
       className={`push-fill-btn cursor-pointer font-medium ${ibmPlexMono.className} ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

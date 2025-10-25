@@ -1,6 +1,5 @@
 "use client";
 
-import { useTransitionRouter } from "next-view-transitions";
 import { useEffect, useRef } from "react";
 import VideoDim from "@/components/ImageComponents/VideoDim";
 import InstaDim from "@/components/ImageComponents/InstaDim";
@@ -27,7 +26,6 @@ export default function ProjectClient({
     }
     requestAnimationFrame(raf);
   }, []);
-  const router = useTransitionRouter();
   const nextProjectRef = useRef(null);
 
   //   useEffect(() => {
@@ -214,14 +212,14 @@ export default function ProjectClient({
         <div className='h1'>({project.nextProjectYear})</div>
         <Link
           href={`/${project.nextProjectLink}`}
-          onClick={(e) => {
-            e.preventDefault();
+          // onClick={(e) => {
+          //   e.preventDefault();
 
-            router.push(`/${project.nextProjectLink}`, {
-              onTransitionReady: pageAnimation,
-              //   scroll: false, // Prevent automatic scroll to top
-            });
-          }}
+          //   router.push(`/${project.nextProjectLink}`, {
+          //     onTransitionReady: pageAnimation,
+          //     //   scroll: false, // Prevent automatic scroll to top
+          //   });
+          // }}
           className='cursor-pointer'
         >
           <div className='h1'>View Next Project</div>

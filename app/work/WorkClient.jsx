@@ -4,7 +4,6 @@ import Footer from "@/components/Footer/Footer";
 import OpacityHoverList from "@/components/OpacityHoverList/OpacityHoverList";
 import { useState, useEffect, useRef } from "react";
 import { pageAnimation } from "@/utils/pageAnimation";
-import { useTransitionRouter } from "next-view-transitions";
 import { fadeInUp } from "@/utils/animations";
 import { motion, AnimatePresence } from "framer-motion";
 import { IBM_Plex_Mono } from "next/font/google";
@@ -33,7 +32,6 @@ export default function WorkClient({ projects }) {
   });
   const [showCustomCursor, setShowCustomCursor] = useState(false);
   const [hoveredProjectTitle, setHoveredProjectTitle] = useState("");
-  const router = useTransitionRouter();
 
   const handleMouseMove = (e) => {
     setCursorPosition({ x: e.clientX, y: e.clientY });
@@ -141,17 +139,17 @@ export default function WorkClient({ projects }) {
                 delay: 0.2,
               }}
               className='cursor-pointer'
-              onClick={(e) => {
-                e.preventDefault();
-                router.push(
-                  `/${projects[0].title
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`,
-                  {
-                    onTransitionReady: pageAnimation,
-                  }
-                );
-              }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   router.push(
+              //     `/${projects[0].title
+              //       .toLowerCase()
+              //       .replace(/\s+/g, "-")}`,
+              //     {
+              //       onTransitionReady: pageAnimation,
+              //     }
+              //   );
+              // }}
             >
               <div className='w-full h-full aspect-video'>
                 {projects[0].videoUrl ? (
@@ -212,17 +210,17 @@ export default function WorkClient({ projects }) {
                   delay: 0.2,
                 }}
                 className='cursor-pointer'
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push(
-                    `/${project.title
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")}`,
-                    {
-                      onTransitionReady: pageAnimation,
-                    }
-                  );
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   router.push(
+                //     `/${project.title
+                //       .toLowerCase()
+                //       .replace(/\s+/g, "-")}`,
+                //     {
+                //       onTransitionReady: pageAnimation,
+                //     }
+                //   );
+                // }}
               >
                 <div className='w-full h-full aspect-video'>
                   {project.videoUrl ? (

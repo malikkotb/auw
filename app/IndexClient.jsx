@@ -1,7 +1,6 @@
 "use client";
 import { IBM_Plex_Mono } from "next/font/google";
 import { useState, useEffect, useRef } from "react";
-import { useTransitionRouter } from "next-view-transitions";
 import FillLink from "@/components/FillButton/FillLink";
 import ParagraphEyebrowLink from "@/components/ParagraphEyebrowLink";
 import Footer from "@/components/Footer/Footer";
@@ -66,7 +65,6 @@ export default function IndexClient({ clientsData, projects }) {
     y: 0,
   });
   const [showCustomCursor, setShowCustomCursor] = useState(false);
-  const router = useTransitionRouter();
   const [hoveredProjectTitle, setHoveredProjectTitle] = useState("");
 
   const handleMouseMove = (e) => {

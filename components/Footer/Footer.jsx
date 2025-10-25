@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FillLink from "../FillButton/FillLink";
-import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { pageAnimation } from "@/utils/pageAnimation";
 import { motion } from "framer-motion";
@@ -17,7 +16,6 @@ export default function Footer() {
   //   const footerRef = useRef(null);
   const footerVideoWrapperRef = useRef(null);
   const footerNavRef = useRef(null);
-  const router = useTransitionRouter();
   const pathname = usePathname();
   useEffect(() => {
     // Helpers to avoid AbortError
@@ -197,56 +195,56 @@ export default function Footer() {
             </div>
             <div className='uppercase flex gap-2'>
               <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/work") {
-                    router.push("/work", {
-                      onTransitionReady: pageAnimation,
-                    });
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/work") {
+                //     router.push("/work", {
+                //       onTransitionReady: pageAnimation,
+                //     });
+                //   }
+                // }}
                 href='/work'
                 className='footer-link'
               >
                 Work
               </Link>
               <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/about") {
-                    router.push("/about", {
-                      onTransitionReady: pageAnimation,
-                    });
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/about") {
+                //     router.push("/about", {
+                //       onTransitionReady: pageAnimation,
+                //     });
+                //   }
+                // }}
                 href='/about'
                 className='footer-link'
               >
                 About
               </Link>
               <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/contact") {
-                    router.push("/contact", {
-                      onTransitionReady: pageAnimation,
-                    });
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/contact") {
+                //     router.push("/contact", {
+                //       onTransitionReady: pageAnimation,
+                //     });
+                //   }
+                // }}
                 href='/contact'
                 className='footer-link'
               >
                 Contact
               </Link>
               <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/listening-experience") {
-                    router.push("/listening-experience", {
-                      onTransitionReady: pageAnimation,
-                    });
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/listening-experience") {
+                //     router.push("/listening-experience", {
+                //       onTransitionReady: pageAnimation,
+                //     });
+                //   }
+                // }}
                 href='/listening-experience'
                 className='whitespace-nowrap footer-link'
               >
@@ -264,14 +262,14 @@ export default function Footer() {
             // }}
           >
             <Link
-              onClick={(e) => {
-                e.preventDefault();
-                if (pathname !== "/privacy") {
-                  router.push("/privacy", {
-                    onTransitionReady: pageAnimation,
-                  });
-                }
-              }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   if (pathname !== "/privacy") {
+              //     router.push("/privacy", {
+              //       onTransitionReady: pageAnimation,
+              //     });
+              //   }
+              // }}
               href='/privacy'
               className='footer-link'
             >
@@ -335,56 +333,56 @@ export default function Footer() {
             <div className='uppercase text-[#626262]'>Navigation</div>
             <div className='uppercase flex gap-2'>
               <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/work") {
-                    router.push("/work", {
-                      onTransitionReady: pageAnimation,
-                    });
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/work") {
+                //     router.push("/work", {
+                //       onTransitionReady: pageAnimation,
+                //     });
+                //   }
+                // }}
                 href='/work'
                 className='footer-link'
               >
                 Work
               </Link>
               <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/about") {
-                    router.push("/about", {
-                      onTransitionReady: pageAnimation,
-                    });
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/about") {
+                //     router.push("/about", {
+                //       onTransitionReady: pageAnimation,
+                //     });
+                //   }
+                // }}
                 href='/about'
                 className='footer-link'
               >
                 About
               </Link>
               <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/contact") {
-                    router.push("/contact", {
-                      onTransitionReady: pageAnimation,
-                    });
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/contact") {
+                //     router.push("/contact", {
+                //       onTransitionReady: pageAnimation,
+                //     });
+                //   }
+                // }}
                 href='/contact'
                 className='footer-link'
               >
                 Contact
               </Link>
               <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname !== "/listening-experience") {
-                    router.push("/listening-experience", {
-                      onTransitionReady: pageAnimation,
-                    });
-                  }
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   if (pathname !== "/listening-experience") {
+                //     router.push("/listening-experience", {
+                //       onTransitionReady: pageAnimation,
+                //     });
+                //   }
+                // }}
                 href='/listening-experience'
                 className='footer-link'
               >
@@ -402,14 +400,14 @@ export default function Footer() {
             // }}
           >
             <Link
-              onClick={(e) => {
-                e.preventDefault();
-                if (pathname !== "/privacy") {
-                  router.push("/privacy", {
-                    onTransitionReady: pageAnimation,
-                  });
-                }
-              }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   if (pathname !== "/privacy") {
+              //     router.push("/privacy", {
+              //       onTransitionReady: pageAnimation,
+              //     });
+              //   }
+              // }}
               href='/privacy'
               className='footer-link'
             >

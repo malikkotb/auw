@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { pageAnimation } from "@/utils/pageAnimation";
-import { useTransitionRouter } from "next-view-transitions";
 import { motion } from "framer-motion";
 import { staggerVariants } from "@/utils/animations";
 // Helper function to check if a URL is a video
@@ -14,7 +13,6 @@ const isVideoUrl = (url) => {
 
 export default function OpacityHoverList({ projects }) {
   const [hoveredId, setHoveredId] = useState(null);
-  const router = useTransitionRouter();
 
   // Get the currently hovered project
   const hoveredProject = projects.find(
@@ -33,15 +31,16 @@ export default function OpacityHoverList({ projects }) {
         <motion.button
           key={project._id}
           variants={staggerVariants.item}
-          onClick={(e) => {
-            e.preventDefault();
-            router.push(
-              `/${project.title.toLowerCase().replace(/\s+/g, "-")}`,
-              {
-                onTransitionReady: pageAnimation,
-              }
-            );
-          }}
+          // TODO: add back in using new router
+          // onClick={(e) => {
+          //   e.preventDefault();
+          //   router.push(
+          //     `/${project.title.toLowerCase().replace(/\s+/g, "-")}`,
+          //     {
+          //       onTransitionReady: pageAnimation,
+          //     }
+          //   );
+          // }}
           onMouseEnter={() => setHoveredId(project._id)}
           onMouseLeave={() => setHoveredId(null)}
           className={`flex h1 cursor-pointer relative w-full justify-between border-b pt-2 pb-1 border-black ${
