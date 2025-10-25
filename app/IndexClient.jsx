@@ -9,6 +9,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { fadeInUp } from "@/utils/animations";
 import ArrowLink from "@/components/ArrowLink/ArrowLink";
 import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -17,14 +19,46 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export default function IndexClient({ clientsData, projects }) {
   const containerRef = useRef(null);
+  const animatedDivRef = useRef(null);
 
   useEffect(() => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
     const lenis = new Lenis();
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
+  // ScrollTrigger animation for the div width and height
+  useEffect(() => {
+    if (animatedDivRef.current) {
+      gsap.fromTo(
+        animatedDivRef.current,
+        {
+          width: "66.666667%", // col-span-8 equivalent (8/12 = 66.67%)
+          height: "auto", // Start with auto height
+        },
+        {
+          width: "100%", // col-span-12 equivalent
+          height: "100%", // Fill the full height of the relative container
+          scrollTrigger: {
+            trigger: animatedDivRef.current,
+            start: "top 90%",
+            end: "top 10%",
+            scrub: 0.5,
+          },
+        }
+      );
+    }
   }, []);
 
   const [cursorPosition, setCursorPosition] = useState({
@@ -168,10 +202,12 @@ export default function IndexClient({ clientsData, projects }) {
         />
       </div>
 
-      {/* <div className='relative h-[100vh]'> */}
-        <div className='pt-[14px] my-[10%] top-[25%] grid grid-cols-12 gap-[14px]'>
+      {/* TODO: disable on screens smaller than 1024px */}
+      <div className='relative h-[75vh]'>
+        <div className='sticky my-[10%] top-[25%] flex justify-center gap-[14px]'>
           <motion.div
-            className='col-span-8 col-start-3 cursor-pointer'
+            ref={animatedDivRef}
+            className='col-start-3 cursor-pointer'
             onMouseMove={handleMouseMove}
             onMouseEnter={() =>
               handleVideoHover("LISTENING EXPERIENCE")
@@ -191,7 +227,7 @@ export default function IndexClient({ clientsData, projects }) {
             />
           </motion.div>
         </div>
-      {/* </div> */}
+      </div>
 
       <div className='flex margin-top margin-bottom md:flex-row flex-col justify-between'>
         <div className='h1'>
