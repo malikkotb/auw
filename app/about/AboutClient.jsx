@@ -79,7 +79,7 @@ export default function AboutClient({ clientsData }) {
           We turn ideas into brands people instantly understand.
         </motion.div>
         <motion.div
-          className='w-full flex desktop:h-full h-fit aspect-video overflow-clip'
+          className='w-full flex desktop:h-full h-fit aspect-video max-h-[calc(100vh-28px)] overflow-clip'
           {...fadeInUp}
           transition={{
             duration: 0.6,

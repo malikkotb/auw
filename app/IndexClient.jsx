@@ -200,7 +200,6 @@ export default function IndexClient({ clientsData, projects }) {
         />
       </div>
 
-      {/* TODO: disable on screens smaller than 1024px */}
       <div className='relative h-[75vh]'>
         <div className='sticky my-[10%] top-[25%] flex justify-center gap-[14px]'>
           <motion.div
@@ -236,7 +235,7 @@ export default function IndexClient({ clientsData, projects }) {
         </div>
       </div>
 
-      <div className='grid grid-cols-12 gap-[14px]'>
+      <div className='hidden sm:grid grid-cols-12 gap-[14px]'>
         {projects.slice(0, 3).map((project, index) => (
           <motion.div
             key={project.slug || index}
@@ -268,6 +267,42 @@ export default function IndexClient({ clientsData, projects }) {
             ) : (
               <img
                 src={project.imageUrl || "/images/about_auw.png"}
+                alt={project.title}
+                className='w-full h-full object-cover'
+                onMouseLeave={handleVideoLeave}
+              />
+            )}
+          </motion.div>
+        ))}
+      </div>
+
+      <div className='sm:hidden'>
+        {projects.slice(0, 3).map((project, index) => (
+          <motion.div
+            key={project.slug || index}
+            className='cursor-pointer aspect-[4/5] w-full'
+            {...fadeInUp}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: 0.2 + index * 0.2,
+            }}
+          >
+            {project.videoUrl ? (
+              <video
+                src={project.videoUrlMobile}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className='w-full h-full object-cover'
+                onMouseLeave={handleVideoLeave}
+              />
+            ) : (
+              <img
+                src={
+                  project.imageUrlMobile || "/images/about_auw.png"
+                }
                 alt={project.title}
                 className='w-full h-full object-cover'
                 onMouseLeave={handleVideoLeave}

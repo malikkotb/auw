@@ -16,6 +16,14 @@ const PROJECTS_QUERY = `*[
     },
     video
   },
+  featuredMediaMobile{
+    dimension,
+    type,
+    image{
+      asset->
+    },
+    video
+  },
   year,
 }`;
 
@@ -39,7 +47,7 @@ async function getProjects() {
 export default async function Index() {
   const [clients, projects] = await Promise.all([
     getClients(),
-    getProjects()
+    getProjects(),
   ]);
 
   const clientsData = clients.map((client) => ({
@@ -48,14 +56,25 @@ export default async function Index() {
   }));
 
   // Process the media URLs on the server side
-  const processedProjects = projects.map(project => ({
+  const processedProjects = projects.map((project) => ({
     ...project,
-    imageUrl: project.featuredMedia?.image?.asset ? urlFor(project.featuredMedia.image).url() : null,
-    videoUrl: project.featuredMedia?.video || null
+    imageUrl: project.featuredMedia?.image?.asset
+      ? urlFor(project.featuredMedia.image).url()
+      : null,
+    videoUrl: project.featuredMedia?.video || null,
+    imageUrlMobile: project.featuredMediaMobile?.image?.asset
+      ? urlFor(project.featuredMediaMobile.image).url()
+      : null,
+    videoUrlMobile: project.featuredMediaMobile?.video || null,
   }));
 
   // Get first 3 projects
   const firstThreeProjects = processedProjects.slice(0, 3);
 
-  return <IndexClient clientsData={clientsData} projects={firstThreeProjects} />;
+  return (
+    <IndexClient
+      clientsData={clientsData}
+      projects={firstThreeProjects}
+    />
+  );
 }

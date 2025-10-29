@@ -71,4 +71,3 @@ const TransitionLayout = ({ children }) => {
 };
 
 export default TransitionLayout;
-

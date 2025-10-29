@@ -89,118 +89,137 @@ export default function WorkClient({ projects }) {
       </AnimatePresence>
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
         <motion.div
-          className='h1 text-26 items-center desktop:items-start justify-between  flex h-full xl:mb-[120px] xl:mt-[120px]'
+        style={{
+          marginTop: "25vh",
+          marginBottom: "25vh",
+        }}
+        //TODO: might need to remove the justify-between and find a different concept for the spacing
+        
+          className='h1 text-26 items-center desktop:items-start justify-between flex h-full xl:mb-[120px] xl:mt-[120px]'
           {...fadeInUp}
         >
-          <div>
-            ALL PROJECTS <span>({projects.length})</span>
-          </div>
-          <div className='flex items-center gap-4'>
-            <span
+          <div>ALL PROJECTS</div>
+          <div className='flex items-center gap-3'>
+            {/* Grid icon */}
+            <div
               onClick={() => setView("grid")}
-              style={{
-                cursor: "pointer",
-              }}
-              className={
-                view === "grid"
-                  ? "text-black italic"
-                  : "text-[#626262]"
-              }
+              className='cursor-pointer grid grid-cols-2 gap-1'
             >
-              GRID
-            </span>
-            <span
+              {Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-3 h-3 ${view === "grid" ? "bg-black" : "bg-gray-400"}`}
+                />
+              ))}
+            </div>
+
+            {/* List icon */}
+            <div
               onClick={() => setView("list")}
-              style={{
-                cursor: "pointer",
-              }}
-              className={
-                view === "list"
-                  ? "text-black italic"
-                  : "text-[#626262]"
-              }
+              className='cursor-pointer flex flex-col space-y-1'
             >
-              LIST
-            </span>
+              {Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-7 h-[4px] ${view === "list" ? "bg-black" : "bg-gray-400"}`}
+                />
+              ))}
+            </div>
           </div>
         </motion.div>
         {view === "list" && <OpacityHoverList projects={projects} />}
         {view === "grid" && (
-          <motion.div
-            className='w-full flex desktop:h-full h-fit aspect-video overflow-clip'
-            {...fadeInUp}
-            transition={{
-              duration: 0.6,
-              ease: "easeOut",
-              delay: 0.2,
-            }}
-          >
-            <motion.button
-              key={projects[0]._id}
+          <>
+            {/* Desktop */}
+            <motion.div
+              className='hidden sm:flex w-full cursor-pointer sm:h-full aspect-video max-h-[calc(100vh-28px)] overflow-clip'
               {...fadeInUp}
               transition={{
                 duration: 0.6,
                 ease: "easeOut",
                 delay: 0.2,
               }}
-              className='cursor-pointer'
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   router.push(
-              //     `/${projects[0].title
-              //       .toLowerCase()
-              //       .replace(/\s+/g, "-")}`,
-              //     {
-              //       onTransitionReady: pageAnimation,
-              //     }
-              //   );
-              // }}
             >
-              <div className='w-full h-full aspect-video'>
-                {projects[0].videoUrl ? (
-                  <video
-                    src={projects[0].videoUrl}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className='w-full h-full object-cover cursor-pointer'
-                    onMouseEnter={() =>
-                      handleVideoHover(projects[0].title)
-                    }
-                    onMouseLeave={handleVideoLeave}
-                  />
-                ) : (
-                  <img
-                    src={projects[0].imageUrl}
-                    alt={projects[0].title}
-                    className='w-full h-full object-cover cursor-pointer'
-                    onMouseEnter={() =>
-                      handleVideoHover(projects[0].title)
-                    }
-                    onMouseLeave={handleVideoLeave}
-                  />
-                )}
-              </div>
-            </motion.button>
-          </motion.div>
+              {projects[0].videoUrl ? (
+                <video
+                  src={projects[0].videoUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className='w-full h-full object-cover cursor-pointer'
+                  onMouseEnter={() =>
+                    handleVideoHover(projects[0].title)
+                  }
+                  onMouseLeave={handleVideoLeave}
+                />
+              ) : (
+                <img
+                  src={projects[0].imageUrl}
+                  alt={projects[0].title}
+                  className='w-full h-full object-cover cursor-pointer'
+                  onMouseEnter={() =>
+                    handleVideoHover(projects[0].title)
+                  }
+                  onMouseLeave={handleVideoLeave}
+                />
+              )}
+            </motion.div>
+            {/* Mobile */}
+            <motion.div
+              className='sm:hidden w-full cursor-pointer flex h-fit aspect-[4/5] max-h-[calc(100vh-28px)] overflow-clip'
+              {...fadeInUp}
+              transition={{
+                duration: 0.6,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+            >
+              {projects[0].videoUrlMobile ? (
+                <video
+                  src={projects[0].videoUrlMobile}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className='w-full h-full object-cover cursor-pointer'
+                  onMouseEnter={() =>
+                    handleVideoHover(projects[0].title)
+                  }
+                  onMouseLeave={handleVideoLeave}
+                />
+              ) : (
+                <img
+                  src={projects[0].imageUrlMobile}
+                  alt={projects[0].title}
+                  className='w-full h-full object-cover cursor-pointer'
+                  onMouseEnter={() =>
+                    handleVideoHover(projects[0].title)
+                  }
+                  onMouseLeave={handleVideoLeave}
+                />
+              )}
+            </motion.div>
+          </>
         )}
       </div>
 
-      <motion.div
-        {...fadeInUp}
-        viewport={{ once: false, margin: "-50px" }}
-        className='pt-1 lg:hidden flex justify-between'
-      >
-        <div className='flex items-start flex-col'>
-          <h3 className='uppercase projects-eyebrow'>
-            {projects[0].title}
-          </h3>
-          <p className='text-[#626262] projects-eyebrow uppercase'>
-            {projects[0].description}
-          </p>
-        </div>
-      </motion.div>
+      {view === "grid" && (
+        <motion.div
+          {...fadeInUp}
+          viewport={{ once: false, margin: "-50px" }}
+          className='pt-1 lg:hidden flex justify-between'
+        >
+          <div className='flex items-start flex-col'>
+            <h3 className='uppercase projects-eyebrow'>
+              {projects[0].title}
+            </h3>
+            <p className='text-[#626262] projects-eyebrow uppercase'>
+              {projects[0].description}
+            </p>
+          </div>
+        </motion.div>
+      )}
 
       {view === "grid" && (
         <div className='pt-[14px] flex flex-col gap-[14px]'>
@@ -226,7 +245,16 @@ export default function WorkClient({ projects }) {
                   );
                 }}
               >
-                <div className='w-full h-full aspect-video max-h-[calc(100vh-28px)]'>
+                {/* Desktop */}
+                <motion.div
+                  className='hidden sm:block w-full h-full aspect-video max-h-[calc(100vh-28px)]'
+                  {...fadeInUp}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: 0.2,
+                  }}
+                >
                   {project.videoUrl ? (
                     <video
                       src={project.videoUrl}
@@ -251,7 +279,42 @@ export default function WorkClient({ projects }) {
                       onMouseLeave={handleVideoLeave}
                     />
                   )}
-                </div>
+                </motion.div>
+                {/* Mobile */}
+                <motion.div
+                  className='sm:hidden w-full h-full aspect-[4/5] max-h-[calc(100vh-28px)]'
+                  {...fadeInUp}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: 0.2,
+                  }}
+                >
+                  {project.videoUrlMobile ? (
+                    <video
+                      src={project.videoUrlMobile}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className='w-full h-full object-cover cursor-pointer'
+                      onMouseEnter={() =>
+                        handleVideoHover(project.title)
+                      }
+                      onMouseLeave={handleVideoLeave}
+                    />
+                  ) : (
+                    <img
+                      src={project.imageUrlMobile}
+                      alt={project.title}
+                      className='w-full h-full object-cover cursor-pointer'
+                      onMouseEnter={() =>
+                        handleVideoHover(project.title)
+                      }
+                      onMouseLeave={handleVideoLeave}
+                    />
+                  )}
+                </motion.div>
 
                 <div className='pt-1 lg:hidden flex justify-between'>
                   <div className='flex items-start flex-col'>

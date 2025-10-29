@@ -20,6 +20,14 @@ const PROJECTS_QUERY = `*[
     },
     video
   },
+  featuredMediaMobile{
+    dimension,
+    type,
+    image{
+      asset->
+    },
+    video
+  },
   year,
 }`;
 
@@ -30,12 +38,18 @@ const options = { next: { revalidate: 3600 } }; // 1 hour in seconds
 
 export default async function Work() {
   const projects = await client.fetch(PROJECTS_QUERY, {}, options);
-  
+
   // Process the media URLs on the server side
-  const processedProjects = projects.map(project => ({
+  const processedProjects = projects.map((project) => ({
     ...project,
-    imageUrl: project.featuredMedia?.image?.asset ? urlFor(project.featuredMedia.image).url() : null,
-    videoUrl: project.featuredMedia?.video || null
+    imageUrl: project.featuredMedia?.image?.asset
+      ? urlFor(project.featuredMedia.image).url()
+      : null,
+    videoUrl: project.featuredMedia?.video || null,
+    imageUrlMobile: project.featuredMediaMobile?.image?.asset
+      ? urlFor(project.featuredMediaMobile.image).url()
+      : null,
+    videoUrlMobile: project.featuredMediaMobile?.video || null,
   }));
 
   return <WorkClient projects={processedProjects} />;
