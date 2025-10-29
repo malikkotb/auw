@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import Menu from "../Menu/Menu";
-import Link from "next/link";
+import TransitionLink from "../TransitionLink";
 import { pageAnimation } from "../../utils/pageAnimation";
 
 export default function Header() {
@@ -14,7 +14,6 @@ export default function Header() {
   const videoRef = useRef(null);
   const closeButtonLinesRef = useRef([]);
   const bgRef = useRef(null);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,9 +57,9 @@ export default function Header() {
     if (menuOpen) {
       // Animate to X
       tl.to([line1, line2], {
-        ...(pathname === "/listening-experience" && {
-          backgroundColor: "white",
-        }),
+        // ...(pathname === "/listening-experience" && {
+        //   backgroundColor: "white",
+        // }),
         delay: 0.2,
         duration: 0.4,
         ease: "power2.inOut",
@@ -88,9 +87,9 @@ export default function Header() {
     } else {
       // Animate to hamburger
       tl.to([line1, line2], {
-        ...(pathname === "/listening-experience" && {
-          backgroundColor: "black",
-        }),
+        // ...(pathname === "/listening-experience" && {
+        //   backgroundColor: "black",
+        // }),
         delay: 0.5,
         duration: 0.4,
         ease: "power2.inOut",
@@ -136,63 +135,27 @@ export default function Header() {
         style={{
           zIndex: 1000,
           transform: `translateY(${isVisible ? "0" : "-100%"})`,
-          color:
-            pathname === "/listening-experience" ? "black" : "white",
-          // mixBlendMode:
-          //   pathname === "/listening-experience"
-          //     ? "normal"
-          //     : "difference",
+          // color:
+          //   pathname === "/listening-experience" ? "white" : "white",
+          color: "white",
           mixBlendMode: "difference",
+          backgroundColor: "black",
         }}
         className='fixed top-0 left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out'
       >
         <div className='grid grid-cols-12 gap-[14px]'>
           <div className='relative'>
             {pathname === "/listening-experience" ? (
-              <Link
+              <TransitionLink
                 href='/'
-                // onClick={(e) => {
-                //   e.preventDefault();
-                //   if (pathname !== "/") {
-                //     if (menuOpen) {
-                //       setMenuOpen(false);
-                //       setTimeout(() => {
-                //         router.push("/", {
-                //           onTransitionReady: pageAnimation,
-                //         });
-                //       }, 400); // Wait for menu close animation (0.4s duration)
-                //     } else {
-                //       router.push("/", {
-                //         onTransitionReady: pageAnimation,
-                //       });
-                //     }
-                //   }
-                // }}
                 className='cursor-pointer whitespace-nowrap transition-color duration-400'
-                style={{ color: menuOpen ? "#FFFFFF" : "#000000" }}
+                style={{ color: menuOpen ? "#FFFFFF" : "white" }}
               >
                 A UNIFIED WHOLE®
-              </Link>
+              </TransitionLink>
             ) : (
-              <Link
+              <TransitionLink
                 href='/'
-                // onClick={(e) => {
-                //   e.preventDefault();
-                //   if (pathname !== "/") {
-                //     if (menuOpen) {
-                //       setMenuOpen(false);
-                //       setTimeout(() => {
-                //         router.push("/", {
-                //           onTransitionReady: pageAnimation,
-                //         });
-                //       }, 400); // Wait for menu close animation (0.4s duration)
-                //     } else {
-                //       router.push("/", {
-                //         onTransitionReady: pageAnimation,
-                //       });
-                //     }
-                //   }
-                // }}
                 className='cursor-pointer'
                 onMouseEnter={() => {
                   if (videoRef.current) {
@@ -223,7 +186,7 @@ export default function Header() {
                     preload='auto'
                   ></video>
                 </div>
-              </Link>
+              </TransitionLink>
             )}
           </div>
           <div className='flex relative lg:hidden col-span-2 col-start-11 justify-end gap-4'>
@@ -237,7 +200,7 @@ export default function Header() {
                   style={{
                     backgroundColor:
                       pathname === "/listening-experience"
-                        ? "black"
+                        ? "white"
                         : "white",
                   }}
                   className='absolute top-[40%] left-0 w-full h-[1.5px] origin-center'
@@ -247,7 +210,7 @@ export default function Header() {
                   style={{
                     backgroundColor:
                       pathname === "/listening-experience"
-                        ? "black"
+                        ? "white"
                         : "white",
                   }}
                   className='absolute top-[60%] left-0 w-full h-[1.5px] origin-center'
@@ -256,50 +219,19 @@ export default function Header() {
             </button>
           </div>
           <div className='hidden relative lg:flex col-span-2 col-start-11 justify-end gap-4'>
-            <Link
-              href='/about'
-              className='header-link'
-              style={{}}
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   if (pathname !== "/about") {
-              //     router.push("/about", {
-              //       onTransitionReady: pageAnimation,
-              //     });
-              //   }
-              // }}
-            >
+            <TransitionLink href='/about' className='header-link'>
               <div className={pathname === "/about" ? "italic" : ""}>
                 About
               </div>
-            </Link>
-            <Link
-              href='/work'
-              className='header-link'
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   if (pathname !== "/work") {
-              //     router.push("/work", {
-              //       onTransitionReady: pageAnimation,
-              //     });
-              //   }
-              // }}
-            >
+            </TransitionLink>
+            <TransitionLink href='/work' className='header-link'>
               <div className={pathname === "/work" ? "italic" : ""}>
                 Work
               </div>
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
               href='/listening-experience'
               className='header-link'
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   if (pathname !== "/listening-experience") {
-              //     router.push("/listening-experience", {
-              //       onTransitionReady: pageAnimation,
-              //     });
-              //   }
-              // }}
             >
               <div
                 className={
@@ -308,25 +240,14 @@ export default function Header() {
               >
                 Sound
               </div>
-            </Link>
-            <Link
-              href='/contact'
-              className='header-link'
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   if (pathname !== "/contact") {
-              //     router.push("/contact", {
-              //       onTransitionReady: pageAnimation,
-              //     });
-              //   }
-              // }}
-            >
+            </TransitionLink>
+            <TransitionLink href='/contact' className='header-link'>
               <div
                 className={pathname === "/contact" ? "italic" : ""}
               >
                 Contact
               </div>
-            </Link>
+            </TransitionLink>
           </div>
         </div>
       </header>

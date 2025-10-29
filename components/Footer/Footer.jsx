@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import TransitionLink from "../TransitionLink";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -194,7 +194,7 @@ export default function Footer() {
               Navigation
             </div>
             <div className='uppercase flex gap-2'>
-              <Link
+              <TransitionLink
                 // onClick={(e) => {
                 //   e.preventDefault();
                 //   if (pathname !== "/work") {
@@ -207,8 +207,8 @@ export default function Footer() {
                 className='footer-link'
               >
                 Work
-              </Link>
-              <Link
+              </TransitionLink>
+              <TransitionLink
                 // onClick={(e) => {
                 //   e.preventDefault();
                 //   if (pathname !== "/about") {
@@ -221,8 +221,8 @@ export default function Footer() {
                 className='footer-link'
               >
                 About
-              </Link>
-              <Link
+              </TransitionLink>
+              <TransitionLink
                 // onClick={(e) => {
                 //   e.preventDefault();
                 //   if (pathname !== "/contact") {
@@ -235,8 +235,8 @@ export default function Footer() {
                 className='footer-link'
               >
                 Contact
-              </Link>
-              <Link
+              </TransitionLink>
+              <TransitionLink
                 // onClick={(e) => {
                 //   e.preventDefault();
                 //   if (pathname !== "/listening-experience") {
@@ -249,7 +249,7 @@ export default function Footer() {
                 className='whitespace-nowrap footer-link'
               >
                 Listening Experience
-              </Link>
+              </TransitionLink>
             </div>
           </motion.div>
           <motion.div
@@ -261,7 +261,7 @@ export default function Footer() {
             //   delay: 0.4,
             // }}
           >
-            <Link
+            <TransitionLink
               // onClick={(e) => {
               //   e.preventDefault();
               //   if (pathname !== "/privacy") {
@@ -274,7 +274,7 @@ export default function Footer() {
               className='footer-link'
             >
               Privacy Policy
-            </Link>
+            </TransitionLink>
           </motion.div>
         </div>
 
@@ -332,7 +332,7 @@ export default function Footer() {
           >
             <div className='uppercase text-[#626262]'>Navigation</div>
             <div className='uppercase flex gap-2'>
-              <Link
+              <TransitionLink
                 // onClick={(e) => {
                 //   e.preventDefault();
                 //   if (pathname !== "/work") {
@@ -345,8 +345,8 @@ export default function Footer() {
                 className='footer-link'
               >
                 Work
-              </Link>
-              <Link
+              </TransitionLink>
+              <TransitionLink
                 // onClick={(e) => {
                 //   e.preventDefault();
                 //   if (pathname !== "/about") {
@@ -359,8 +359,8 @@ export default function Footer() {
                 className='footer-link'
               >
                 About
-              </Link>
-              <Link
+              </TransitionLink>
+              <TransitionLink
                 // onClick={(e) => {
                 //   e.preventDefault();
                 //   if (pathname !== "/contact") {
@@ -373,8 +373,8 @@ export default function Footer() {
                 className='footer-link'
               >
                 Contact
-              </Link>
-              <Link
+              </TransitionLink>
+              <TransitionLink
                 // onClick={(e) => {
                 //   e.preventDefault();
                 //   if (pathname !== "/listening-experience") {
@@ -387,7 +387,7 @@ export default function Footer() {
                 className='footer-link'
               >
                 Listening Experience
-              </Link>
+              </TransitionLink>
             </div>
           </motion.div>
           <motion.div
@@ -399,7 +399,7 @@ export default function Footer() {
             //   delay: 0.4,
             // }}
           >
-            <Link
+            <TransitionLink
               // onClick={(e) => {
               //   e.preventDefault();
               //   if (pathname !== "/privacy") {
@@ -412,7 +412,7 @@ export default function Footer() {
               className='footer-link'
             >
               Privacy Policy
-            </Link>
+            </TransitionLink>
           </motion.div>
         </div>
       </div>

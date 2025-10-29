@@ -7,7 +7,7 @@ import ParagraphEyebrow from "@/components/ParagraphEyebrow";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { pageAnimation } from "@/utils/pageAnimation";
-import Link from "next/link";
+import TransitionLink from "@/components/TransitionLink";
 import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -210,20 +210,12 @@ export default function ProjectClient({
           </div>
         </div>
         <div className='h1'>({project.nextProjectYear})</div>
-        <Link
+        <TransitionLink
           href={`/${project.nextProjectLink}`}
-          // onClick={(e) => {
-          //   e.preventDefault();
-
-          //   router.push(`/${project.nextProjectLink}`, {
-          //     onTransitionReady: pageAnimation,
-          //     //   scroll: false, // Prevent automatic scroll to top
-          //   });
-          // }}
           className='cursor-pointer'
         >
           <div className='h1'>View Next Project</div>
-        </Link>
+        </TransitionLink>
       </div>
 
       <div className='grid grid-cols-12 gap-[14px]'>

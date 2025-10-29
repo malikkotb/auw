@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import TransitionLink from "../TransitionLink";
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
@@ -82,78 +82,38 @@ export default function Menu({ menuOpen, setMenuOpen }) {
         className='fixed grid lg:hidden gap-[14px] mt-[60px] grid-rows-5 w-full p-[14px] bg-black text-white'
       >
         <div className='row-start-2 row-span-2 flex flex-col h2'>
-          <Link
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   setMenuOpen(false);
-            //   setTimeout(() => {
-            //     if (pathname !== "/about") {
-            //       router.push("/about", {
-            //         onTransitionReady: pageAnimation,
-            //       });
-            //     }
-            //   }, 400); // Wait for menu close animation (0.4s duration)
-            // }}
+          <TransitionLink
             href='/about'
             ref={(el) => (linksRef.current[0] = el)}
             className='footer-link w-fit'
+            onClick={() => setMenuOpen(false)}
           >
             <div>About</div>
-          </Link>
-          <Link
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   setMenuOpen(false);
-            //   setTimeout(() => {
-            //     if (pathname !== "/work") {
-            //       router.push("/work", {
-            //         onTransitionReady: pageAnimation,
-            //       });
-            //     }
-            //   }, 400); // Wait for menu close animation (0.4s duration)
-            // }}
+          </TransitionLink>
+          <TransitionLink
             href='/work'
             ref={(el) => (linksRef.current[1] = el)}
             className='footer-link w-fit'
+            onClick={() => setMenuOpen(false)}
           >
             <div>Work</div>
-          </Link>
-          <Link
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   setMenuOpen(false);
-            //   setTimeout(() => {
-            //     if (pathname !== "/listening-experience") {
-            //       router.push("/listening-experience", {
-            //         onTransitionReady: pageAnimation,
-            //       });
-            //     }
-            //   }, 400); // Wait for menu close animation (0.4s duration)
-            // }}
+          </TransitionLink>
+          <TransitionLink
             href='/listening-experience'
             ref={(el) => (linksRef.current[2] = el)}
             className='footer-link w-fit'
+            onClick={() => setMenuOpen(false)}
           >
             <div>Sound</div>
-          </Link>
-          <Link
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   setMenuOpen(false);
-            //   setTimeout(() => {
-            //     if (pathname !== "/contact") {
-            //       router.push("/contact", {
-            //         onTransitionReady: pageAnimation,
-            //       });
-            //     }
-            //   }, 400); // Wait for menu close animation (0.4s duration)
-            // }}
+          </TransitionLink>
+          <TransitionLink
             href='/contact'
             ref={(el) => (linksRef.current[3] = el)}
             className='footer-link w-fit'
+            onClick={() => setMenuOpen(false)}
           >
             <div>Contact</div>
-          </Link>
+          </TransitionLink>
         </div>
         <div className='row-start-5 row-span-1 flex items-end justify-between'>
           <a

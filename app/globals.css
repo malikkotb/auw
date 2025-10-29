@@ -15,53 +15,11 @@
 }
 
 body {
-  /* background: black; */
+  background: white;
   margin: 14px;
   font-family: "SharpGrotesk", sans-serif;
   line-height: 1.2;
 }
-
-/* In your globals.css */
-.to-animate {
-  view-transition-name: page-content;
-}
-
-header {
-  view-transition-name: header;
-}
-
-/* globals css */
-
-/* Old content fades out */
-::view-transition-old(page-content) {
-  animation: none !important;
-}
-
-/* New content waits, then fades in */
-::view-transition-new(page-content) {
-  animation: none !important;
-  opacity: 0; /* Start invisible */
-}
-
-/* ::view-transition-group(root) {
-  z-index: auto !important;
-}
-
-::view-transition-image-pair(root) {
-  isolation: isolate;
-  will-change: transform, opacity, scale;
-  z-index: 1;
-}
-
-::view-transition-new(root) {
-  z-index: 2;
-  animation: none !important;
-}
-
-::view-transition-old(root) {
-  z-index: 1;
-  animation: none !important;
-} */
 
 .margin-top {
   margin-top: 120px !important;

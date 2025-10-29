@@ -1,7 +1,10 @@
+"use client";
 import { useState } from "react";
 import { pageAnimation } from "@/utils/pageAnimation";
 import { motion } from "framer-motion";
 import { staggerVariants } from "@/utils/animations";
+import { useRouter } from "next/navigation";
+import { useRouterTransition } from "@/contexts/TransitionContext";
 // Helper function to check if a URL is a video
 const isVideoUrl = (url) => {
   if (!url) return false;
@@ -19,6 +22,9 @@ export default function OpacityHoverList({ projects }) {
     (project) => project._id === hoveredId
   );
 
+  const router = useRouter();
+  const [, startRouteTransition] = useRouterTransition();
+
   return (
     <motion.div
       className='relative flex flex-col w-full'
@@ -31,16 +37,16 @@ export default function OpacityHoverList({ projects }) {
         <motion.button
           key={project._id}
           variants={staggerVariants.item}
-          // TODO: add back in using new router
-          // onClick={(e) => {
-          //   e.preventDefault();
-          //   router.push(
-          //     `/${project.title.toLowerCase().replace(/\s+/g, "-")}`,
-          //     {
-          //       onTransitionReady: pageAnimation,
-          //     }
-          //   );
-          // }}
+          onClick={() => {
+            startRouteTransition(
+              () => {
+                router.push(
+                  `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+                );
+              },
+              `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+            );
+          }}
           onMouseEnter={() => setHoveredId(project._id)}
           onMouseLeave={() => setHoveredId(null)}
           className={`flex h1 cursor-pointer relative w-full justify-between border-b pt-2 pb-1 border-black ${

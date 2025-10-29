@@ -1,7 +1,7 @@
 "use client";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./FillButton.css";
-import Link from "next/link";
+import TransitionLink from "../TransitionLink";
 import { pageAnimation } from "@/utils/pageAnimation";
 import { usePathname } from "next/navigation";
 
@@ -35,16 +35,8 @@ export default function FillLink({
   };
 
   return (
-    <Link
+    <TransitionLink
       href={link}
-      // onClick={(e) => {
-      //   e.preventDefault();
-      //   if (pathname !== "/contact") {
-      //     router.push("/contact", {
-      //       onTransitionReady: pageAnimation,
-      //     });
-      //   }
-      // }}
       className={`push-fill-btn cursor-pointer font-medium ${ibmPlexMono.className} ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -57,6 +49,6 @@ export default function FillLink({
       <div className='btn-text' style={{ color: "black" }}>
         {text}
       </div>
-    </Link>
+    </TransitionLink>
   );
 }

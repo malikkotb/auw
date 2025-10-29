@@ -125,30 +125,30 @@ export default function Contact() {
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
         <motion.div
           className='h1 text-26 items-center desktop:items-start flex h-full xl:mb-[120px] xl:mt-[120px]'
-          {...fadeInUp}
+          // {...fadeInUp}
         >
           We're excited to collaborate.
         </motion.div>
 
         <motion.div
           className='space-y-2 w-full desktop:h-full h-fit'
-          {...fadeInUp}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-            delay: 0.2,
-          }}
+          // {...fadeInUp}
+          // transition={{
+          //   duration: 0.6,
+          //   ease: "easeOut",
+          //   delay: 0.2,
+          // }}
         >
           {/* Name Field */}
           <div className=''>
             <motion.div
               className='h-[1px] w-full bg-black'
-              {...growFromLeft}
-              transition={{
-                duration: 0.6,
-                ease: "easeInOut",
-                delay: 0.3,
-              }}
+              // {...growFromLeft}
+              // transition={{
+              //   duration: 0.6,
+              //   ease: "easeInOut",
+              //   delay: 0.3,
+              // }}
             />
             <input
               type='text'
@@ -160,12 +160,12 @@ export default function Contact() {
             />
             <motion.div
               className='h-[1px] w-full bg-black'
-              {...growFromLeft}
-              transition={{
-                duration: 0.6,
-                ease: "easeInOut",
-                delay: 0.4,
-              }}
+              // {...growFromLeft}
+              // transition={{
+              //   duration: 0.6,
+              //   ease: "easeInOut",
+              //   delay: 0.4,
+              // }}
             />
           </div>
 
@@ -181,12 +181,12 @@ export default function Contact() {
             />
             <motion.div
               className='h-[1px] w-full bg-black'
-              {...growFromLeft}
-              transition={{
-                duration: 0.6,
-                ease: "easeInOut",
-                delay: 0.5,
-              }}
+              // {...growFromLeft}
+              // transition={{
+              //   duration: 0.6,
+              //   ease: "easeInOut",
+              //   delay: 0.5,
+              // }}
             />
           </div>
 
@@ -203,12 +203,12 @@ export default function Contact() {
             />
             <motion.div
               className='h-[1px] w-full bg-black'
-              {...growFromLeft}
-              transition={{
-                duration: 0.6,
-                ease: "easeInOut",
-                delay: 0.6,
-              }}
+              // {...growFromLeft}
+              // transition={{
+              //   duration: 0.6,
+              //   ease: "easeInOut",
+              //   delay: 0.6,
+              // }}
             />
           </div>
 
@@ -248,13 +248,13 @@ export default function Contact() {
             onClick={
               !isLoading && !isSubmitted ? handleSubmit : undefined
             }
-            {...fadeInUp}
-            viewport={{ once: true, margin: "0px" }}
-            transition={{
-              duration: 0.6,
-              ease: "easeOut",
-              delay: 0.7,
-            }}
+            // {...fadeInUp}
+            // viewport={{ once: true, margin: "0px" }}
+            // transition={{
+            //   duration: 0.6,
+            //   ease: "easeOut",
+            //   delay: 0.7,
+            // }}
           >
             <div className='md:col-span-2 col-span-4 w-full h-full flex items-center'>
               <FillButton
@@ -262,8 +262,8 @@ export default function Contact() {
                   isLoading
                     ? "Sending..."
                     : isSubmitted
-                    ? "Message Sent!"
-                    : "Submit"
+                      ? "Message Sent!"
+                      : "Submit"
                 }
                 className={`w-full h-full text-center ${
                   isSubmitted ? "opacity-50 cursor-not-allowed" : ""
@@ -276,13 +276,13 @@ export default function Contact() {
 
       <motion.div
         className='mt-[120px] grid grid-cols-12 gap-[14px]'
-        {...fadeInUp}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
+        // {...fadeInUp}
+        // transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
       >
         <motion.div
           className='lg:col-start-7 col-span-6 md:col-span-4 lg:col-span-3 w-full h-full aspect-[4/5]'
-          {...fadeInUp}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.9 }}
+          // {...fadeInUp}
+          // transition={{ duration: 0.6, ease: "easeOut", delay: 0.9 }}
         >
           <img
             src='images/jeff.png'
@@ -292,8 +292,8 @@ export default function Contact() {
         </motion.div>
         <motion.div
           className='lg:col-start-10 lg:col-span-3 col-span-6'
-          {...fadeInUp}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 1.0 }}
+          // {...fadeInUp}
+          // transition={{ duration: 0.6, ease: "easeOut", delay: 1.0 }}
         >
           <div className='flex flex-col gap-2'>
             <div>

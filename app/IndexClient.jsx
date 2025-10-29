@@ -38,27 +38,27 @@ export default function IndexClient({ clientsData, projects }) {
   }, []);
 
   // ScrollTrigger animation for the div width and height
-  useEffect(() => {
-    if (animatedDivRef.current) {
-      gsap.fromTo(
-        animatedDivRef.current,
-        {
-          width: "66.666667%", // col-span-8 equivalent (8/12 = 66.67%)
-          height: "auto", // Start with auto height
-        },
-        {
-          width: "100%", // col-span-12 equivalent
-          height: "100%", // Fill the full height of the relative container
-          scrollTrigger: {
-            trigger: animatedDivRef.current,
-            start: "top 90%",
-            end: "top 10%",
-            scrub: 0.5,
-          },
-        }
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (animatedDivRef.current) {
+  //     gsap.fromTo(
+  //       animatedDivRef.current,
+  //       {
+  //         width: "66.666667%", // col-span-8 equivalent (8/12 = 66.67%)
+  //         height: "auto", // Start with auto height
+  //       },
+  //       {
+  //         width: "100%", // col-span-12 equivalent
+  //         height: "100%", // Fill the full height of the relative container
+  //         scrollTrigger: {
+  //           trigger: animatedDivRef.current,
+  //           start: "top 90%",
+  //           end: "top 10%",
+  //           scrub: 0.5,
+  //         },
+  //       }
+  //     );
+  //   }
+  // }, []);
 
   const [cursorPosition, setCursorPosition] = useState({
     x: 0,
@@ -170,7 +170,7 @@ export default function IndexClient({ clientsData, projects }) {
           Creating brands that feel inevitable.
         </motion.div>
         <motion.div
-          className='w-full cursor-pointer flex desktop:h-full h-fit aspect-video overflow-clip'
+          className='w-full cursor-pointer max-h-[calc(100vh-28px)] flex desktop:h-full h-fit aspect-video overflow-clip'
           onMouseMove={handleMouseMove}
           onMouseEnter={() => handleVideoHover("View Reel")}
           onMouseLeave={handleVideoLeave}
@@ -205,7 +205,7 @@ export default function IndexClient({ clientsData, projects }) {
         <div className='sticky my-[10%] top-[25%] flex justify-center gap-[14px]'>
           <motion.div
             ref={animatedDivRef}
-            className='col-start-3 cursor-pointer'
+            className='col-start-3 cursor-pointer aspect-video max-h-[calc(100vh-28px)]'
             onMouseMove={handleMouseMove}
             onMouseEnter={() =>
               handleVideoHover("LISTENING EXPERIENCE")
@@ -237,111 +237,44 @@ export default function IndexClient({ clientsData, projects }) {
       </div>
 
       <div className='grid grid-cols-12 gap-[14px]'>
-        <motion.div
-          className='col-span-12 cursor-pointer'
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() =>
-            handleVideoHover(
-              `${projects[0].title} | ${projects[0].description}`
-            )
-          }
-          onMouseLeave={handleVideoLeave}
-          {...fadeInUp}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-            delay: 0.2,
-          }}
-        >
-          {projects[0].videoUrl ? (
-            <video
-              src={projects[0].videoUrl}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className='w-full h-full object-cover'
-              onMouseLeave={handleVideoLeave}
-            />
-          ) : (
-            <img
-              src={projects[0].imageUrl || "/images/about_auw.png"}
-              alt={projects[0].title}
-              className='w-full h-full object-cover'
-              onMouseLeave={handleVideoLeave}
-            />
-          )}
-        </motion.div>
-        <motion.div
-          className='col-span-12 cursor-pointer'
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() =>
-            handleVideoHover(
-              `${projects[1].title} | ${projects[1].description}`
-            )
-          }
-          onMouseLeave={handleVideoLeave}
-          {...fadeInUp}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-            delay: 0.4,
-          }}
-        >
-          {projects[1].videoUrl ? (
-            <video
-              src={projects[1].videoUrl}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className='w-full h-full object-cover'
-              onMouseLeave={handleVideoLeave}
-            />
-          ) : (
-            <img
-              src={projects[1].imageUrl}
-              alt={projects[1].title}
-              className='w-full h-full object-cover'
-              onMouseLeave={handleVideoLeave}
-            />
-          )}
-        </motion.div>
-        <motion.div
-          className='col-span-12 cursor-pointer'
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() =>
-            handleVideoHover(
-              `${projects[2].title} | ${projects[2].description}`
-            )
-          }
-          onMouseLeave={handleVideoLeave}
-          {...fadeInUp}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-            delay: 0.6,
-          }}
-        >
-          {projects[2].videoUrl ? (
-            <video
-              src={projects[2].videoUrl}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className='w-full h-full object-cover'
-              onMouseLeave={handleVideoLeave}
-            />
-          ) : (
-            <img
-              src={projects[2].imageUrl || "/images/about_auw.png"}
-              alt={projects[2].title}
-              className='w-full h-full object-cover'
-              onMouseLeave={handleVideoLeave}
-            />
-          )}
-        </motion.div>
+        {projects.slice(0, 3).map((project, index) => (
+          <motion.div
+            key={project.slug || index}
+            className='col-span-12 cursor-pointer aspect-video w-full max-h-[calc(100vh-28px)]'
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() =>
+              handleVideoHover(
+                `${project.title} | ${project.description}`
+              )
+            }
+            onMouseLeave={handleVideoLeave}
+            {...fadeInUp}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: 0.2 + index * 0.2,
+            }}
+          >
+            {project.videoUrl ? (
+              <video
+                src={project.videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className='w-full h-full object-cover'
+                onMouseLeave={handleVideoLeave}
+              />
+            ) : (
+              <img
+                src={project.imageUrl || "/images/about_auw.png"}
+                alt={project.title}
+                className='w-full h-full object-cover'
+                onMouseLeave={handleVideoLeave}
+              />
+            )}
+          </motion.div>
+        ))}
       </div>
 
       <div className='pt-[14px]'>

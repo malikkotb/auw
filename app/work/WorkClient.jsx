@@ -8,6 +8,8 @@ import { fadeInUp } from "@/utils/animations";
 import { motion, AnimatePresence } from "framer-motion";
 import { IBM_Plex_Mono } from "next/font/google";
 import Lenis from "lenis";
+import { useRouterTransition } from "@/contexts/TransitionContext";
+import { useRouter } from "next/navigation";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -32,6 +34,9 @@ export default function WorkClient({ projects }) {
   });
   const [showCustomCursor, setShowCustomCursor] = useState(false);
   const [hoveredProjectTitle, setHoveredProjectTitle] = useState("");
+
+  const router = useRouter();
+  const [, startRouteTransition] = useRouterTransition();
 
   const handleMouseMove = (e) => {
     setCursorPosition({ x: e.clientX, y: e.clientY });
@@ -210,19 +215,18 @@ export default function WorkClient({ projects }) {
                   delay: 0.2,
                 }}
                 className='cursor-pointer'
-                // onClick={(e) => {
-                //   e.preventDefault();
-                //   router.push(
-                //     `/${project.title
-                //       .toLowerCase()
-                //       .replace(/\s+/g, "-")}`,
-                //     {
-                //       onTransitionReady: pageAnimation,
-                //     }
-                //   );
-                // }}
+                onClick={() => {
+                  startRouteTransition(
+                    () => {
+                      router.push(
+                        `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+                      );
+                    },
+                    `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+                  );
+                }}
               >
-                <div className='w-full h-full aspect-video'>
+                <div className='w-full h-full aspect-video max-h-[calc(100vh-28px)]'>
                   {project.videoUrl ? (
                     <video
                       src={project.videoUrl}
