@@ -27,7 +27,7 @@ export default function OpacityHoverList({ projects }) {
 
   return (
     <motion.div
-      className='relative flex flex-col w-full'
+      className='relative min-h-[70vh] flex flex-col w-full'
       variants={staggerVariants.container}
       initial='initial'
       whileInView='whileInView'

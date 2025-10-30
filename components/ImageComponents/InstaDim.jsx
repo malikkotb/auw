@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { blurIn } from "@/utils/animations";
 
-export default function InstaDim({ colSpan, imgLink, videoLink }) {
-  // Create a mapping for column span classes
+export default function InstaDim({ colSpan, imgLink, videoLink, viewportMargin = "-150px", withBlurIn = true }) {
   const getColSpanClass = (span) => {
     const classes = {
       1: "sm:col-span-1",
@@ -40,7 +39,8 @@ export default function InstaDim({ colSpan, imgLink, videoLink }) {
       {/* Animated content with blur effect */}
       <motion.div
         className='absolute inset-0 w-full h-full'
-        {...blurIn}
+        {...(withBlurIn ? blurIn : {})}
+        viewport={{ once: true, margin: viewportMargin }}
       >
         {/* Show video if both imgLink and videoLink are provided */}
         {imgLink && videoLink && (

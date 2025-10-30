@@ -32,8 +32,24 @@ const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0]{
     },
     video
   },
+  featuredMediaMobile{
+    dimension,
+    type,
+    image{
+      asset->
+    },
+    video
+  },
   mediaGallery[]{
     _key,
+    dimension,
+    type,
+    image{
+      asset->
+    },
+    video
+  },
+  nextProjectMediaMobile{
     dimension,
     type,
     image{
@@ -76,17 +92,6 @@ export default async function PostPage({ params }) {
     options
   );
 
-  // Get featured media URL
-  const getFeaturedMediaUrl = (media) => {
-    if (media?.type === "image" && media.image?.asset) {
-      return urlFor(media.image)?.url();
-    }
-    if (media?.type === "video" && media.video) {
-      return media.video;
-    }
-    return null;
-  };
-
   // Process media data for ProjectClient
   const getMediaData = (media) => {
     if (!media) return null;
@@ -101,6 +106,10 @@ export default async function PostPage({ params }) {
     ? getMediaData(project.featuredMedia)
     : null;
 
+  const featuredMediaUrlMobile = project.featuredMediaMobile
+    ? getMediaData(project.featuredMediaMobile)
+    : null;
+
   const mediaGallery = project.mediaGallery
     ? project.mediaGallery.map((media) => getMediaData(media))
     : null;
@@ -109,12 +118,18 @@ export default async function PostPage({ params }) {
     ? getMediaData(project.nextProjectMedia)
     : null;
 
+  const nextProjectMediaUrlMobile = project.nextProjectMediaMobile
+    ? getMediaData(project.nextProjectMediaMobile)
+    : null;
+
   return (
     <ProjectClient
       project={project}
       featuredMediaUrl={featuredMediaUrl}
+      featuredMediaUrlMobile={featuredMediaUrlMobile}
       mediaGallery={mediaGallery}
       nextProjectMediaUrl={nextProjectMediaUrl}
+      nextProjectMediaUrlMobile={nextProjectMediaUrlMobile}
     />
   );
 }

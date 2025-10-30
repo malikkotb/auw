@@ -87,15 +87,10 @@ export default function WorkClient({ projects }) {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
+      {/* removed this: h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen because it was causing issues with the layout */}
+      <div className='flex flex-col'>
         <motion.div
-          style={{
-            marginTop: "25vh",
-            marginBottom: "25vh",
-          }}
-          //TODO: might need to remove the justify-between and find a different concept for the spacing
-
-          className='h1 text-26 items-center desktop:items-start justify-between flex h-full xl:mb-[120px] xl:mt-[120px]'
+          className='mb-[30vh] mt-[30vh] xl:mb-[120px] xl:mt-[120px] h1 text-26 items-center desktop:items-start justify-between flex h-full'
           // {...fadeInUp}
         >
           <div>ALL PROJECTS</div>
@@ -128,9 +123,8 @@ export default function WorkClient({ projects }) {
           </div>
         </motion.div>
         {view === "list" && <OpacityHoverList projects={projects} />}
-        {view === "grid" && (
+        {/* {view === "grid" && (
           <>
-            {/* Desktop */}
             <motion.div
               className='hidden sm:flex w-full cursor-pointer sm:h-full aspect-video max-h-[calc(100vh-28px)] overflow-clip'
               onClick={() => {
@@ -143,12 +137,6 @@ export default function WorkClient({ projects }) {
                   `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
                 );
               }}
-              // {...fadeInUp}
-              // transition={{
-              //   duration: 0.6,
-              //   ease: "easeOut",
-              //   delay: 0.2,
-              // }}
             >
               {projects[0].videoUrl ? (
                 <video
@@ -175,7 +163,6 @@ export default function WorkClient({ projects }) {
                 />
               )}
             </motion.div>
-            {/* Mobile */}
             <motion.div
               className='sm:hidden w-full cursor-pointer flex h-fit aspect-[4/5] max-h-[calc(100vh-28px)] overflow-clip'
               onClick={() => {
@@ -188,12 +175,6 @@ export default function WorkClient({ projects }) {
                   `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
                 );
               }}
-              // {...fadeInUp}
-              // transition={{
-              //   duration: 0.6,
-              //   ease: "easeOut",
-              //   delay: 0.2,
-              // }}
             >
               {projects[0].videoUrlMobile ? (
                 <video
@@ -221,11 +202,11 @@ export default function WorkClient({ projects }) {
               )}
             </motion.div>
           </>
-        )}
+        )} */}
       </div>
 
       {/* mobile and grid view first text of first project */}
-      {view === "grid" && (
+      {/* {view === "grid" && (
         <motion.div
           {...fadeInUp}
           viewport={{ once: false, margin: "-50px" }}
@@ -240,12 +221,12 @@ export default function WorkClient({ projects }) {
             </p>
           </div>
         </motion.div>
-      )}
+      )} */}
 
       {view === "grid" && (
-        <div className='pt-[14px] flex flex-col gap-[14px]'>
+        <div className='flex flex-col gap-[14px]'>
           <div className='flex flex-col gap-[14px]'>
-            {projects.slice(1).map((project) => (
+            {projects.map((project) => (
               <motion.button
                 key={project._id}
                 {...fadeInUp}

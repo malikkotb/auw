@@ -16,8 +16,10 @@ gsap.registerPlugin(ScrollTrigger);
 export default function ProjectClient({
   project,
   featuredMediaUrl,
+  featuredMediaUrlMobile,
   mediaGallery,
   nextProjectMediaUrl,
+  nextProjectMediaUrlMobile,
 }) {
   useEffect(() => {
     const lenis = new Lenis();
@@ -35,9 +37,18 @@ export default function ProjectClient({
       const scrollTrigger = ScrollTrigger.create({
         trigger: nextProjectRef.current,
         start: "top top",
+        markers: true,
         onEnter: () => {
           startRouteTransition(
             () => {
+              // Ensure we scroll to the top on this specific navigation
+              if (typeof window !== "undefined") {
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "auto",
+                });
+              }
               router.push(
                 `/${project.nextProjectLink.toLowerCase().replace(/\s+/g, "-")}`
               );
@@ -56,8 +67,8 @@ export default function ProjectClient({
 
   return (
     <main className='h-full w-full bg-white'>
-      <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
-        <div className='h1 text-26 items-start flex justify-between h-full xl:mb-[120px] xl:mt-[120px]'>
+      <div className='flex flex-col'>
+        <div className='mb-[30vh] mt-[30vh] xl:mb-[120px] xl:mt-[120px] h1 text-26 items-start flex justify-between h-full'>
           <div className='flex flex-col'>
             <div className='h1'>{project.title}</div>
             <div className='h1 text-[#838383]'>
@@ -66,13 +77,24 @@ export default function ProjectClient({
           </div>
           <div className='h1'>({project.year})</div>
         </div>
-        <div className='w-full grid grid-cols-12 desktop:h-full h-fit overflow-clip'>
-          <VideoDim
-            colSpan={12}
-            imgLink={featuredMediaUrl?.image || null}
-            videoLink={featuredMediaUrl?.video || null}
-          />
-        </div>
+      </div>
+      <div className='w-full grid sm:hidden grid-cols-12 desktop:h-full h-fit overflow-clip'>
+        <InstaDim
+          withBlurIn={true}
+          viewportMargin='0px'
+          colSpan={12}
+          imgLink={featuredMediaUrlMobile?.image || "/images/3.png"}
+          videoLink={featuredMediaUrlMobile?.video || null}
+        />
+      </div>
+      <div className='sm:grid hidden w-full grid-cols-12 desktop:h-full h-fit overflow-clip'>
+        <VideoDim
+          withBlurIn={true}
+          viewportMargin='0px'
+          colSpan={12}
+          imgLink={featuredMediaUrl?.image || null}
+          videoLink={featuredMediaUrl?.video || null}
+        />
       </div>
 
       {/*  pin aniamtion */}
@@ -210,20 +232,34 @@ export default function ProjectClient({
         className='padding-bottom padding-top h-full w-full flex justify-between'
       >
         <div className='flex flex-col'>
-          <div className='h1'>{project.nextProjectTitle ?? "No title available"}</div>
+          <div className='h1'>
+            {project.nextProjectTitle ?? "No title available"}
+          </div>
           <div className='h1 text-[#838383]'>
-            {project.nextProjectDescription ?? "No description available"}
+            {project.nextProjectDescription ??
+              "No description available"}
           </div>
         </div>
-        <div className='h1'>({project.nextProjectYear ?? "20XX"})</div>
+        <div className='h1'>
+          ({project.nextProjectYear ?? "20XX"})
+        </div>
       </div>
 
       <div className='grid grid-cols-12 gap-[14px]'>
-        <div className='col-span-12'>
+        <div className='col-span-12 sm:block hidden'>
           <VideoDim
             colSpan={12}
             imgLink={nextProjectMediaUrl?.image || null}
             videoLink={nextProjectMediaUrl?.video || null}
+          />
+        </div>
+        <div className='col-span-12 sm:hidden block'>
+          <InstaDim
+            colSpan={12}
+            imgLink={
+              nextProjectMediaUrlMobile?.image || "/images/3.png"
+            }
+            videoLink={nextProjectMediaUrlMobile?.video || null}
           />
         </div>
       </div>
