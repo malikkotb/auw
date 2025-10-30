@@ -6,9 +6,10 @@ import InstaDim from "@/components/ImageComponents/InstaDim";
 import ParagraphEyebrow from "@/components/ParagraphEyebrow";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { pageAnimation } from "@/utils/pageAnimation";
 import TransitionLink from "@/components/TransitionLink";
 import Lenis from "lenis";
+import { useRouterTransition } from "@/contexts/TransitionContext";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,34 +28,36 @@ export default function ProjectClient({
     requestAnimationFrame(raf);
   }, []);
   const nextProjectRef = useRef(null);
+  const [, startRouteTransition] = useRouterTransition();
+  const router = useRouter();
+  useEffect(() => {
+    if (project.nextProjectLink && nextProjectRef.current) {
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: nextProjectRef.current,
+        start: "top top",
+        onEnter: () => {
+          startRouteTransition(
+            () => {
+              router.push(
+                `/${project.nextProjectLink.toLowerCase().replace(/\s+/g, "-")}`
+              );
+            },
+            `/${project.nextProjectLink.toLowerCase().replace(/\s+/g, "-")}`
+          );
+        },
+      });
 
-  //   useEffect(() => {
-  //     if (project.nextProjectLink && nextProjectRef.current) {
-  //       const scrollTrigger = ScrollTrigger.create({
-  //         trigger: nextProjectRef.current,
-  //         start: "bottom bottom",
-  //         end: "bottom bottom",
-  //         markers: true, // Show markers for debugging
-  //         onEnter: () => {
-  //           // Navigate to the next project
-  //           console.log("next project");
-  //           router.push(`/${project.nextProjectLink}`, {
-  //             onTransitionReady: pageAnimation,
-  //           });
-  //         },
-  //       });
-
-  //       // Cleanup function
-  //       return () => {
-  //         scrollTrigger.kill();
-  //       };
-  //     }
-  //   }, [project.nextProjectLink, router]);
+      // Cleanup function
+      return () => {
+        scrollTrigger.kill();
+      };
+    }
+  }, [project.nextProjectLink]);
 
   return (
     <main className='h-full w-full bg-white'>
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
-        <div className='h1 text-26 items-center desktop:items-start flex justify-between h-full xl:mb-[120px] xl:mt-[120px]'>
+        <div className='h1 text-26 items-start flex justify-between h-full xl:mb-[120px] xl:mt-[120px]'>
           <div className='flex flex-col'>
             <div className='h1'>{project.title}</div>
             <div className='h1 text-[#838383]'>
@@ -202,24 +205,21 @@ export default function ProjectClient({
       </div>
 
       {/* Next Project */}
-      <div className='margin-bottom margin-top h-full w-full flex justify-between'>
+      <div
+        ref={nextProjectRef}
+        className='padding-bottom padding-top h-full w-full flex justify-between'
+      >
         <div className='flex flex-col'>
-          <div className='h1'>{project.nextProjectTitle}</div>
+          <div className='h1'>{project.nextProjectTitle ?? "No title available"}</div>
           <div className='h1 text-[#838383]'>
-            {project.nextProjectDescription}
+            {project.nextProjectDescription ?? "No description available"}
           </div>
         </div>
-        <div className='h1'>({project.nextProjectYear})</div>
-        <TransitionLink
-          href={`/${project.nextProjectLink}`}
-          className='cursor-pointer'
-        >
-          <div className='h1'>View Next Project</div>
-        </TransitionLink>
+        <div className='h1'>({project.nextProjectYear ?? "20XX"})</div>
       </div>
 
       <div className='grid grid-cols-12 gap-[14px]'>
-        <div className='col-span-12' ref={nextProjectRef}>
+        <div className='col-span-12'>
           <VideoDim
             colSpan={12}
             imgLink={nextProjectMediaUrl?.image || null}

@@ -2,14 +2,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
-@font-face {
-  font-family: "SharpGrotesk";
-  src: url("/SharpGrotesk SemiBold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --breakpoint-desktop: 1440px;
 }
@@ -17,7 +9,6 @@
 body {
   background: white;
   margin: 14px;
-  font-family: "SharpGrotesk", sans-serif;
   line-height: 1.2;
 }
 
@@ -27,6 +18,14 @@ body {
 
 .margin-bottom {
   margin-bottom: 120px !important;
+}
+
+.padding-top {
+  padding-top: 120px !important;
+}
+
+.padding-bottom {
+  padding-bottom: 120px !important;
 }
 
 .h1 {
@@ -58,6 +57,14 @@ body {
   .margin-bottom {
     margin-bottom: 136px;
   }
+
+  .padding-top {
+    padding-top: 136px;
+  }
+
+  .padding-bottom {
+    padding-bottom: 136px;
+  }
 }
 
 @media (max-width: 1023px) {
@@ -75,6 +82,14 @@ body {
 
   .margin-bottom {
     margin-bottom: 64px;
+  }
+
+  .padding-top {
+    padding-top: 64px;
+  }
+
+  .padding-bottom {
+    padding-bottom: 64px;
   }
 }
 

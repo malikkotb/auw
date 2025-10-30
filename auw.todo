@@ -7,18 +7,17 @@
 ✔ footer design @started(25-10-04 11:41) @done(25-10-04 12:40) @lasted(59m43s)
 ✔ make sound page full screen and not scrollable @started(25-10-13 09:14) @done(25-10-13 09:14) @lasted(27s)
 ✔ add lazy blur plaiceholder images: https://blog.olivierlarose.com/articles/placeholder-guide-using-next-image @done(25-10-22 11:16)
-
-☐ page transition on case study pages, where you scroll past enough it then goes to that link
+✔ page transition on case study pages, where you scroll past enough it then goes to that link @done(25-10-30 11:00)
 
 ☐ fix height of the arrows in ArrowLink component
 
-☐ fix layout of home page on large screens
-
 ☐ Todos in project
 
-☐ add fadeup animations on heading an images and keep consistent across all pages
+☐ fix all layouts of iamges, right now images and sections
+are overlapping on almost all pages
 
-☐ intro animation for headings on all pages like area17 but add a slight
- ☐ subtle fadeUp (translateY) animation on the content
+☐ add same margin for headings of pages for all screen sizes
+☐ and also for "view next project" section on case study pages
+
 
 ☐ Make logo video bit bigger, roughly same size as h1 text

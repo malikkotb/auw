@@ -29,8 +29,11 @@ const TransitionLayout = ({ children }) => {
     return new Promise((resolve) => {
       gsap.to(contentElements, {
         opacity: 0,
-        duration: 0.5,
-        ease: "power4.out",
+        y: -20,
+        ease: "power3.in",
+        duration: 0.6,
+        // duration: 0.5,
+        // ease: "power4.out",
         onComplete: resolve,
       });
     });
@@ -50,13 +53,24 @@ const TransitionLayout = ({ children }) => {
     return new Promise((resolve) => {
       gsap.fromTo(
         contentElements,
+        // {
+        //   opacity: 0,
+        // },
+        // {
+        //   opacity: 1,
+        //   duration: 1,
+        //   ease: "power4.out",
+        //   onComplete: resolve,
+        // }
         {
           opacity: 0,
+          y: 20, // Start below
         },
         {
           opacity: 1,
+          y: 0, // Slide to position
           duration: 1,
-          ease: "power4.out",
+          ease: "power3.out",
           onComplete: resolve,
         }
       );
