@@ -14,7 +14,7 @@ export default function Header() {
   const videoRef = useRef(null);
   const closeButtonLinesRef = useRef([]);
   const bgRef = useRef(null);
-
+  const logoRef = useRef(null);
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -36,20 +36,20 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // useEffect(() => {
+  //   const video = videoRef.current;
+  //   if (!video) return;
+
+  //   const handleEnded = () => {
+  //     video.pause();
+  //   };
+
+  //   video.addEventListener("ended", handleEnded);
+  //   return () => video.removeEventListener("ended", handleEnded);
+  // }, []);
+
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleEnded = () => {
-      video.pause();
-    };
-
-    video.addEventListener("ended", handleEnded);
-    return () => video.removeEventListener("ended", handleEnded);
-  }, []);
-
-  useEffect(() => {
-    const [line1, line2] = closeButtonLinesRef.current;
+    const [line1, line2, line3] = closeButtonLinesRef.current;
     if (!line1 || !line2) return;
 
     const tl = gsap.timeline();
@@ -57,13 +57,20 @@ export default function Header() {
     if (menuOpen) {
       // Animate to X
       tl.to([line1, line2], {
-        // ...(pathname === "/listening-experience" && {
-        //   backgroundColor: "white",
-        // }),
         delay: 0.2,
         duration: 0.4,
         ease: "power2.inOut",
       })
+        // fade out the third line so only two lines form the X
+        .to(
+          line3,
+          {
+            opacity: 0,
+            duration: 0.2,
+            ease: "power2.out",
+          },
+          "<"
+        )
         .to(
           line1,
           {
@@ -87,13 +94,20 @@ export default function Header() {
     } else {
       // Animate to hamburger
       tl.to([line1, line2], {
-        // ...(pathname === "/listening-experience" && {
-        //   backgroundColor: "black",
-        // }),
         delay: 0.5,
         duration: 0.4,
         ease: "power2.inOut",
       })
+        // fade the third line back in to show hamburger state
+        .to(
+          line3,
+          {
+            opacity: 1,
+            duration: 0.2,
+            ease: "power2.out",
+          },
+          "<"
+        )
         .to(
           line1,
           {
@@ -135,8 +149,6 @@ export default function Header() {
         style={{
           zIndex: 1000,
           transform: `translateY(${isVisible ? "0" : "-100%"})`,
-          // color:
-          //   pathname === "/listening-experience" ? "white" : "white",
           color: "white",
           mixBlendMode: "difference",
           backgroundColor: "black",
@@ -144,51 +156,7 @@ export default function Header() {
         className='fixed top-0 left-0 w-full text-body pt-[14px] pl-[14px] pr-[14px] pb-[10px] uppercase transition-transform duration-300 ease-in-out'
       >
         <div className='grid grid-cols-12 gap-[14px]'>
-          <div className='relative'>
-            {pathname === "/listening-experience" ? (
-              <TransitionLink
-                href='/'
-                className='cursor-pointer whitespace-nowrap transition-color duration-400'
-                style={{ color: menuOpen ? "#FFFFFF" : "white" }}
-              >
-                A UNIFIED WHOLE®
-              </TransitionLink>
-            ) : (
-              <TransitionLink
-                href='/'
-                className='cursor-pointer'
-                onMouseEnter={() => {
-                  if (videoRef.current) {
-                    videoRef.current.currentTime = 0;
-                    videoRef.current
-                      .play()
-                      .catch((err) =>
-                        console.warn("Video play prevented:", err)
-                      );
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (videoRef.current) {
-                    videoRef.current.pause();
-                    videoRef.current.currentTime = 0;
-                    videoRef.current.load();
-                  }
-                }}
-              >
-                <div className='w-[27px] h-[34px] lg:w-[36px] lg:h-[45px] relative'>
-                  <video
-                    ref={videoRef}
-                    src='/auw_logo.webm'
-                    // poster='/logo_poster.png'
-                    className='absolute inset-0 w-full h-full object-cover'
-                    muted
-                    playsInline
-                    preload='auto'
-                  ></video>
-                </div>
-              </TransitionLink>
-            )}
-          </div>
+          {/* old logo */}
           <div className='flex relative lg:hidden col-span-2 col-start-11 justify-end gap-4'>
             <button
               className='cursor-pointer'
@@ -197,23 +165,15 @@ export default function Header() {
               <div className='relative w-6 h-6 -mt-[6px]'>
                 <div
                   ref={(el) => (closeButtonLinesRef.current[0] = el)}
-                  style={{
-                    backgroundColor:
-                      pathname === "/listening-experience"
-                        ? "white"
-                        : "white",
-                  }}
-                  className='absolute top-[40%] left-0 w-full h-[1.5px] origin-center'
+                  className='absolute bg-white top-[40%] left-0 w-full h-[1.5px] origin-center'
                 ></div>
                 <div
                   ref={(el) => (closeButtonLinesRef.current[1] = el)}
-                  style={{
-                    backgroundColor:
-                      pathname === "/listening-experience"
-                        ? "white"
-                        : "white",
-                  }}
-                  className='absolute top-[60%] left-0 w-full h-[1.5px] origin-center'
+                  className='absolute bg-white top-[60%] left-0 w-full h-[1.5px] origin-center'
+                ></div>
+                <div
+                  ref={(el) => (closeButtonLinesRef.current[2] = el)}
+                  className='absolute bg-white top-[80%] left-0 w-full h-[1.5px] origin-center'
                 ></div>
               </div>
             </button>
@@ -251,6 +211,63 @@ export default function Header() {
           </div>
         </div>
       </header>
+      <div
+        ref={logoRef}
+        style={{
+          zIndex: 1000,
+          transform: `translateY(${isVisible ? "0" : "-150%"})`,
+        }}
+        className='fixed top-[14px] left-[14px] w-fit transition-transform duration-300 ease-in-out'
+      >
+        {pathname === "/listening-experience" ? (
+          <TransitionLink
+            href='/'
+            className='cursor-pointer whitespace-nowrap transition-color duration-400'
+            // style={{ color: menuOpen ? "#FFFFFF" : "white" }}
+          >
+            A UNIFIED WHOLE®
+          </TransitionLink>
+        ) : (
+          <TransitionLink
+            href='/'
+            className='cursor-pointer'
+            // onMouseEnter={() => {
+            //   if (videoRef.current) {
+            //     videoRef.current.currentTime = 0;
+            //     videoRef.current
+            //       .play()
+            //       .catch((err) =>
+            //         console.warn("Video play prevented:", err)
+            //       );
+            //   }
+            // }}
+            // onMouseLeave={() => {
+            //   if (videoRef.current) {
+            //     videoRef.current.pause();
+            //     videoRef.current.currentTime = 0;
+            //     videoRef.current.load();
+            //   }
+            // }}
+          >
+            <div className='relative w-[27px] h-[34px] lg:w-[36px] lg:h-[45px]'>
+              {/* <video
+                    ref={videoRef}
+                    src='/auw_logo.webm'
+                    // poster='/logo_poster.png'
+                    className='absolute inset-0 w-full h-full object-cover'
+                    muted
+                    playsInline
+                    preload='auto'
+                  ></video> */}
+              <img
+                src='/auw_logo.png'
+                alt='auw logo'
+                className='z-10 w-full h-full object-cover'
+              />
+            </div>
+          </TransitionLink>
+        )}
+      </div>
       <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     </>
   );

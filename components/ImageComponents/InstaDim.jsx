@@ -31,7 +31,7 @@ export default function InstaDim({ colSpan, imgLink, videoLink, viewportMargin =
     <div
       className={`${getColSpanClass(
         colSpan
-      )} col-span-12 aspect-[4/5] w-full relative max-h-[calc(100vh-28px)]`}
+      )} col-span-12 aspect-[4/5] w-full relative`}
     >
       {/* Gray background placeholder */}
       <div className='absolute inset-0 bg-gray-300 w-full h-full ' />

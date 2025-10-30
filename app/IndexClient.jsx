@@ -162,32 +162,33 @@ export default function IndexClient({ clientsData, projects }) {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
-        <motion.div
-          className='h1 text-26 items-center desktop:items-start flex h-full xl:mb-[120px] xl:mt-[120px]'
-          // {...fadeInUp}
-        >
-          Creating brands that feel inevitable.
-        </motion.div>
-        <motion.div
-          className='w-full cursor-pointer max-h-[calc(100vh-28px)] flex desktop:h-full h-fit aspect-video overflow-clip'
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() => handleVideoHover("View Reel")}
-          onMouseLeave={handleVideoLeave}
-          // {...fadeInUp}
-          // transition={{
-          //   duration: 0.6,
-          //   ease: "easeOut",
-          //   delay: 0.2,
-          // }}
-        >
-          <img
-            src='/images/about_auw.png'
-            alt='about'
-            className='col-span-12 w-full h-full object-cover'
-          />
-        </motion.div>
-      </div>
+      <motion.div className='mb-[30vh] mt-[30vh] xl:mb-[120px] xl:mt-[120px] h1 text-26 items-center desktop:items-start flex h-full'>
+        Creating brands that feel inevitable.
+      </motion.div>
+      <motion.div
+        className='w-full hidden sm:grid grid-cols-12 cursor-pointer max-h-[calc(100vh-28px)] h-full aspect-video overflow-clip'
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => handleVideoHover("View Reel")}
+        onMouseLeave={handleVideoLeave}
+      >
+        <img
+          src='/images/about_auw.png'
+          alt='Reel'
+          className='col-span-12 w-full h-full object-cover'
+        />
+      </motion.div>
+      <motion.div
+        className='w-full cursor-pointer grid sm:hidden grid-cols-12 h-full aspect-[4/5] overflow-clip'
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => handleVideoHover("View Reel")}
+        onMouseLeave={handleVideoLeave}
+      >
+        <img
+          src='/images/6.png'
+          alt='Reel'
+          className='col-span-12 w-full h-full object-cover'
+        />
+      </motion.div>
       <div className='pt-[14px]'>
         {/* duplicate paragraph eyebrow compnent with filllink instead of fillbutton */}
         <ParagraphEyebrowLink

@@ -67,16 +67,14 @@ export default function ProjectClient({
 
   return (
     <main className='h-full w-full bg-white'>
-      <div className='flex flex-col'>
-        <div className='mb-[30vh] mt-[30vh] xl:mb-[120px] xl:mt-[120px] h1 text-26 items-start flex justify-between h-full'>
-          <div className='flex flex-col'>
-            <div className='h1'>{project.title}</div>
-            <div className='h1 text-[#838383]'>
-              {project.description}
-            </div>
+      <div className='mb-[30vh] mt-[30vh] xl:mb-[120px] xl:mt-[120px] h1 text-26 items-start flex justify-between h-full'>
+        <div className='flex flex-col'>
+          <div className='h1'>{project.title}</div>
+          <div className='h1 text-[#838383]'>
+            {project.description}
           </div>
-          <div className='h1'>({project.year})</div>
         </div>
+        <div className='h1'>({project.year})</div>
       </div>
       <div className='w-full grid sm:hidden grid-cols-12 desktop:h-full h-fit overflow-clip'>
         <InstaDim
