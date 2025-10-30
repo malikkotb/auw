@@ -74,18 +74,18 @@ export default function AboutClient({ clientsData }) {
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
         <motion.div
           className='h1 text-26 items-center desktop:items-start flex h-full xl:mb-[120px] xl:mt-[120px]'
-          {...fadeInUp}
+          // {...fadeInUp}
         >
           We turn ideas into brands people instantly understand.
         </motion.div>
         <motion.div
           className='w-full flex desktop:h-full h-fit aspect-video max-h-[calc(100vh-28px)] overflow-clip'
-          {...fadeInUp}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-            delay: 0.2,
-          }}
+          // {...fadeInUp}
+          // transition={{
+          //   duration: 0.6,
+          //   ease: "easeOut",
+          //   delay: 0.2,
+          // }}
         >
           <img
             src='/images/about_auw.png'

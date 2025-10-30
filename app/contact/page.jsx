@@ -110,16 +110,6 @@ export default function Contact() {
 
   const headerHeight = useHeaderHeight();
 
-  // Ensure page scrolls to top on mount
-  useEffect(() => {
-    // Use setTimeout to ensure DOM is fully rendered
-    const timer = setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 0);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className='w-full h-full bg-white'>
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>

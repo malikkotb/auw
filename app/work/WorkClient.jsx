@@ -89,14 +89,14 @@ export default function WorkClient({ projects }) {
       </AnimatePresence>
       <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
         <motion.div
-        style={{
-          marginTop: "25vh",
-          marginBottom: "25vh",
-        }}
-        //TODO: might need to remove the justify-between and find a different concept for the spacing
-        
+          style={{
+            marginTop: "25vh",
+            marginBottom: "25vh",
+          }}
+          //TODO: might need to remove the justify-between and find a different concept for the spacing
+
           className='h1 text-26 items-center desktop:items-start justify-between flex h-full xl:mb-[120px] xl:mt-[120px]'
-          {...fadeInUp}
+          // {...fadeInUp}
         >
           <div>ALL PROJECTS</div>
           <div className='flex items-center gap-3'>
@@ -133,12 +133,22 @@ export default function WorkClient({ projects }) {
             {/* Desktop */}
             <motion.div
               className='hidden sm:flex w-full cursor-pointer sm:h-full aspect-video max-h-[calc(100vh-28px)] overflow-clip'
-              {...fadeInUp}
-              transition={{
-                duration: 0.6,
-                ease: "easeOut",
-                delay: 0.2,
+              onClick={() => {
+                startRouteTransition(
+                  () => {
+                    router.push(
+                      `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
+                    );
+                  },
+                  `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
+                );
               }}
+              // {...fadeInUp}
+              // transition={{
+              //   duration: 0.6,
+              //   ease: "easeOut",
+              //   delay: 0.2,
+              // }}
             >
               {projects[0].videoUrl ? (
                 <video
@@ -168,12 +178,22 @@ export default function WorkClient({ projects }) {
             {/* Mobile */}
             <motion.div
               className='sm:hidden w-full cursor-pointer flex h-fit aspect-[4/5] max-h-[calc(100vh-28px)] overflow-clip'
-              {...fadeInUp}
-              transition={{
-                duration: 0.6,
-                ease: "easeOut",
-                delay: 0.2,
+              onClick={() => {
+                startRouteTransition(
+                  () => {
+                    router.push(
+                      `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
+                    );
+                  },
+                  `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
+                );
               }}
+              // {...fadeInUp}
+              // transition={{
+              //   duration: 0.6,
+              //   ease: "easeOut",
+              //   delay: 0.2,
+              // }}
             >
               {projects[0].videoUrlMobile ? (
                 <video
@@ -204,6 +224,7 @@ export default function WorkClient({ projects }) {
         )}
       </div>
 
+      {/* mobile and grid view first text of first project */}
       {view === "grid" && (
         <motion.div
           {...fadeInUp}
