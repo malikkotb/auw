@@ -71,28 +71,24 @@ export default function AboutClient({ clientsData }) {
 
   return (
     <div className='h-full w-full bg-white'>
-      <div className='flex flex-col h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen'>
-        <motion.div
-          className='h1 text-26 items-center desktop:items-start flex h-full xl:mb-[120px] xl:mt-[120px]'
-          // {...fadeInUp}
-        >
+      <div className='flex flex-col'>
+        <div className='section-spacing h1 text-26 h-full'>
           We turn ideas into brands people instantly understand.
-        </motion.div>
-        <motion.div
-          className='w-full flex desktop:h-full h-fit aspect-video max-h-[calc(100vh-28px)] overflow-clip'
-          // {...fadeInUp}
-          // transition={{
-          //   duration: 0.6,
-          //   ease: "easeOut",
-          //   delay: 0.2,
-          // }}
-        >
+        </div>
+        <div className='w-full hidden sm:grid grid-cols-12 h-full aspect-video overflow-clip'>
           <img
             src='/images/about_auw.png'
             alt='about'
             className='col-span-12 w-full h-full object-cover'
           />
-        </motion.div>
+        </div>
+        <div className='w-full grid sm:hidden grid-cols-12 h-full aspect-[4/5] overflow-clip'>
+          <img
+            src='/images/6.png'
+            alt='about'
+            className='col-span-12 w-full h-full object-cover'
+          />
+        </div>
       </div>
 
       <motion.div

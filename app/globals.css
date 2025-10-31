@@ -93,6 +93,25 @@ body {
   }
 }
 
+.section-spacing {
+  margin-top: 30vh;
+  margin-bottom: 30vh;
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    margin-top: 25vh;
+    margin-bottom: 25vh;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-spacing {
+    margin-top: 120px;
+    margin-bottom: 120px;
+  }
+}
+
 .external-link {
   font-size: 24px;
   text-transform: uppercase;

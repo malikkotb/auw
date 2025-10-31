@@ -67,34 +67,35 @@ export default function ProjectClient({
 
   return (
     <main className='h-full w-full bg-white'>
-      <div className='mb-[30vh] mt-[30vh] xl:mb-[120px] xl:mt-[120px] h1 text-26 items-start flex justify-between h-full'>
-        <div className='flex flex-col'>
-          <div className='h1'>{project.title}</div>
-          <div className='h1 text-[#838383]'>
-            {project.description}
+      <div className='flex flex-col'>
+        <div className='section-spacing h1 text-26 items-start flex justify-between h-full'>
+          <div className='flex flex-col'>
+            <div className='h1'>{project.title}</div>
+            <div className='h1 text-[#838383]'>
+              {project.description}
+            </div>
           </div>
+          <div className='h1'>({project.year})</div>
         </div>
-        <div className='h1'>({project.year})</div>
+        <div className='w-full grid sm:hidden grid-cols-12 desktop:h-full h-fit overflow-clip'>
+          <InstaDim
+            withBlurIn={true}
+            viewportMargin='0px'
+            colSpan={12}
+            imgLink={featuredMediaUrlMobile?.image || "/images/3.png"}
+            videoLink={featuredMediaUrlMobile?.video || null}
+          />
+        </div>
+        <div className='sm:grid hidden w-full grid-cols-12 desktop:h-full h-fit overflow-clip'>
+          <VideoDim
+            withBlurIn={true}
+            viewportMargin='0px'
+            colSpan={12}
+            imgLink={featuredMediaUrl?.image || null}
+            videoLink={featuredMediaUrl?.video || null}
+          />
+        </div>
       </div>
-      <div className='w-full grid sm:hidden grid-cols-12 desktop:h-full h-fit overflow-clip'>
-        <InstaDim
-          withBlurIn={true}
-          viewportMargin='0px'
-          colSpan={12}
-          imgLink={featuredMediaUrlMobile?.image || "/images/3.png"}
-          videoLink={featuredMediaUrlMobile?.video || null}
-        />
-      </div>
-      <div className='sm:grid hidden w-full grid-cols-12 desktop:h-full h-fit overflow-clip'>
-        <VideoDim
-          withBlurIn={true}
-          viewportMargin='0px'
-          colSpan={12}
-          imgLink={featuredMediaUrl?.image || null}
-          videoLink={featuredMediaUrl?.video || null}
-        />
-      </div>
-
       {/*  pin aniamtion */}
       <div className='relative h-[50vh]'>
         {/* Container controls sticky duration */}

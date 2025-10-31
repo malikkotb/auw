@@ -87,10 +87,9 @@ export default function WorkClient({ projects }) {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* removed this: h-[calc(100vh-28px)] desktop:h-auto desktop:min-h-screen because it was causing issues with the layout */}
       <div className='flex flex-col'>
         <motion.div
-          className='mb-[30vh] mt-[30vh] xl:mb-[120px] xl:mt-[120px] h1 text-26 items-center desktop:items-start justify-between flex h-full'
+          className='section-spacing h1 text-26 justify-between flex h-full'
           // {...fadeInUp}
         >
           <div>ALL PROJECTS</div>
