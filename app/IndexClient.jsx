@@ -37,28 +37,94 @@ export default function IndexClient({ clientsData, projects }) {
     };
   }, []);
 
-  // ScrollTrigger animation for the div width and height
-  // useEffect(() => {
-  //   if (animatedDivRef.current) {
-  //     gsap.fromTo(
-  //       animatedDivRef.current,
-  //       {
-  //         width: "66.666667%", // col-span-8 equivalent (8/12 = 66.67%)
-  //         height: "auto", // Start with auto height
-  //       },
-  //       {
-  //         width: "100%", // col-span-12 equivalent
-  //         height: "100%", // Fill the full height of the relative container
-  //         scrollTrigger: {
-  //           trigger: animatedDivRef.current,
-  //           start: "top 90%",
-  //           end: "top 10%",
-  //           scrub: 0.5,
-  //         },
-  //       }
-  //     );
-  //   }
-  // }, []);
+  // ScrollTrigger animation for the div width expansion
+  useEffect(() => {
+    if (!animatedDivRef.current) return;
+
+    const element = animatedDivRef.current;
+    const wrapper = element.parentElement; // The sticky wrapper
+    let scrollTrigger = null;
+    let handleResize = null;
+
+    // Wait for next frame to ensure layout is complete
+    requestAnimationFrame(() => {
+      const triggerElement = wrapper.parentElement; // The relative container
+      if (!triggerElement) return;
+
+      // Get wrapper content width (excludes padding) to calculate pixel values
+      const wrapperContentWidth = wrapper.clientWidth; // Width excluding padding
+      const availableWidth = wrapperContentWidth; // Subtract margins from both sides
+      const startWidth = availableWidth * 0.66666667; // 8 columns (66.67% of available width)
+
+      const endWidth = availableWidth; // 12 columns (100% of available width, accounting for margins)
+      console.log("startWidth", startWidth);
+      console.log("endWidth", endWidth);
+      console.log("availableWidth", availableWidth);
+      // Set initial width and center positioning with margins
+      gsap.set(element, {
+        width: startWidth,
+        left: "50%",
+        x: "-50%",
+        top: "25%",
+        y: "-25%",
+        position: "absolute",
+      });
+
+      // Create ScrollTrigger that pins the wrapper and animates width
+      scrollTrigger = ScrollTrigger.create({
+        trigger: triggerElement,
+        start: "top 25%",
+        end: "+=200vh",
+        scrub: true,
+        // markers: true,
+        pin: wrapper,
+        pinSpacing: true,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const currentWidth =
+            startWidth + (endWidth - startWidth) * progress;
+          gsap.set(element, {
+            width: currentWidth,
+            left: "50%",
+            x: "-50%",
+            top: "25%",
+            y: "-25%",
+          });
+        },
+      });
+
+      // Handle window resize
+      handleResize = () => {
+        const newWrapperContentWidth = wrapper.clientWidth;
+        const newAvailableWidth = newWrapperContentWidth;
+        const newStartWidth = newAvailableWidth * 0.66666667;
+        const newEndWidth = newAvailableWidth;
+
+        // Update width calculations if needed
+        const progress = scrollTrigger?.progress || 0;
+        const currentWidth =
+          newStartWidth + (newEndWidth - newStartWidth) * progress;
+        gsap.set(element, {
+          width: currentWidth,
+        });
+
+        scrollTrigger?.refresh();
+      };
+
+      window.addEventListener("resize", handleResize);
+      ScrollTrigger.refresh();
+    });
+
+    // Cleanup
+    return () => {
+      if (handleResize) {
+        window.removeEventListener("resize", handleResize);
+      }
+      if (scrollTrigger) {
+        scrollTrigger.kill();
+      }
+    };
+  }, []);
 
   const [cursorPosition, setCursorPosition] = useState({
     x: 0,
@@ -203,37 +269,52 @@ export default function IndexClient({ clientsData, projects }) {
         />
       </div>
 
-      <div className='relative h-[75vh]'>
-        <div className='sticky my-[10%] top-[25%] flex justify-center gap-[14px]'>
+      <div className='lg:block hidden relative h-full w-full'>
+        <div
+          className='relative flex justify-center items-center'
+          style={{
+            height: "85vh",
+            width: "100%",
+          }}
+        >
           <motion.div
             ref={animatedDivRef}
-            className='col-start-3 cursor-pointer aspect-video max-h-[calc(100vh-28px)]'
+            className='cursor-pointer aspect-video max-h-[calc(100vh-28px)]'
             onMouseMove={handleMouseMove}
             onMouseEnter={() =>
               handleVideoHover("LISTENING EXPERIENCE")
             }
             onMouseLeave={handleVideoLeave}
-            {...fadeInUp}
-            transition={{
-              duration: 0.6,
-              ease: "easeOut",
-              delay: 0.2,
-            }}
           >
-            <img
-              src='/images/about_auw.png'
-              alt='about'
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
               className='w-full h-full object-cover'
-            />
+            >
+              <source
+                src='/AUW x LP horizontal_1.webm'
+                type='video/webm'
+              />
+              Your browser does not support the video tag.
+            </video>
           </motion.div>
         </div>
+      </div>
+      <div className='lg:hidden blockn margin-top relative h-full w-full'>
+        <img
+          src='/images/about_auw.png'
+          alt='about'
+          className='w-full h-full object-cover'
+        />
       </div>
 
       <div className='flex margin-top margin-bottom md:flex-row flex-col justify-between'>
         <div className='h1'>
           A look at brands we've helped bring to life.
         </div>
-        <div className='w-fit'>
+        <div className='w-fit lg:pt-0 pt-[14px]'>
           <FillLink text={"View All Projects"} link={"/work"} />
         </div>
       </div>
@@ -279,7 +360,7 @@ export default function IndexClient({ clientsData, projects }) {
         ))}
       </div>
 
-      <div className='sm:hidden'>
+      <div className='sm:hidden flex flex-col gap-[14px]'>
         {projects.slice(0, 3).map((project, index) => (
           <motion.div
             key={project.slug || index}
