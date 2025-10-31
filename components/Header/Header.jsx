@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 import Menu from "../Menu/Menu";
 import TransitionLink from "../TransitionLink";
@@ -11,10 +11,13 @@ export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
+  const router = useRouter();
   const videoRef = useRef(null);
   const closeButtonLinesRef = useRef([]);
   const bgRef = useRef(null);
   const logoRef = useRef(null);
+  const previousPathnameRef = useRef(null);
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -47,6 +50,31 @@ export default function Header() {
   //   video.addEventListener("ended", handleEnded);
   //   return () => video.removeEventListener("ended", handleEnded);
   // }, []);
+
+  useEffect(() => {
+    // Only reload if we just navigated TO the listening-experience page
+    // Skip on initial render (when previousPathnameRef is null)
+    if (previousPathnameRef.current === null) {
+      previousPathnameRef.current = pathname;
+      return;
+    }
+
+    const justNavigatedToPage =
+      pathname &&
+      pathname.includes("listening-experience") &&
+      previousPathnameRef.current !== pathname &&
+      !previousPathnameRef.current?.includes("listening-experience");
+
+    if (justNavigatedToPage) {
+      console.log("Navigated to listening-experience, reloading...");
+      previousPathnameRef.current = pathname;
+      // router.refresh() only refreshes server components, not client components or iframes
+      // Use window.location.reload() for a full page reload instead
+      window.location.reload();
+    } else {
+      previousPathnameRef.current = pathname;
+    }
+  }, [pathname]);
 
   useEffect(() => {
     const [line1, line2, line3] = closeButtonLinesRef.current;
