@@ -10,6 +10,8 @@ import ArrowLink from "@/components/ArrowLink/ArrowLink";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRouterTransition } from "@/contexts/TransitionContext";
+import { useRouter } from "next/navigation";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -19,6 +21,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 export default function IndexClient({ clientsData, projects }) {
   const containerRef = useRef(null);
   const animatedDivRef = useRef(null);
+  const router = useRouter();
+  const [, startRouteTransition] = useRouterTransition();
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -203,8 +207,9 @@ export default function IndexClient({ clientsData, projects }) {
       <AnimatePresence>
         {showCustomCursor && (
           <motion.div
-            className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 bg-black text-white whitespace-nowrap`}
+            className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 text-white whitespace-nowrap`}
             style={{
+              backgroundColor: hoveredProjectTitle.includes("Coming Soon") ? "#626262" : "black",
               fontSize: "12px",
               letterSpacing: "0.24px",
               lineHeight: "1.2",
@@ -229,7 +234,7 @@ export default function IndexClient({ clientsData, projects }) {
         )}
       </AnimatePresence>
       <div className='flex flex-col'>
-        <motion.div className='section-spacing h1 text-26 items-center desktop:items-start flex h-full'>
+        <motion.div className='section-spacing h1 text-26 flex h-full'>
           Creating brands that feel inevitable.
         </motion.div>
         <motion.div
@@ -274,6 +279,7 @@ export default function IndexClient({ clientsData, projects }) {
           className='relative flex justify-center items-center'
           style={{
             height: "85vh",
+            minHeight: "700px",
             width: "100%",
           }}
         >
@@ -325,11 +331,32 @@ export default function IndexClient({ clientsData, projects }) {
             key={project.slug || index}
             className='col-span-12 cursor-pointer aspect-video w-full max-h-[calc(100vh-28px)]'
             onMouseMove={handleMouseMove}
-            onMouseEnter={() =>
-              handleVideoHover(
-                `${project.title} | ${project.description}`
-              )
-            }
+            onMouseEnter={() => {
+              const statusText = project.isNotAvailable
+                ? project.projectStatus === "coming-soon"
+                  ? "Coming Soon"
+                  : "View Website"
+                : project.description;
+              handleVideoHover(`${project.title} | ${statusText}`);
+            }}
+            onClick={() => {
+              if (project.isNotAvailable) {
+                if (project.projectStatus === "coming-soon") {
+                  return;
+                } else {
+                  window.open(project.projectUrl, "_blank");
+                }
+              } else {
+                startRouteTransition(
+                  () => {
+                    router.push(
+                      `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+                    );
+                  },
+                  `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+                );
+              }
+            }}
             onMouseLeave={handleVideoLeave}
             {...fadeInUp}
             transition={{

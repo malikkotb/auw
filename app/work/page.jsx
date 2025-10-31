@@ -12,6 +12,9 @@ const PROJECTS_QUERY = `*[
   _id,
   title,
   description,
+  isNotAvailable,
+  projectStatus,
+  projectUrl,
   featuredMedia{
     dimension,
     type,

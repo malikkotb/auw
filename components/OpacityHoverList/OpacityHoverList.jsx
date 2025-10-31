@@ -5,14 +5,8 @@ import { motion } from "framer-motion";
 import { staggerVariants } from "@/utils/animations";
 import { useRouter } from "next/navigation";
 import { useRouterTransition } from "@/contexts/TransitionContext";
-// Helper function to check if a URL is a video
-const isVideoUrl = (url) => {
-  if (!url) return false;
-  const videoExtensions = [".mp4", ".webm", ".mov"];
-  return videoExtensions.some((ext) =>
-    url.toLowerCase().endsWith(ext)
-  );
-};
+
+
 
 export default function OpacityHoverList({ projects }) {
   const [hoveredId, setHoveredId] = useState(null);
@@ -21,6 +15,8 @@ export default function OpacityHoverList({ projects }) {
   const hoveredProject = projects.find(
     (project) => project._id === hoveredId
   );
+  console.log("projects", projects);
+  console.log("hoveredProject", hoveredProject);
 
   const router = useRouter();
   const [, startRouteTransition] = useRouterTransition();
@@ -38,18 +34,26 @@ export default function OpacityHoverList({ projects }) {
           key={project._id}
           variants={staggerVariants.item}
           onClick={() => {
-            startRouteTransition(
-              () => {
-                router.push(
-                  `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
-                );
-              },
-              `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
-            );
+            if (project.isNotAvailable) {
+              if (project.projectStatus === "coming-soon") {
+                return;
+              } else {
+                window.open(project.projectUrl, "_blank");
+              }
+            } else {
+              startRouteTransition(
+                () => {
+                  router.push(
+                    `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+                  );
+                },
+                `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+              );
+            }
           }}
           onMouseEnter={() => setHoveredId(project._id)}
           onMouseLeave={() => setHoveredId(null)}
-          className={`flex h1 cursor-pointer relative w-full justify-between border-b pt-2 pb-1 border-black ${
+          className={`flex h1 ${project.projectStatus === "coming-soon" ? "cursor-none" : "cursor-pointer"} relative w-full justify-between border-b pt-2 pb-1 border-black ${
             projects.indexOf(project) === 0 ? "border-t" : ""
           }`}
           style={{
@@ -92,21 +96,21 @@ export default function OpacityHoverList({ projects }) {
       ))}
 
       {/* Pinned image in bottom right corner */}
-      {hoveredProject && hoveredProject.mediaUrl && (
+      {hoveredProject && (
         <div
-          className='fixed hidden lg:flex bottom-[14px] right-[14px] w-64 h-48 z-50 pointer-events-none'
+          className='fixed hidden lg:flex bottom-[14px] right-[14px] aspect-video max-w-[200px] z-50 pointer-events-none'
           style={{
             opacity: hoveredId ? 1 : 0,
             transition: "opacity 0.3s ease-in-out",
           }}
         >
           <div className='w-full h-full overflow-hidden'>
-            {isVideoUrl(hoveredProject.mediaUrl) ? (
+            {hoveredProject.videoUrl ? (
               <div className='relative w-full h-full'>
                 {/* Video loads on top when ready */}
                 <video
                   key={hoveredProject._id}
-                  src={hoveredProject.mediaUrl}
+                  src={hoveredProject.videoUrl}
                   autoPlay
                   loop
                   muted
@@ -126,7 +130,7 @@ export default function OpacityHoverList({ projects }) {
               </div>
             ) : (
               <img
-                src={hoveredProject.mediaUrl}
+                src={hoveredProject.imageUrl}
                 alt={hoveredProject.title}
                 className='w-full h-full object-cover'
               />

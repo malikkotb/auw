@@ -62,8 +62,13 @@ export default function WorkClient({ projects }) {
       <AnimatePresence>
         {showCustomCursor && (
           <motion.div
-            className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 bg-black text-white whitespace-nowrap`}
+            className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 text-white whitespace-nowrap`}
             style={{
+              backgroundColor: hoveredProjectTitle.includes(
+                "Coming Soon"
+              )
+                ? "#626262"
+                : "black",
               fontSize: "12px",
               letterSpacing: "0.24px",
               lineHeight: "1.2",
@@ -83,7 +88,7 @@ export default function WorkClient({ projects }) {
               ease: "easeOut",
             }}
           >
-            {hoveredProjectTitle} | View Case Study
+            {hoveredProjectTitle}
           </motion.div>
         )}
       </AnimatePresence>
@@ -122,105 +127,7 @@ export default function WorkClient({ projects }) {
           </div>
         </motion.div>
         {view === "list" && <OpacityHoverList projects={projects} />}
-        {/* {view === "grid" && (
-          <>
-            <motion.div
-              className='hidden sm:flex w-full cursor-pointer sm:h-full aspect-video max-h-[calc(100vh-28px)] overflow-clip'
-              onClick={() => {
-                startRouteTransition(
-                  () => {
-                    router.push(
-                      `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
-                    );
-                  },
-                  `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
-                );
-              }}
-            >
-              {projects[0].videoUrl ? (
-                <video
-                  src={projects[0].videoUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className='w-full h-full object-cover cursor-pointer'
-                  onMouseEnter={() =>
-                    handleVideoHover(projects[0].title)
-                  }
-                  onMouseLeave={handleVideoLeave}
-                />
-              ) : (
-                <img
-                  src={projects[0].imageUrl}
-                  alt={projects[0].title}
-                  className='w-full h-full object-cover cursor-pointer'
-                  onMouseEnter={() =>
-                    handleVideoHover(projects[0].title)
-                  }
-                  onMouseLeave={handleVideoLeave}
-                />
-              )}
-            </motion.div>
-            <motion.div
-              className='sm:hidden w-full cursor-pointer flex h-fit aspect-[4/5] max-h-[calc(100vh-28px)] overflow-clip'
-              onClick={() => {
-                startRouteTransition(
-                  () => {
-                    router.push(
-                      `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
-                    );
-                  },
-                  `/${projects[0].title.toLowerCase().replace(/\s+/g, "-")}`
-                );
-              }}
-            >
-              {projects[0].videoUrlMobile ? (
-                <video
-                  src={projects[0].videoUrlMobile}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className='w-full h-full object-cover cursor-pointer'
-                  onMouseEnter={() =>
-                    handleVideoHover(projects[0].title)
-                  }
-                  onMouseLeave={handleVideoLeave}
-                />
-              ) : (
-                <img
-                  src={projects[0].imageUrlMobile}
-                  alt={projects[0].title}
-                  className='w-full h-full object-cover cursor-pointer'
-                  onMouseEnter={() =>
-                    handleVideoHover(projects[0].title)
-                  }
-                  onMouseLeave={handleVideoLeave}
-                />
-              )}
-            </motion.div>
-          </>
-        )} */}
       </div>
-
-      {/* mobile and grid view first text of first project */}
-      {/* {view === "grid" && (
-        <motion.div
-          {...fadeInUp}
-          viewport={{ once: false, margin: "-50px" }}
-          className='pt-1 lg:hidden flex justify-between'
-        >
-          <div className='flex items-start flex-col'>
-            <h3 className='uppercase projects-eyebrow'>
-              {projects[0].title}
-            </h3>
-            <p className='text-[#626262] projects-eyebrow uppercase'>
-              {projects[0].description}
-            </p>
-          </div>
-        </motion.div>
-      )} */}
 
       {view === "grid" && (
         <div className='flex flex-col gap-[14px]'>
@@ -234,17 +141,36 @@ export default function WorkClient({ projects }) {
                   ease: "easeOut",
                   delay: 0.2,
                 }}
-                className='cursor-pointer'
+                className={`${project.projectStatus === "coming-soon" ? "cursor-none" : "cursor-pointer"}`}
                 onClick={() => {
-                  startRouteTransition(
-                    () => {
-                      router.push(
-                        `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
-                      );
-                    },
-                    `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+                  if (project.isNotAvailable) {
+                    if (project.projectStatus === "coming-soon") {
+                      return;
+                    } else {
+                      window.open(project.projectUrl, "_blank");
+                    }
+                  } else {
+                    startRouteTransition(
+                      () => {
+                        router.push(
+                          `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+                        );
+                      },
+                      `/${project.title.toLowerCase().replace(/\s+/g, "-")}`
+                    );
+                  }
+                }}
+                onMouseEnter={() => {
+                  const statusText = project.isNotAvailable
+                    ? project.projectStatus === "coming-soon"
+                      ? "Coming Soon"
+                      : "View Website"
+                    : "View Case Study";
+                  handleVideoHover(
+                    `${project.title} | ${statusText}`
                   );
                 }}
+                onMouseLeave={handleVideoLeave}
               >
                 {/* Desktop */}
                 <motion.div
@@ -263,21 +189,13 @@ export default function WorkClient({ projects }) {
                       loop
                       muted
                       playsInline
-                      className='w-full h-full object-cover cursor-pointer'
-                      onMouseEnter={() =>
-                        handleVideoHover(project.title)
-                      }
-                      onMouseLeave={handleVideoLeave}
+                      className='w-full h-full object-cover'
                     />
                   ) : (
                     <img
                       src={project.imageUrl}
                       alt={project.title}
-                      className='w-full h-full object-cover cursor-pointer'
-                      onMouseEnter={() =>
-                        handleVideoHover(project.title)
-                      }
-                      onMouseLeave={handleVideoLeave}
+                      className='w-full h-full object-cover'
                     />
                   )}
                 </motion.div>
@@ -298,20 +216,34 @@ export default function WorkClient({ projects }) {
                       loop
                       muted
                       playsInline
-                      className='w-full h-full object-cover cursor-pointer'
-                      onMouseEnter={() =>
-                        handleVideoHover(project.title)
-                      }
+                      className='w-full h-full object-cover'
+                      onMouseEnter={() => {
+                        const statusText = project.isNotAvailable
+                          ? project.projectStatus === "coming-soon"
+                            ? "Coming Soon"
+                            : "View Website"
+                          : project.description;
+                        handleVideoHover(
+                          `${project.title} | ${statusText}`
+                        );
+                      }}
                       onMouseLeave={handleVideoLeave}
                     />
                   ) : (
                     <img
                       src={project.imageUrlMobile}
                       alt={project.title}
-                      className='w-full h-full object-cover cursor-pointer'
-                      onMouseEnter={() =>
-                        handleVideoHover(project.title)
-                      }
+                      className='w-full h-full object-cover'
+                      onMouseEnter={() => {
+                        const statusText = project.isNotAvailable
+                          ? project.projectStatus === "coming-soon"
+                            ? "Coming Soon"
+                            : "View Website"
+                          : project.description;
+                        handleVideoHover(
+                          `${project.title} | ${statusText}`
+                        );
+                      }}
                       onMouseLeave={handleVideoLeave}
                     />
                   )}
