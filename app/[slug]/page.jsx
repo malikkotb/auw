@@ -73,9 +73,9 @@ const options = { next: { revalidate: 3600 } }; // Cache for 1 hour instead of 3
 
 // This tells Next.js which paths to pre-render
 export async function generateStaticParams() {
-  // Fetch only the slugs we need
+  // Fetch only the slugs for projects that are available (not coming soon or website only)
   const slugs = await client.fetch(
-    `*[_type == "project"][0...12]{
+    `*[_type == "project" && (!defined(isNotAvailable) || isNotAvailable == false)]{
       "slug": slug.current
     }`,
     {},

@@ -6,8 +6,6 @@ import { staggerVariants } from "@/utils/animations";
 import { useRouter } from "next/navigation";
 import { useRouterTransition } from "@/contexts/TransitionContext";
 
-
-
 export default function OpacityHoverList({ projects }) {
   const [hoveredId, setHoveredId] = useState(null);
 
@@ -15,8 +13,7 @@ export default function OpacityHoverList({ projects }) {
   const hoveredProject = projects.find(
     (project) => project._id === hoveredId
   );
-  console.log("projects", projects);
-  console.log("hoveredProject", hoveredProject);
+  console.log("hoveredProject", hoveredProject?.videoUrl);
 
   const router = useRouter();
   const [, startRouteTransition] = useRouterTransition();
@@ -105,7 +102,7 @@ export default function OpacityHoverList({ projects }) {
           }}
         >
           <div className='w-full h-full overflow-hidden'>
-            {hoveredProject.videoUrl ? (
+            {hoveredProject?.videoUrl ? (
               <div className='relative w-full h-full'>
                 {/* Video loads on top when ready */}
                 <video
