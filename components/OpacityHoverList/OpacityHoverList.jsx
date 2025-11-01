@@ -98,7 +98,7 @@ export default function OpacityHoverList({ projects }) {
       ))}
       {/* Pinned image in bottom right corner */}
       <div
-        className='fixed hidden lg:flex bottom-[14px] right-[14px] aspect-video max-w-[250px] z-50 pointer-events-none'
+        className='fixed hidden lg:flex bottom-[14px] right-[14px] aspect-video max-w-[400px] z-50 pointer-events-none'
         style={{
           opacity: hoveredId && hoveredProject ? 1 : 0,
           transition: "opacity 0.3s ease-in-out",

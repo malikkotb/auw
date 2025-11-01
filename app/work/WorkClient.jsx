@@ -255,7 +255,11 @@ export default function WorkClient({ projects }) {
                       {project.title}
                     </h3>
                     <p className='text-[#626262] projects-eyebrow uppercase'>
-                      {project.description}
+                      {project.isNotAvailable
+                        ? project.projectStatus === "coming-soon"
+                          ? "Coming Soon"
+                          : "View Website"
+                        : "View Case Study"}
                     </p>
                   </div>
                   {/* <div className='projects-eyebrow uppercase'>
