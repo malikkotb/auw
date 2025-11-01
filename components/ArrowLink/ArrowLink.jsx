@@ -78,7 +78,7 @@ export default function ArrowLink({ link, text }) {
 
   return (
     <a
-      className='external-link cursor-pointer flex gap-1 items-start'
+      className='h2 cursor-pointer flex gap-1 items-start'
       href={link}
       target='_blank'
       onMouseEnter={handleMouseEnter}

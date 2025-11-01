@@ -62,7 +62,7 @@ export default function WorkClient({ projects }) {
       <AnimatePresence>
         {showCustomCursor && (
           <motion.div
-            className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 text-white whitespace-nowrap`}
+            className={`${ibmPlexMono.className} lg:hidden block fixed uppercase pointer-events-none rounded-full z-50 text-white whitespace-nowrap`}
             style={{
               backgroundColor: hoveredProjectTitle.includes(
                 "Coming Soon"
@@ -94,7 +94,7 @@ export default function WorkClient({ projects }) {
       </AnimatePresence>
       <div className='flex flex-col'>
         <motion.div
-          className='section-spacing h1 text-26 justify-between flex h-full'
+          className='section-spacing h1  justify-between flex h-full'
           // {...fadeInUp}
         >
           <div>ALL PROJECTS</div>
@@ -251,10 +251,10 @@ export default function WorkClient({ projects }) {
 
                 <div className='pt-1 lg:hidden flex justify-between'>
                   <div className='flex items-start flex-col'>
-                    <h3 className='uppercase projects-eyebrow'>
+                    <h3 className='uppercase annotation'>
                       {project.title}
                     </h3>
-                    <p className='text-[#626262] projects-eyebrow uppercase'>
+                    <p className='text-[#626262] annotation uppercase'>
                       {project.isNotAvailable
                         ? project.projectStatus === "coming-soon"
                           ? "Coming Soon"
@@ -262,19 +262,12 @@ export default function WorkClient({ projects }) {
                         : "View Case Study"}
                     </p>
                   </div>
-                  {/* <div className='projects-eyebrow uppercase'>
-                    <ArrowHoverText
-                      isHovered={hoveredId === project._id}
-                      text='View Project'
-                    />
-                  </div> */}
                 </div>
               </motion.button>
             ))}
           </div>
         </div>
       )}
-      {/* {view === "list" && <OpacityHoverList projects={projects} />} */}
       <Footer />
     </div>
   );

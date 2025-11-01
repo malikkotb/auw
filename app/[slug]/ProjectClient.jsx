@@ -68,7 +68,7 @@ export default function ProjectClient({
   return (
     <main className='h-full w-full bg-white'>
       <div className='flex flex-col'>
-        <div className='section-spacing h1 text-26 items-start flex justify-between h-full'>
+        <div className='section-spacing h1 items-start flex justify-between h-full'>
           <div className='flex flex-col'>
             <div className='h1'>{project.title}</div>
             <div className='h1 text-[#838383]'>
@@ -97,7 +97,7 @@ export default function ProjectClient({
         </div>
       </div>
       {/*  pin aniamtion */}
-      <div className='relative h-[50vh]'>
+      <div className='relative h-[75vh] lg:h-[50vh]'>
         {/* Container controls sticky duration */}
         <div className='pt-[14px] sticky top-[25%]'>
           <ParagraphEyebrow
@@ -142,7 +142,7 @@ export default function ProjectClient({
       </div>
 
       {/*  pin aniamtion */}
-      <div className='relative h-[50vh]'>
+      <div className='relative h-[75vh] lg:h-[50vh]'>
         {/* Container controls sticky duration */}
         <div className='pt-[14px] sticky top-[25%]'>
           <ParagraphEyebrow
@@ -184,7 +184,7 @@ export default function ProjectClient({
       </div>
 
       {/*  pin aniamtion */}
-      <div className='relative h-[50vh]'>
+      <div className='relative h-[75vh] lg:h-[50vh]'>
         {/* Container controls sticky duration */}
         <div className='pt-[14px] sticky top-[25%]'>
           <ParagraphEyebrow

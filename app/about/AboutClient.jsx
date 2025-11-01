@@ -72,7 +72,7 @@ export default function AboutClient({ clientsData }) {
   return (
     <div className='h-full w-full bg-white'>
       <div className='flex flex-col'>
-        <div className='section-spacing h1 text-26 h-full'>
+        <div className='section-spacing h1  h-full'>
           We turn ideas into brands people instantly understand.
         </div>
         <div className='w-full hidden sm:grid grid-cols-12 h-full aspect-video overflow-clip'>

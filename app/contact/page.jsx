@@ -115,7 +115,7 @@ export default function Contact() {
       <div className='h-[calc(100vh-28px)] flex flex-col'>
         <div className='flex flex-col flex-1 min-h-0'>
           <motion.div
-            className='section-spacing h1 text-26 flex-shrink-0'
+            className='section-spacing h1 flex-shrink-0'
             // {...fadeInUp}
           >
             We're excited to collaborate.
@@ -147,7 +147,7 @@ export default function Contact() {
               placeholder='NAME'
               value={formData.name}
               onChange={handleChange}
-              className='w-full pb-1 pt-2 h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+              className='w-full pb-1 pt-2 h2 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
             />
             <motion.div
               className='h-[1px] w-full bg-black'
@@ -167,7 +167,7 @@ export default function Contact() {
               placeholder='EMAIL'
               value={formData.email}
               onChange={handleChange}
-              className='w-full pb-1 pt-2 h1 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
+              className='w-full pb-1 pt-2 h2 placeholder-[#838383] bg-transparent border-none outline-none focus:ring-0'
             />
             <motion.div
               className='h-[1px] w-full bg-black'
@@ -186,7 +186,7 @@ export default function Contact() {
               placeholder='How can we help?'
               value={formData.message}
               onChange={handleChange}
-              className='pt-2 w-full h-full resize-none placeholder-[#838383] h1 bg-transparent border-none outline-none focus:ring-0'
+              className='pt-2 w-full h-full resize-none placeholder-[#838383] h2 bg-transparent border-none outline-none focus:ring-0'
             />
             <motion.div
               className='h-[1px] w-full bg-black flex-shrink-0'
@@ -202,7 +202,7 @@ export default function Contact() {
           {/* Success Message */}
           {isSubmitted && (
             <motion.div
-              className='text-green-600 mt-4 h1 flex-shrink-0'
+              className='text-green-600 mt-4 h2 flex-shrink-0'
               initial={{ opacity: 0, y: 10 }}
               animate={{
                 opacity: showSuccess ? 1 : 0,
@@ -217,7 +217,7 @@ export default function Contact() {
           {/* Error Message */}
           {error && (
             <motion.div
-              className='text-red-500 mt-4 h1 flex-shrink-0'
+              className='text-red-500 mt-4 h2 flex-shrink-0'
               initial={{ opacity: 0, y: 10 }}
               animate={{
                 opacity: showError ? 1 : 0,

@@ -30,18 +30,87 @@ body {
 
 .h1 {
   font-size: 28px;
-  line-height: 1.2;
+  line-height: 1.1;
   text-transform: uppercase;
 }
 
-@media (max-width: 1023px) {
-  .text-26 {
-    font-size: 26px !important;
-  }
+.projects-eyebrow {
+  font-size: 24px;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.h2 {
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+}
+
+.menu-link {
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+}
+
+.annotation {
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.annotation-2 {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.eyebrow {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #838383;
 }
 
 .text-body {
   font-size: 15px;
+}
+
+@media (max-width: 1023px) {
+  .h1 {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+
+  .h2 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .annotation {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .annotation-2 {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .margin-top {
+    margin-top: 64px;
+  }
+
+  .margin-bottom {
+    margin-bottom: 64px;
+  }
+
+  .padding-top {
+    padding-top: 64px;
+  }
+
+  .padding-bottom {
+    padding-bottom: 64px;
+  }
 }
 
 @media (min-width: 1920px) {
@@ -67,32 +136,6 @@ body {
   }
 }
 
-@media (max-width: 1023px) {
-  .h1 {
-    font-size: 20px;
-  }
-
-  .h2 {
-    font-size: 28px;
-  }
-
-  .margin-top {
-    margin-top: 64px;
-  }
-
-  .margin-bottom {
-    margin-bottom: 64px;
-  }
-
-  .padding-top {
-    padding-top: 64px;
-  }
-
-  .padding-bottom {
-    padding-bottom: 64px;
-  }
-}
-
 .section-spacing {
   margin-top: 30vh;
   margin-bottom: 30vh;
@@ -112,56 +155,11 @@ body {
   }
 }
 
-.external-link {
-  font-size: 24px;
-  text-transform: uppercase;
-}
-/* TODO: add responsive sizes for other screen sizes */
-@media (min-width: 1920px) {
-  .external-link {
-    font-size: 28px;
-  }
-}
-/*
-@media (max-width: 1023px) {
-  .external-link {
-    font-size: 16px;
-  }
-} */
-
-/* .external-link-svg {
-  width: 10px;
-  height: 21px;
-} */
 @media (min-width: 1920px) {
   .external-link-svg {
     width: 10px;
     height: 21px;
   }
-}
-
-.projects-eyebrow {
-  font-size: 24px;
-  line-height: 1.1;
-  text-align: left;
-}
-
-.h1.heading {
-  font-size: 26px;
-}
-
-.h2 {
-  font-size: 56px;
-  line-height: 1;
-  letter-spacing: 0em;
-  text-transform: uppercase;
-}
-
-.eyebrow {
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #838383;
 }
 
 .aspect-ig {

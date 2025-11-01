@@ -12,6 +12,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRouterTransition } from "@/contexts/TransitionContext";
 import { useRouter } from "next/navigation";
+import FillLinkBlack from "@/components/FillButton/FillLinkBlack";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -209,7 +210,11 @@ export default function IndexClient({ clientsData, projects }) {
           <motion.div
             className={`${ibmPlexMono.className} fixed uppercase pointer-events-none rounded-full z-50 text-white whitespace-nowrap`}
             style={{
-              backgroundColor: hoveredProjectTitle.includes("Coming Soon") ? "#626262" : "black",
+              backgroundColor: hoveredProjectTitle.includes(
+                "Coming Soon"
+              )
+                ? "#626262"
+                : "black",
               fontSize: "12px",
               letterSpacing: "0.24px",
               lineHeight: "1.2",
@@ -234,7 +239,7 @@ export default function IndexClient({ clientsData, projects }) {
         )}
       </AnimatePresence>
       <div className='flex flex-col'>
-        <motion.div className='section-spacing h1 text-26 flex h-full'>
+        <motion.div className='section-spacing h1 flex h-full'>
           Creating brands that feel inevitable.
         </motion.div>
         <motion.div
@@ -292,7 +297,12 @@ export default function IndexClient({ clientsData, projects }) {
             }
             onMouseLeave={handleVideoLeave}
           >
-            <video
+            <img
+              src='/images/about_auw.png'
+              alt='about'
+              className='w-full h-full object-cover'
+            />
+            {/* <video
               autoPlay
               loop
               muted
@@ -304,23 +314,35 @@ export default function IndexClient({ clientsData, projects }) {
                 type='video/webm'
               />
               Your browser does not support the video tag.
-            </video>
+            </video> */}
           </motion.div>
         </div>
       </div>
-      <div className='lg:hidden blockn margin-top relative h-full w-full'>
-        <img
-          src='/images/about_auw.png'
-          alt='about'
-          className='w-full h-full object-cover'
-        />
+      <div className='lg:hidden block margin-top margin-bottom relative h-full w-full'>
+        <div className='relative aspect-[4/5] w-full h-full'>
+          <img
+            src='/images/3.png'
+            alt='about'
+            className='w-full h-full object-cover'
+          />
+          <div className='absolute top-0 left-0 w-fit'>
+            <FillLinkBlack
+              text={"Listening Room"}
+              link={"/listening-experience"}
+            />
+          </div>
+        </div>
+        <div className='flex pt-1 justify-between'>
+          <div className='annotation-2'>LISTENING EXPERIENCE</div>
+          <div className='annotation-2'>LOU PHELPS</div>
+        </div>
       </div>
 
-      <div className='flex margin-top margin-bottom md:flex-row flex-col justify-between'>
-        <div className='h1'>
+      <div className='flex md:flex-row pb-[14px] flex-col justify-between'>
+        <div className='h2'>
           A look at brands we've helped bring to life.
         </div>
-        <div className='w-fit lg:pt-0 pt-[14px]'>
+        <div className='w-fit'>
           <FillLink text={"View All Projects"} link={"/work"} />
         </div>
       </div>
@@ -391,7 +413,7 @@ export default function IndexClient({ clientsData, projects }) {
         {projects.slice(0, 3).map((project, index) => (
           <motion.div
             key={project.slug || index}
-            className='cursor-pointer aspect-[4/5] w-full'
+            className='w-full h-full cursor-pointer'
             {...fadeInUp}
             transition={{
               duration: 0.6,
@@ -399,26 +421,42 @@ export default function IndexClient({ clientsData, projects }) {
               delay: 0.2 + index * 0.2,
             }}
           >
-            {project.videoUrl ? (
-              <video
-                src={project.videoUrlMobile}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className='w-full h-full object-cover'
-                onMouseLeave={handleVideoLeave}
-              />
-            ) : (
-              <img
-                src={
-                  project.imageUrlMobile || "/images/about_auw.png"
-                }
-                alt={project.title}
-                className='w-full h-full object-cover'
-                onMouseLeave={handleVideoLeave}
-              />
-            )}
+            <div className='aspect-[4/5] h-full w-full'>
+              {project.videoUrl ? (
+                <video
+                  src={project.videoUrlMobile}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className='w-full h-full object-cover'
+                  onMouseLeave={handleVideoLeave}
+                />
+              ) : (
+                <img
+                  src={
+                    project.imageUrlMobile || "/images/about_auw.png"
+                  }
+                  alt={project.title}
+                  className='w-full h-full object-cover'
+                  onMouseLeave={handleVideoLeave}
+                />
+              )}
+            </div>
+            <div className='pt-1 lg:hidden flex justify-between'>
+              <div className='flex items-start flex-col'>
+                <h3 className='uppercase annotation'>
+                  {project.title}
+                </h3>
+                <p className='text-[#626262] annotation uppercase'>
+                  {project.isNotAvailable
+                    ? project.projectStatus === "coming-soon"
+                      ? "Coming Soon"
+                      : "View Website"
+                    : "View Case Study"}
+                </p>
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>
@@ -448,7 +486,7 @@ export default function IndexClient({ clientsData, projects }) {
           <p className='eyebrow'>Capabilities</p>
           <div className='h-[1px] w-full bg-[#838383] mt-1 mb-2'></div>
           {capabilities.map((capability, index) => (
-            <div key={index} className='external-link'>
+            <div key={index} className='h2'>
               {capability}
             </div>
           ))}
@@ -468,14 +506,14 @@ export default function IndexClient({ clientsData, projects }) {
             {clientsData.map((client, index) => (
               <div
                 key={index}
-                className='external-link cursor-pointer transition-all duration-300 hover:text-[#626262]'
+                className='h2 cursor-pointer transition-all duration-300 hover:text-[#626262]'
                 onMouseEnter={() => setHoveredIndex(index)}
               >
                 {client.name}
               </div>
             ))}
           </div>
-          <div className='external-link'>& More</div>
+          <div className='h2'>& More</div>
         </motion.div>
         <motion.div
           className='md:col-span-3 col-span-12'

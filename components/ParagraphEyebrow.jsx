@@ -1,7 +1,6 @@
 "use client";
 
 import FillButton from "@/components/FillButton/FillButton";
-import Link from "next/link";
 
 export default function ParagraphEyebrow({
   eyebrowText,
@@ -16,7 +15,7 @@ export default function ParagraphEyebrow({
     <div className={`flex flex-col gap-2 pb-[14px] ${className}`}>
       <p className='eyebrow'>{eyebrowText}</p>
       <div className='grid grid-cols-12'>
-        <div className='h1 col-span-12 sm:col-span-9'>{mainText}</div>
+        <div className='h2 col-span-12 sm:col-span-9'>{mainText}</div>
       </div>
       {buttonText && (
         <div className='w-fit h-full flex items-center'>
