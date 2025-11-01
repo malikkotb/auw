@@ -124,7 +124,7 @@ export default function AboutClient({ clientsData }) {
           <p className='eyebrow'>Capabilities</p>
           <div className='h-[1px] w-full bg-[#838383] mt-1 mb-2'></div>
           {capabilities.map((capability, index) => (
-            <div key={index} className='external-link'>
+            <div key={index} className='h2'>
               {capability}
             </div>
           ))}
@@ -144,14 +144,14 @@ export default function AboutClient({ clientsData }) {
             {clientsData.map((client, index) => (
               <div
                 key={index}
-                className='external-link cursor-pointer transition-all duration-300 hover:text-[#626262]'
+                className='h2 cursor-pointer transition-all duration-300 hover:text-[#626262]'
                 onMouseEnter={() => setHoveredIndex(index)}
               >
                 {client.name}
               </div>
             ))}
           </div>
-          <div className='external-link'>& More</div>
+          <div className='h2'>& More</div>
         </motion.div>
         <motion.div
           className='md:col-span-3 col-span-12'

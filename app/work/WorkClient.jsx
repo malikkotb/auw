@@ -62,7 +62,7 @@ export default function WorkClient({ projects }) {
       <AnimatePresence>
         {showCustomCursor && (
           <motion.div
-            className={`${ibmPlexMono.className} lg:hidden block fixed uppercase pointer-events-none rounded-full z-50 text-white whitespace-nowrap`}
+            className={`${ibmPlexMono.className} lg:block hidden fixed uppercase pointer-events-none rounded-full z-50 text-white whitespace-nowrap`}
             style={{
               backgroundColor: hoveredProjectTitle.includes(
                 "Coming Soon"

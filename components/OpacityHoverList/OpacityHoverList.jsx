@@ -48,11 +48,9 @@ export default function OpacityHoverList({ projects }) {
             }
           }}
           onMouseEnter={() => {
-            console.log("MouseEnter triggered", project._id);
             setHoveredId(project._id);
           }}
           onMouseLeave={() => {
-            console.log("MouseLeave triggered", project._id);
             setHoveredId(null);
           }}
           className={`flex h1 ${project.projectStatus === "coming-soon" ? "cursor-not-allowed" : "cursor-pointer"} relative w-full justify-between border-b pt-2 pb-1 border-black ${
@@ -102,7 +100,8 @@ export default function OpacityHoverList({ projects }) {
         style={{
           opacity: hoveredId && hoveredProject ? 1 : 0,
           transition: "opacity 0.3s ease-in-out",
-          visibility: hoveredId && hoveredProject ? "visible" : "hidden",
+          visibility:
+            hoveredId && hoveredProject ? "visible" : "hidden",
         }}
       >
         {hoveredProject && (
