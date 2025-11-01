@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { pageAnimation } from "@/utils/pageAnimation";
 import { motion } from "framer-motion";
 import { staggerVariants } from "@/utils/animations";
 import { useRouter } from "next/navigation";
@@ -13,7 +12,7 @@ export default function OpacityHoverList({ projects }) {
   const hoveredProject = projects.find(
     (project) => project._id === hoveredId
   );
-  console.log("hoveredProject", hoveredProject?.videoUrl);
+  // console.log("hoveredProject", hoveredProject?.videoUrl);
 
   const router = useRouter();
   const [, startRouteTransition] = useRouterTransition();
@@ -48,9 +47,15 @@ export default function OpacityHoverList({ projects }) {
               );
             }
           }}
-          onMouseEnter={() => setHoveredId(project._id)}
-          onMouseLeave={() => setHoveredId(null)}
-          className={`flex h1 ${project.projectStatus === "coming-soon" ? "cursor-none" : "cursor-pointer"} relative w-full justify-between border-b pt-2 pb-1 border-black ${
+          onMouseEnter={() => {
+            console.log("MouseEnter triggered", project._id);
+            setHoveredId(project._id);
+          }}
+          onMouseLeave={() => {
+            console.log("MouseLeave triggered", project._id);
+            setHoveredId(null);
+          }}
+          className={`flex h1 ${project.projectStatus === "coming-soon" ? "cursor-not-allowed" : "cursor-pointer"} relative w-full justify-between border-b pt-2 pb-1 border-black ${
             projects.indexOf(project) === 0 ? "border-t" : ""
           }`}
           style={{
@@ -91,50 +96,39 @@ export default function OpacityHoverList({ projects }) {
           </div>
         </motion.button>
       ))}
-
       {/* Pinned image in bottom right corner */}
-      {hoveredProject && (
-        <div
-          className='fixed hidden lg:flex bottom-[14px] right-[14px] aspect-video max-w-[200px] z-50 pointer-events-none'
-          style={{
-            opacity: hoveredId ? 1 : 0,
-            transition: "opacity 0.3s ease-in-out",
-          }}
-        >
-          <div className='w-full h-full overflow-hidden'>
-            {hoveredProject?.videoUrl ? (
-              <div className='relative w-full h-full'>
-                {/* Video loads on top when ready */}
-                <video
-                  key={hoveredProject._id}
-                  src={hoveredProject.videoUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload='auto'
-                  className='w-full h-full object-cover absolute top-0 left-0'
-                  style={{ opacity: 0 }}
-                  onLoadedData={(e) => {
-                    e.target.style.opacity = "1";
-                    e.target.style.transition =
-                      "opacity 0.3s ease-in-out";
-                  }}
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                  }}
-                />
-              </div>
+      <div
+        className='fixed hidden lg:flex bottom-[14px] right-[14px] aspect-video max-w-[250px] z-50 pointer-events-none'
+        style={{
+          opacity: hoveredId && hoveredProject ? 1 : 0,
+          transition: "opacity 0.3s ease-in-out",
+          visibility: hoveredId && hoveredProject ? "visible" : "hidden",
+        }}
+      >
+        {hoveredProject && (
+          <div className='relative w-full h-full overflow-hidden'>
+            {hoveredProject.videoUrl ? (
+              <video
+                key={hoveredProject._id}
+                src={hoveredProject.videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload='auto'
+                className='w-full h-full object-cover'
+              />
             ) : (
               <img
+                key={hoveredProject._id}
                 src={hoveredProject.imageUrl}
                 alt={hoveredProject.title}
                 className='w-full h-full object-cover'
               />
             )}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </motion.div>
   );
 }
